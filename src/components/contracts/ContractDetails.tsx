@@ -8,6 +8,7 @@ import Dropdown from "@/components/ui/dropdown";
 import { z } from "zod";
 
 interface ContractFormData {
+  contractType: string;
   clientName: string;
   clientEmail: string;
   clientPhone: string;
@@ -40,6 +41,7 @@ interface ContractFormData {
   taxId: string;
   taxRate: string;
   uploadedFiles: File[];
+  paymentType: string;
   paymentFrequency?: "Hourly" | "Daily" | "Weekly" | "Per Deliverable";
 }
 
@@ -61,6 +63,18 @@ const networks = [
   { label: "Polygon", icon: "/eth.svg" },
   { label: "Binance Smart Chain", icon: "/eth.svg" },
   { label: "Arbitrum", icon: "/eth.svg" },
+];
+
+const currencies = [
+  { label: "USD", icon: "/eth.svg" },
+  { label: "GBP", icon: "/eth.svg" },
+  { label: "FR", icon: "/eth.svg" },
+  { label: "YEN", icon: "/eth.svg" },
+];
+
+const paymentTypes = [
+  { label: "Crypto Currency", value: 1 },
+  { label: "Fiat", value: 2 },
 ];
 
 const assets = [
@@ -152,6 +166,7 @@ export default function ContractDetails({
   const [dragOver, setDragOver] = useState(false);
   // ✅ FIXED: Proper useState syntax on single line
   const [paymentFrequency, setPaymentFrequency] = useState<"Hourly" | "Daily" | "Weekly" | "Per Deliverable">("Hourly");
+  const [paymentType, setPaymnentType] = useState<string>('Crypto Currency');
 
   // Sync payment frequency with formData
   useEffect(() => {
@@ -412,14 +427,40 @@ export default function ContractDetails({
         <h3 className="text-lg font-semibold text-[#17171C] mb-6">
           Payment details
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <Dropdown
-            label="Network"
-            value={formData.network}
-            options={networks}
-            onChange={(value) => handleInputChange("network", value)}
-            error={errors.network}
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <Dropdown
+              label="Payment Type"
+              value={paymentType}
+              options={paymentTypes}
+              onChange={(value) => { handleInputChange("paymentType", value); setPaymnentType(value); }}
+              error={errors.network}
+            />
+            {paymentType === "Crypto Currency"
+            ?
+            <>
+            <Dropdown
+              label="Network"
+              value={formData.network}
+              options={networks}
+              onChange={(value) => handleInputChange("network", value)}
+              error={errors.network}
+            />
+            </>
+            :<>
+            <Dropdown
+              label="Currency"
+              value={formData.asset}
+              options={currencies}
+              onChange={(value) => handleInputChange("asset", value)}
+              error={errors.network}
+            />
+            </>}
+          </div>
+          {/* Amount */}
+          {paymentType === "Crypto Currency"
+          ?
+          <>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-2 w-full relative">
             <Dropdown
               label="Asset"
@@ -428,8 +469,11 @@ export default function ContractDetails({
               onChange={(value) => handleInputChange("asset", value)}
               error={errors.asset}
             />
-            <div className="w-full relative">
-              <div className="">
+            <div className="w-full flex flex-col justify-center">
+              <small className="text-right md:-mt-4 text-[#414F62]">
+                ~{netAmount.toFixed(3)}
+              </small>
+              <div className="relative h-fit">
                 <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#414F62]">
                   $
                 </span>
@@ -445,13 +489,31 @@ export default function ContractDetails({
                 />
               </div>
             </div>
-          <div>
-            <label className="block text-sm font-medium text-[#414F62] mb-2">
-              Asset
-              <span className="float-right text-[#17171C]">
-                +{netAmount.toFixed(3)}
-              </span>
-            </label>
+          </div>
+          </>
+          :
+          <>
+          <div className="grid w-full relative">
+            <div className="w-full flex flex-col justify-center">
+              <div className="relative h-fit">
+                <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#414F62]">
+                  $
+                </span>
+                <input
+                  type="number"
+                  step="0.01"
+                  value={formData.amount}
+                  onChange={(e) => handleInputChange("amount", e.target.value)}
+                  className={`w-full pl-8 pr-4 py-3 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-[#414F62] bg-[#F5F6F7] ${
+                    errors.amount ? "border-red-300" : "border-gray-300"
+                  }`}
+                  placeholder="0.00"
+                />
+              </div>
+            </div>
+          </div>
+          </>}
+          {/* <div>
             <div className="flex items-center w-full px-4 py-3 bg-[#F5F6F7] rounded-lg">
               <div className="flex items-center gap-2 flex-1">
                 <Image
@@ -485,31 +547,31 @@ export default function ContractDetails({
             {errors.asset && <p className="text-red-500 text-sm mt-1">{errors.asset}</p>}
             {errors.amount && <p className="text-red-500 text-sm mt-1">{errors.amount}</p>}
           </div>
-        </div>
+        </div> */}
+      </div>
 
-        {/* Payment Frequency - NEW ADDITION FROM FIGMA */}
-        <div className="mb-6">
-          <label className="block text-sm font-medium text-[#414F62] mb-3">
-            Rate unit (Payment is based on the exact number of units submitted.)
-          </label>
-          <div className="flex flex-wrap gap-3">
-            {(["Hourly", "Daily", "Weekly", "Per Deliverable"] as const).map((freq) => (
-              <button
-                key={freq}
-                type="button"
-                onClick={() => {
-                  setPaymentFrequency(freq);
-                  onFormDataChange({ ...formData, paymentFrequency: freq });
-                }}
-                className={`px-6 py-2 rounded-lg text-sm font-medium transition-colors ${paymentFrequency === freq
-                  ? "bg-[#5E2A8C] text-white"
-                  : "bg-white border border-[#E5E7EB] text-[#414F62] hover:border-[#5E2A8C]"
-                  }`}
-              >
-                {freq}
-              </button>
-            ))}
-          </div>
+      {/* Payment Frequency - NEW ADDITION FROM FIGMA */}
+      <div className="mb-6">
+        <label className="block text-sm font-medium text-[#414F62] mb-3">
+          Rate unit (Payment is based on the exact number of units submitted.)
+        </label>
+        <div className="flex flex-wrap gap-3">
+          {(["Hourly", "Daily", "Weekly", "Per Deliverable"] as const).map((freq) => (
+            <button
+              key={freq}
+              type="button"
+              onClick={() => {
+                setPaymentFrequency(freq);
+                onFormDataChange({ ...formData, paymentFrequency: freq });
+              }}
+              className={`px-6 py-2 rounded-lg text-sm font-medium transition-colors ${paymentFrequency === freq
+                ? "bg-[#5E2A8C] text-white"
+                : "bg-white border border-[#E5E7EB] text-[#414F62] hover:border-[#5E2A8C]"
+                }`}
+            >
+              {freq}
+            </button>
+          ))}
         </div>
       </div>
 

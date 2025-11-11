@@ -8,6 +8,7 @@ import { ComplianceForm } from "@/components/contracts/ComplianceForm";
 import ContractReviewAccordion from "@/components/contracts/Sign&Review";
 
 interface ContractFormData {
+  contractType: string;
   clientName: string;
   clientEmail: string;
   clientPhone: string;
@@ -40,6 +41,7 @@ interface ContractFormData {
   taxId: string;
   taxRate: string;
   uploadedFiles: File[];
+  paymentType: string;
   paymentFrequency?: "Hourly" | "Daily" | "Weekly" | "Per Deliverable";
 }
 
@@ -59,6 +61,7 @@ const steps = [
 export default function CreateContractPage() {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<ContractFormData>({
+    contractType: "",
     clientName: "",
     clientEmail: "",
     clientPhone: "",
@@ -85,6 +88,7 @@ export default function CreateContractPage() {
     taxId: "",
     taxRate: "",
     uploadedFiles: [],
+    paymentType: "",
     paymentFrequency: "Hourly",
   });
   const [errors, setErrors] = useState<FormErrors>({});
@@ -177,17 +181,17 @@ export default function CreateContractPage() {
               Select the type of contract you want to create
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
-              <button className="p-6 border-2 border-[#E5E7EB] rounded-lg hover:border-[#5E2A8C] transition-colors">
+              <button onClick={() => handleFormDataChange({ ...formData, contractType: "Freelance" })} className="p-6 border-2 border-[#E5E7EB] rounded-lg hover:border-[#5E2A8C] transition-colors">
                 <div className="text-4xl mb-2">📝</div>
                 <h4 className="font-semibold text-[#17171C] mb-1">Freelance</h4>
                 <p className="text-sm text-[#7F8C9F]">For independent contractors</p>
               </button>
-              <button className="p-6 border-2 border-[#E5E7EB] rounded-lg hover:border-[#5E2A8C] transition-colors">
+              <button onClick={() => handleFormDataChange({ ...formData, contractType: "Full-time" })} className="p-6 border-2 border-[#E5E7EB] rounded-lg hover:border-[#5E2A8C] transition-colors">
                 <div className="text-4xl mb-2">💼</div>
                 <h4 className="font-semibold text-[#17171C] mb-1">Full-time</h4>
                 <p className="text-sm text-[#7F8C9F]">For permanent employees</p>
               </button>
-              <button className="p-6 border-2 border-[#E5E7EB] rounded-lg hover:border-[#5E2A8C] transition-colors">
+              <button onClick={() => handleFormDataChange({ ...formData, contractType: "Part-time" })} className="p-6 border-2 border-[#E5E7EB] rounded-lg hover:border-[#5E2A8C] transition-colors">
                 <div className="text-4xl mb-2">⏱️</div>
                 <h4 className="font-semibold text-[#17171C] mb-1">Part-time</h4>
                 <p className="text-sm text-[#7F8C9F]">For part-time workers</p>
