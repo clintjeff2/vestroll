@@ -10,7 +10,6 @@ interface CryptoAddress {
   cryptoType: string;
   cryptoName: string;
   walletAddress: string;
-  createdAt: string;
 }
 
 export default function AddressBook() {
@@ -86,12 +85,6 @@ export default function AddressBook() {
     }
   }, []);
 
-  const handleAddAddressClick = (): void => {
-    // Navigate to add address form or open modal
-    console.log("Add new address clicked");
-    // router.push("/app/wallet/add-address");
-  };
-
   const handleRemoveAddressClick = (id: string): void => {
     setAddressToDelete(id);
     setShowDeleteModal(true);
@@ -133,7 +126,6 @@ export default function AddressBook() {
 
   const copyToClipboard = (address: string): void => {
     navigator.clipboard.writeText(address).then(() => {
-      // You can add a toast notification here
       alert("Address copied to clipboard!");
     });
   };
@@ -149,29 +141,6 @@ export default function AddressBook() {
               </h2>
             </div>
           </div>
-
-          <button
-            type="button"
-            onClick={handleAddAddressClick}
-            className="inline-flex items-center gap-2 rounded-full border mt-4 md:mt-0 px-4 py-2 text-sm font-medium text-[#5E2A8C] border-[#5E2A8C] hover:bg-[#5E2A8C] hover:text-white active:bg-[#4c1d95] transition-colors"
-            aria-label="Add new crypto address"
-          >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              aria-hidden
-            >
-              <path
-                d="M12 5v14M5 12h14"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-            </svg>
-            Add Address
-          </button>
         </div>
 
         {/* Conditional rendering based on whether addresses exist */}
@@ -214,14 +183,15 @@ export default function AddressBook() {
                     </div>
                     <button
                       onClick={() => handleRemoveAddressClick(address.id)}
-                      className="text-gray-400 hover:text-red-600 transition-colors p-1 rounded"
+                      className="flex items-center text-red-600 hover:text-red-900 transition-colors p-1 rounded"
                       aria-label={`Remove ${address.cryptoName} address`}
                     >
-                      <Trash2 className="w-4 h-4" />
+                      <Trash2 className="w-4 h-4 mr-1" />
+                      Remove
                     </button>
                   </div>
 
-                  <div className="mb-2">
+                  <div className="">
                     <label className="text-xs font-medium text-gray-500 mb-1 block">
                       Wallet Address
                     </label>
@@ -234,20 +204,9 @@ export default function AddressBook() {
                         ? `${address.walletAddress.substring(0, 20)}...${address.walletAddress.substring(address.walletAddress.length - 8)}`
                         : address.walletAddress}
                     </div>
-                    <p className="text-xs text-gray-400 mt-1">
-                      Click address to copy
-                    </p>
                   </div>
                 </div>
               ))}
-            </div>
-
-            {/* Show message when using mock data */}
-            <div className="mt-6 text-center">
-              <p className="text-sm text-gray-500">
-                Showing {addresses.length} address
-                {addresses.length !== 1 ? "es" : ""}
-              </p>
             </div>
           </div>
         )}
