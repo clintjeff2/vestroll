@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { CloudUpload, Settings2 } from "lucide-react";
 import UploadImageModal from "./(components)/UploadImageModal";
 import PreferencesPage from "./preferences/page";
+import NotificationsPage from "./notifications/page";
 
 interface SectionCardProps {
   title: string;
@@ -68,11 +69,7 @@ export default function Page() {
       case "preferences":
         return <PreferencesPage />;
       case "notifications":
-        return (
-          <div className="text-black">
-            <p>This is Notification page</p>
-          </div>
-        );
+        return <NotificationsPage />;
 
       case "settings":
       default:
@@ -85,7 +82,7 @@ export default function Page() {
       <header className="bg-white border-b border-[#DCE0E5]">
         <div className="px-4 sm:px-6 py-2">
           <button
-            onClick={handleGoBack}
+            onClick={() => router.push("/app/dashboard")}
             className="text-gray-900 text-sm hover:text-gray-600 transition-colors"
           >
             ← Back to dashboard
@@ -232,7 +229,10 @@ function Settings() {
                 Two-factor authentication(2FA)
               </p>
             </div>
-            <button className="flex items-center gap-2 px-4 py-2 text-purple-900 rounded-full border border-purple-900 hover:bg-purple-600 hover:text-white transition-colors">
+            <button
+              onClick={() => router.push("/app/profile-settings/2fa-setup")}
+              className="flex items-center gap-2 px-4 py-2 text-purple-900 rounded-full border border-purple-900 hover:bg-purple-600 hover:text-white transition-colors"
+            >
               <Settings2 />
               Setup
             </button>
