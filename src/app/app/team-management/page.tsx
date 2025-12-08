@@ -8,7 +8,6 @@ import { Plus } from "lucide-react";
 import { NavigationTabs } from "./components/NavigationTabs";
 import { SearchFilterBar } from "./components/SearchFilterBar";
 import { EmployeeGrid } from "./components/EmployeeGrid";
-import { EmployeeTable } from "./components/EmployeeTable";
 import { EmployeeMobileCard } from "./components/EmployeeMobileCard";
 import { TeamEmptyState } from "./components/TeamEmptyState";
 import { Pagination } from "./components/Pagination";
@@ -20,6 +19,7 @@ import { ExportDropdown } from "./components/ExportDropDown";
 import { CreateTimeOffForm } from "./components/timeOff/CreateTimeOffForm";
 import { StatsBar } from "./components/StatsBar";
 import { Button } from "@/components/ui/button";
+import { EmployeeList } from "./components/EmployeeList";
 
 const TeamManagementDashboard = () => {
   const [activeTab, setActiveTab] = useState("Employees");
@@ -126,27 +126,11 @@ const TeamManagementDashboard = () => {
               </div>
             ) : (
               <>
-                {/* Desktop Table View */}
-                <div className="hidden md:block bg-white rounded-lg border border-gray-200 overflow-hidden">
-                  <EmployeeTable employees={paginatedEmployees} />
+                {/* List of Employees paginated */}
+                <div>
+                  <EmployeeList employees={paginatedEmployees} />
                   {totalPages > 1 && (
-                    <div className="border-t border-gray-200">
-                      <Pagination
-                        currentPage={currentPage}
-                        totalPages={totalPages}
-                        totalItems={filteredEmployees.length}
-                        itemsPerPage={itemsPerPage}
-                        onPageChange={handlePageChange}
-                      />
-                    </div>
-                  )}
-                </div>
-
-                {/* Mobile Card View */}
-                <div className="md:hidden">
-                  <EmployeeMobileCard employees={paginatedEmployees} />
-                  {totalPages > 1 && (
-                    <div className="mt-4 bg-white rounded-lg border border-gray-200 p-4">
+                    <div className="border-t border-gray-200 mt-4">
                       <Pagination
                         currentPage={currentPage}
                         totalPages={totalPages}
