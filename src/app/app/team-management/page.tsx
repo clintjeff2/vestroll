@@ -103,14 +103,6 @@ const TeamManagementDashboard = () => {
                     onFilterClick={() => setIsFilterOpen(true)}
                   />
                 </div>
-                <Button
-                  className="bg-primary-100 hover:bg-primary-650 text-white whitespace-nowrap"
-                  onClick={() => console.log("Add employee")}
-                >
-                  <Plus className="w-4 h-4 mr-2" />
-                  <span className="hidden sm:inline">Add Employee</span>
-                  <span className="sm:hidden">Add</span>
-                </Button>
               </div>
             </div>
 
