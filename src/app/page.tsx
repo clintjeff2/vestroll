@@ -1,5 +1,5 @@
-import VestRollAccountSelection from '@/components/accountType';
-import { redirect } from 'next/navigation';
+import VestRollAccountSelection from "@/components/features/auth/account-type";
+import { redirect } from "next/navigation";
 
 export default function Home() {
   return (

@@ -3,7 +3,7 @@ export interface User {
   name: string;
   email: string;
   permissions: string[];
-  status: 'active' | 'invited';
+  status: "active" | "invited";
 }
 
 export interface PermissionFormData {

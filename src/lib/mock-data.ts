@@ -1,4 +1,3 @@
-// lib/mockData.ts
 
 import { Asset, Transaction } from "@/types/finance.types";
 

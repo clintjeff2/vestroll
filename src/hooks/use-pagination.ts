@@ -1,4 +1,3 @@
-// hooks/usePagination.ts
 import { useState, useMemo } from 'react';
 
 interface UsePaginationProps<T> {
@@ -34,7 +33,7 @@ export function usePagination<T>({
 
   const setResultsPerPage = (results: number) => {
     setResultsPerPageState(results);
-    setCurrentPage(1); // Reset to first page when changing results per page
+    setCurrentPage(1); 
   };
 
   return {

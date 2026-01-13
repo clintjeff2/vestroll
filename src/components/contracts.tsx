@@ -2,11 +2,11 @@
 
 import React, { useState } from "react";
 import Stepper from "./ui/stepper";
-import { ProjectDetails } from "./contracts/project-details";
-import { ContractType } from "./contracts/contract-type";
-import { EmployeeDetails } from "./contracts/employee-details";
-import ContractDetails from "./contracts/contract-details";
-import Compliance from "./contracts/compliance";
+import { ProjectDetails } from "@/components/features/contracts/project-details";
+import { ContractType } from "@/components/features/contracts/contract-type";
+import { EmployeeDetails } from "@/components/features/contracts/employee-details";
+import ContractDetails from "@/components/features/contracts/contract-details";
+import Compliance from "@/components/features/contracts/compliance";
 
 const steps = [
   { id: 1, title: "Choose Contract type", content: <ContractType /> },
@@ -19,7 +19,7 @@ const steps = [
 
 function Contracts() {
   const [activeStep, setActiveStep] = useState(0);
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data: any) => console.log(data);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -55,12 +55,34 @@ function Contracts() {
   );
 }
 
-function StepContent({ steps, activeStep }) {
+interface Step {
+  id: number;
+  title: string;
+  content: React.ReactNode;
+}
+
+function StepContent({
+  steps,
+  activeStep,
+}: {
+  steps: Step[];
+  activeStep: number;
+}) {
   if (!steps[activeStep]) return;
   return <div className="py-10">{steps[activeStep].content}</div>;
 }
 
-function StepControls({ steps, activeStep, handleBack, handleNext }) {
+function StepControls({
+  steps,
+  activeStep,
+  handleBack,
+  handleNext,
+}: {
+  steps: Step[];
+  activeStep: number;
+  handleBack: () => void;
+  handleNext: () => void;
+}) {
   return (
     <div className="flex items-center">
       <button

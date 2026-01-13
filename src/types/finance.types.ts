@@ -1,4 +1,3 @@
-// types.ts
 export interface Asset {
   id: number;
   name: string;
@@ -20,7 +19,7 @@ export interface Transaction {
   timestamp: string;
 }
 
-export type TransactionStatus = 'Pending' | 'Failed' | 'Successful';
+export type TransactionStatus = "Pending" | "Failed" | "Successful";
 
 export interface PaginationProps {
   currentPage: number;

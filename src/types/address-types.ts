@@ -1,5 +1,3 @@
-// Address form domain types
-// NOTE: All components and hooks must import from this file for consistency
 
 export type SupportedAssetSymbol = "USDC" | "USDT" | "ETH" | "BTC";
 
