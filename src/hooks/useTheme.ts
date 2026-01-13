@@ -13,7 +13,6 @@ export function useTheme() {
       setTheme(saved);
       document.documentElement.setAttribute("data-theme", saved);
     } else {
-      // default to system preference
       const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
       const systemTheme = prefersDark ? "dark" : "light";
       setTheme(systemTheme);

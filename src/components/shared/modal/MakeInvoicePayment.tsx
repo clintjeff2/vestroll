@@ -1,10 +1,10 @@
 "use client";
 
 import { FormEvent, useEffect, useState } from "react";
-import MakePayment from "../dashboard/invoices/payment/MakePayment";
-import ProvideOtp from "../dashboard/invoices/payment/ProvideOtp";
-import ProcessingPayment from "../dashboard/invoices/payment/ProcessingPayment";
-import PaymentSuccessful from "../dashboard/invoices/payment/PaymentSuccessful";
+import MakePayment from "@/components/features/dashboard/invoices/payment/MakePayment";
+import ProvideOtp from "@/components/features/dashboard/invoices/payment/ProvideOtp";
+import ProcessingPayment from "@/components/features/dashboard/invoices/payment/ProcessingPayment";
+import PaymentSuccessful from "@/components/features/dashboard/invoices/payment/PaymentSuccessful";
 
 interface MakeInvoicePaymentProps {
   handlePayment: () => void;

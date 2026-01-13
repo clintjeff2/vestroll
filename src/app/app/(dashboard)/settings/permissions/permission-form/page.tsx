@@ -40,7 +40,6 @@ export default function PermissionFormView({
   const [showInfo, setShowInfo] = useState(false);
   const router = useRouter();
 
-  // Use useEffect to set initial data when props are available
   useEffect(() => {
     if (initialFormData) {
       setFormData(initialFormData);
@@ -86,7 +85,6 @@ export default function PermissionFormView({
     if (selectedUser || validateForm()) onSave(formData, permissions);
   };
 
-  // Add safe check for formData
   const isFormValid =
     formData &&
     formData.name &&

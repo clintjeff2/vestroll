@@ -1,5 +1,3 @@
-// Displays a single employee's information in a card format.
-
 import { User } from "lucide-react";
 import NextImage from "next/image";
 import { Employee } from "@/types/teamManagement.types";

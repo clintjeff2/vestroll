@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { PasswordFormData} from "./types";
+import { PasswordFormData } from "./types";
 import Image from "next/image";
 
 interface SecuritySectionProps {
@@ -15,7 +15,6 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({
 
   const handle2FAToggle = () => {
     setIs2FAEnabled(!is2FAEnabled);
-    // In a real app, this would trigger the 2FA setup/disable process
   };
 
   return (

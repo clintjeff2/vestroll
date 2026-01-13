@@ -4,10 +4,10 @@ interface ContinueButtonProps {
   onClick?: () => void;
 }
 
-export function ContinueButton({ 
-  disabled = false, 
-  loading = false, 
-  onClick 
+export function ContinueButton({
+  disabled = false,
+  loading = false,
+  onClick,
 }: ContinueButtonProps) {
   return (
     <button

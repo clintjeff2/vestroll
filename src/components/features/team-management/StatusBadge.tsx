@@ -1,5 +1,3 @@
-// A simple badge to display "Active" or "Inactive" status.
-
 type StatusBadgeProps = {
   status: string;
 };

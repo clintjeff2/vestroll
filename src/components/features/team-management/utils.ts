@@ -1,4 +1,3 @@
-// This file contains utility functions, like  mock data generator.
 
 import { Employee } from "@/types/teamManagement.types";
 

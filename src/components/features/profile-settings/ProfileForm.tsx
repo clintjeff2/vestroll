@@ -58,7 +58,6 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
       [name]: value,
     }));
 
-    // Clear error for this field when user starts typing
     if (errors[name as keyof ProfileFormErrors]) {
       setErrors((prev) => ({
         ...prev,
@@ -72,7 +71,6 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       console.log("Password changed successfully");
-      // In a real app, you'd make an API call here
     } catch (error) {
       console.error("Failed to change password:", error);
       throw error;
@@ -87,16 +85,13 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
     setIsLoading(true);
     try {
       await onSave(formData);
-      setIsEditing(false); // Exit edit mode on successful save
+      setIsEditing(false);
     } catch (error) {
       console.error("Failed to save profile:", error);
-      // Handle error (could show a toast notification)
     } finally {
       setIsLoading(false);
     }
   };
-
-
 
   return (
     <>

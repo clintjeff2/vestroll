@@ -8,43 +8,8 @@ import { ComplianceForm } from "@/components/features/contracts/ComplianceForm";
 import ContractReviewAccordion from "@/components/features/contracts/Sign&Review";
 import ContractReviewModal from "@/components/features/contracts/ContractReviewModal";
 
-interface ContractFormData {
-  contractType: number;
-  clientName: string;
-  clientEmail: string;
-  clientPhone: string;
-  clientAddress: string;
-  startDate: string;
-  endDate: string;
-  terminationNotice: string;
-  network: string;
-  asset: string;
-  amount: string;
-  calculatedAmount: string;
-  invoiceFrequency: string;
-  issueInvoiceOn: string;
-  paymentDue: string;
-  firstInvoiceType: "full" | "custom";
-  firstInvoiceDate: string;
-  firstInvoiceAmount: string;
-  walletAddress: string;
-  walletType: string;
-  contractDuration: string;
-  renewalTerms: string;
-  milestones: Array<{
-    id: string;
-    title: string;
-    description: string;
-    dueDate: string;
-    amount: string;
-  }>;
-  taxType: string;
-  taxId: string;
-  taxRate: string;
-  uploadedFiles: File[];
-  paymentType: string;
-  paymentFrequency?: "Hourly" | "Daily" | "Weekly" | "Per Deliverable";
-}
+import { ContractFormData } from "@/types/interface";
+
 
 interface FormErrors {
   [key: string]: string;
@@ -72,7 +37,7 @@ export default function CreateContractPage() {
     endDate: "",
     terminationNotice: "",
     network: "Ethereum",
-    asset: "USD", //USD for now
+    asset: "USD", 
     amount: "2000.00",
     calculatedAmount: "1974.849",
     invoiceFrequency: "",
@@ -102,16 +67,11 @@ export default function CreateContractPage() {
   };
 
   const onNext = () => {
-    // Add validation logic here before moving to next step
     if (currentStep < 6) {
-      // You can add step-specific validation here
       if (currentStep === 4) {
-        // Validate contract details before moving forward
-        // The ContractDetails component handles its own validation
       }
       setCurrentStep((s) => s + 1);
     } else if (currentStep === 6) {
-      // show review modal if current step is 6
       setShowReviewModal(true);
     }
   };
@@ -152,16 +112,7 @@ export default function CreateContractPage() {
 
   const handleCreateContract = () => {
     console.log("Creating contract with data:", formData);
-    // TODO: Add API call to create contract
-    // Example:
-    // try {
-    //   const response = await createContractAPI(formData);
-    //   if (response.success) {
-    //     router.push('/contracts?success=true');
-    //   }
-    // } catch (error) {
-    //   console.error('Error creating contract:', error);
-    // }
+
   };
 
   const renderStep = () => {
@@ -257,7 +208,7 @@ export default function CreateContractPage() {
       {showReviewModal && (
         <ContractReviewModal
           onClose={() => setShowReviewModal(false)}
-          onConfirm={handleCreateContract}  // your final submit handler
+          onConfirm={handleCreateContract} 
           formData={formData}
         />
       )}

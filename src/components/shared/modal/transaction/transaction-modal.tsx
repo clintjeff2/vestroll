@@ -69,10 +69,10 @@ export default function TransactionModal({
                   </>
                 )}
                 {isLoading && (
-                    <p>
-                      <span className="text-[#5E2A8C] uppercase">{amount}</span>{" "}
-                      to <TruncatedAddress address={recipientAddress} />
-                    </p>
+                  <p>
+                    <span className="text-[#5E2A8C] uppercase">{amount}</span>{" "}
+                    to <TruncatedAddress address={recipientAddress} />
+                  </p>
                 )}
               </div>
             </div>
@@ -94,11 +94,11 @@ export default function TransactionModal({
               )}
 
               {isLoading && (
-                  <Dialog.Close asChild>
-                    <Button className=" py-4 px-11 cursor-pointer bg-[#5E2A8C] text-white rounded-2xl order-1 md:order-5">
-                      Go to dashboard
-                    </Button>
-                  </Dialog.Close>
+                <Dialog.Close asChild>
+                  <Button className=" py-4 px-11 cursor-pointer bg-[#5E2A8C] text-white rounded-2xl order-1 md:order-5">
+                    Go to dashboard
+                  </Button>
+                </Dialog.Close>
               )}
             </div>
           </article>
@@ -111,9 +111,7 @@ export default function TransactionModal({
 function Spinner() {
   return (
     <div className="size-10 justify-center spinner-wrapper">
-      <div className="spinner-child">
-      </div>
+      <div className="spinner-child"></div>
     </div>
   );
 }
-

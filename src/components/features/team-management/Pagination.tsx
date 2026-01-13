@@ -1,6 +1,3 @@
-// /app/team-management/components/Pagination.tsx
-// Handles the page navigation for the employee grid.
-
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 type PaginationProps = {

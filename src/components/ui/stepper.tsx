@@ -1,15 +1,27 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 
-function Stepper({ steps = [], activeStep, setActiveStep }) {
+export interface StepItem {
+  title: string;
+  [key: string]: any;
+}
+
+interface StepperProps {
+  steps?: (string | StepItem)[];
+  activeStep: number;
+  setActiveStep: (step: number) => void;
+}
+
+function Stepper({ steps = [], activeStep, setActiveStep }: StepperProps) {
   const handleReset = () => {
     setActiveStep(0);
   };
   return (
     <div className="w-full">
       <div className="flex gap-2">
-        {steps.map((label, index) => {
+        {steps.map((step, index) => {
+          const label = typeof step === "string" ? step : step.title;
           return (
             <div
               key={index}
@@ -17,7 +29,6 @@ function Stepper({ steps = [], activeStep, setActiveStep }) {
               className={`w-16 sm:w-21 h-1 transition ease-in-out duration-300 ${index <= activeStep! ? " bg-primary-500" : "bg-border-primary"} rounded-lg `}
             ></div>
           );
-          //   <h3 {...labelProps}>{label}</h3>;
         })}
       </div>
     </div>

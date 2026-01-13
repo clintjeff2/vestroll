@@ -13,9 +13,8 @@ export default function InvoiceDetailPage() {
     return <div className="p-6 text-red-600">Invoice not found.</div>;
   }
 
-  // Simple inline conversion (tweak rates here as needed)
   const RATE_MAP: Record<string, number> = {
-    USDT: 1.002, // small spread to match your mock ($582.20 for 581 USDT)
+    USDT: 1.002,
     ETH: 3000,
     BTC: 68000,
   };
@@ -46,7 +45,7 @@ export default function InvoiceDetailPage() {
           amount={invoice.amount}
           currency={invoice.paidIn}
           convertedValue={convertedValue}
-          iconSrc="/invoice-icon.png" // make sure this exists in /public
+          iconSrc="/invoice-icon.png"
         />
       </main>
     </div>

@@ -31,7 +31,6 @@ export const useSort = <T extends Record<string, unknown>>({
   // Filter & Search Logic
   const filteredData = useMemo(() => {
     return data.filter((item) => {
-      // 1. Search
       const matchesSearch =
         searchQuery === '' ||
         searchKeys.some((key) => {
@@ -41,7 +40,6 @@ export const useSort = <T extends Record<string, unknown>>({
 
       if (!matchesSearch) return false;
 
-      // 2. Filters
       const matchesFilters = Object.entries(filters).every(([key, filterValue]) => {
         if (!filterValue || filterValue === 'All') return true;
         const itemValue = item[key];
@@ -86,13 +84,13 @@ export const useSort = <T extends Record<string, unknown>>({
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
-    setCurrentPage(1); // Reset page on search
+    setCurrentPage(1); 
   };
 
   const handleFilterChange = (key: string, value: string) => {
       const newFilters = { ...filters, [key]: value };
       setFilters(newFilters);
-      setCurrentPage(1); // Reset page on filter
+      setCurrentPage(1); 
   };
 
   const handleSetFilters = (newFilters: Record<string, string>) => {
@@ -109,7 +107,7 @@ export const useSort = <T extends Record<string, unknown>>({
   return {
     // Data
     data: paginatedData,
-    sortedData, // expose full sorted list if needed
+    sortedData, 
 
     // Pagination
     currentPage,

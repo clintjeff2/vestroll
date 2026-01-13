@@ -19,4 +19,3 @@ function EmptyState({ title, description }: EmptyStateProps) {
 }
 
 export default EmptyState;
-

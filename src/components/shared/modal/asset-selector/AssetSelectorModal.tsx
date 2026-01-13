@@ -9,7 +9,7 @@ interface Asset {
   name: string;
   symbol: string;
   description: string;
-  image: string; 
+  image: string;
 }
 
 const mockAssets: Asset[] = [
@@ -73,9 +73,7 @@ export default function AssetSelectorModal({
             <ArrowLeft size={22} />
           </button>
 
-          <h2 className="text-lg font-semibold text-gray-900">
-            Select asset
-          </h2>
+          <h2 className="text-lg font-semibold text-gray-900">Select asset</h2>
 
           <button
             onClick={onClose}

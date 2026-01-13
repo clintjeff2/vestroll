@@ -53,7 +53,6 @@ export default function EmailVerificationPage({
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
       console.log("Verification code:", code);
-      // On success, you might want to redirect or show success message
     } catch {
       setError("Invalid code. Please try again.");
     } finally {
@@ -81,9 +80,7 @@ export default function EmailVerificationPage({
 
   const handleOTPSubmit = async (otpCode: string) => {
     console.log("OTP submitted:", otpCode);
-    // Add your OTP verification logic here
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    // Close modal on success
     setShowOTPModal(false);
   };
 

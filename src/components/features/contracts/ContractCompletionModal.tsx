@@ -3,7 +3,6 @@ import { useState } from "react";
 import { CalendarCheckIcon } from "@/../public/svg";
 import Link from "next/link";
 
-// TODO: Update the link to be dynamic
 function ContractCompletionModal() {
   const [isCopied, setIsCopied] = useState(false);
   const handleCopyToClipBoard = () => {
@@ -55,9 +54,7 @@ function ContractCompletionModal() {
           </button>
         </div>
       </div>
-      <Link
-        href="/app/contracts"
-      >
+      <Link href="/app/contracts">
         <button className="w-full font-medium text-white rounded-lg bg-primary-500 h-14 cursor-pointer">
           All done
         </button>
@@ -67,5 +64,3 @@ function ContractCompletionModal() {
 }
 
 export default ContractCompletionModal;
-
-

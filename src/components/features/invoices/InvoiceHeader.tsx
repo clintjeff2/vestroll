@@ -1,12 +1,23 @@
 "use client";
 
 import React, { useMemo } from "react";
-import { ArrowLeft, Check, X as Close, Download, CreditCard } from "lucide-react";
+import {
+  ArrowLeft,
+  Check,
+  X as Close,
+  Download,
+  CreditCard,
+} from "lucide-react";
 
-export type InvoiceStatus = "Pending" | "Approved" | "Overdue" | "Paid" | "Rejected";
+export type InvoiceStatus =
+  | "Pending"
+  | "Approved"
+  | "Overdue"
+  | "Paid"
+  | "Rejected";
 
 interface Props {
-  invoiceId: string; // e.g. "#INV-2025-010"
+  invoiceId: string;
   status: InvoiceStatus;
   onBack: () => void;
   onApprove?: () => void;
@@ -34,10 +45,16 @@ export default function InvoiceHeader({
       case "Pending":
         return (
           <div className="hidden md:flex items-center gap-3">
-            <button onClick={onReject} className={`${outline} border-purple-600 text-purple-700 hover:bg-purple-50`}>
+            <button
+              onClick={onReject}
+              className={`${outline} border-purple-600 text-purple-700 hover:bg-purple-50`}
+            >
               <Close className="h-4 w-4" /> Reject
             </button>
-            <button onClick={onApprove} className={`${solid} bg-purple-700 hover:bg-purple-800`}>
+            <button
+              onClick={onApprove}
+              className={`${solid} bg-purple-700 hover:bg-purple-800`}
+            >
               <Check className="h-4 w-4" /> Approve
             </button>
           </div>
@@ -46,10 +63,16 @@ export default function InvoiceHeader({
       case "Overdue":
         return (
           <div className="hidden md:flex items-center gap-3">
-            <button onClick={onExport} className={`${outline} border-purple-600 text-purple-700 hover:bg-purple-50`}>
+            <button
+              onClick={onExport}
+              className={`${outline} border-purple-600 text-purple-700 hover:bg-purple-50`}
+            >
               <Download className="h-4 w-4" /> Export
             </button>
-            <button onClick={onMakePayment} className={`${solid} bg-purple-700 hover:bg-purple-800`}>
+            <button
+              onClick={onMakePayment}
+              className={`${solid} bg-purple-700 hover:bg-purple-800`}
+            >
               <CreditCard className="h-4 w-4" /> Make payment
             </button>
           </div>
@@ -57,7 +80,10 @@ export default function InvoiceHeader({
       case "Paid":
         return (
           <div className="hidden md:flex items-center gap-3">
-            <button onClick={onExport} className={`${outline} border-purple-600 text-purple-700 hover:bg-purple-50`}>
+            <button
+              onClick={onExport}
+              className={`${outline} border-purple-600 text-purple-700 hover:bg-purple-50`}
+            >
               <Download className="h-4 w-4" /> Export
             </button>
           </div>
@@ -71,7 +97,8 @@ export default function InvoiceHeader({
   const mobileActions = useMemo(() => {
     if (status === "Rejected") return null;
 
-    const base = "h-11 rounded-lg text-sm font-medium flex items-center justify-center";
+    const base =
+      "h-11 rounded-lg text-sm font-medium flex items-center justify-center";
     const outline = `${base} border border-purple-600 text-purple-700 bg-white`;
     const solid = `${base} text-white bg-purple-700`;
 
@@ -125,7 +152,10 @@ export default function InvoiceHeader({
       <div className="w-full bg-white border-b border-gray-200">
         <div className="flex items-center justify-between px-6 py-4">
           <div className="flex flex-col items-start gap-4">
-            <button onClick={onBack} className="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700">
+            <button
+              onClick={onBack}
+              className="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700"
+            >
               <ArrowLeft className="h-4 w-4" /> Back
             </button>
             <h1 className="text-lg font-semibold text-gray-900">{invoiceId}</h1>

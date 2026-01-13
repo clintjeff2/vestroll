@@ -1,11 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  useEffect,
-  useRef,
-  useState,
-  KeyboardEvent,
-  ReactNode,
-} from "react";
+import { useEffect, useRef, useState, KeyboardEvent, ReactNode } from "react";
 import { createPortal } from "react-dom";
 
 export interface FilterSelection {
@@ -31,10 +25,8 @@ export default function FilterModal({
   const backdropRef = useRef<HTMLDivElement | null>(null);
   const modalRef = useRef<HTMLDivElement | null>(null);
 
-  // internal working state (only commit on Apply)
   const [selection, setSelection] = useState<FilterSelection>(initialSelection);
 
-  // --- ESCAPE KEY CLOSE ---
   useEffect(() => {
     const handleKey = (e: KeyboardEvent | any) => {
       if (e.key === "Escape") onClose();
@@ -44,12 +36,9 @@ export default function FilterModal({
     return () => window.removeEventListener("keydown", handleKey);
   }, [onClose]);
 
-  // --- CLOSE WHEN CLICKING OUTSIDE ---
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === backdropRef.current) onClose();
   };
-
-  // --- FOCUS TRAP ---
   useEffect(() => {
     const modal = modalRef.current;
     if (!modal) return;
@@ -89,7 +78,7 @@ export default function FilterModal({
 
   // --- APPLY HANDLER ---
   const handleApply = () => {
-    onApply(selection); // return final selection to parent
+    onApply(selection);
   };
 
   return createPortal(

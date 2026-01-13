@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { Transaction } from '@/types/finance.types';
-import { usePagination } from '@/hooks/use-pagination';
-import { TransactionsSection } from '@/components/features/finance/transactions-section';
+import React from "react";
+import { Transaction } from "@/types/finance.types";
+import { usePagination } from "@/hooks/use-pagination";
+import { TransactionsSection } from "@/components/features/finance/transactions-section";
 
 interface FinanceClientProps {
   allTransactions: Transaction[];
@@ -12,7 +12,7 @@ interface FinanceClientProps {
 
 export const FinanceClient: React.FC<FinanceClientProps> = ({
   allTransactions,
-  initialResultsPerPage
+  initialResultsPerPage,
 }) => {
   const {
     currentPage,
@@ -20,25 +20,22 @@ export const FinanceClient: React.FC<FinanceClientProps> = ({
     totalPages,
     currentData: currentTransactions,
     setCurrentPage,
-    setResultsPerPage
+    setResultsPerPage,
   } = usePagination({
     data: allTransactions,
-    initialResultsPerPage
+    initialResultsPerPage,
   });
 
   const handleFundWallet = () => {
-    console.log('Fund wallet clicked');
-    // Implement fund wallet logic
+    console.log("Fund wallet clicked");
   };
 
   const handleWithdraw = () => {
-    console.log('Withdraw clicked');
-    // Implement withdraw logic
+    console.log("Withdraw clicked");
   };
 
   const handleSeeAllTransactions = () => {
-    console.log('See all transactions clicked');
-    // Navigate to full transactions page
+    console.log("See all transactions clicked");
   };
 
   return (
@@ -52,7 +49,7 @@ export const FinanceClient: React.FC<FinanceClientProps> = ({
           totalItems: allTransactions.length,
           resultsPerPage,
           onPageChange: setCurrentPage,
-          onResultsPerPageChange: setResultsPerPage
+          onResultsPerPageChange: setResultsPerPage,
         }}
         onSeeAll={handleSeeAllTransactions}
       />

@@ -1,6 +1,3 @@
-// Business logic for Add Address flow
-// All validations and submission are handled here
-
 "use client";
 
 import { useCallback, useMemo, useState } from "react";
@@ -23,7 +20,6 @@ function validateAddressFormat(
   address: string,
   network: SupportedNetwork
 ): AddressValidationResult {
-  // Minimal format validation; extend with real libs per network
   if (!address || address.trim().length < 8) {
     return { isValid: false, message: "Address is too short" };
   }
@@ -72,14 +68,12 @@ export default function useAddAddress(initial?: Partial<AddressFormValues>) {
         throw new Error(validation.message || "Invalid address");
       }
 
-      // Simulated persistence. Replace with API call when available
       const newItem: AddressBookItem = {
         id: crypto.randomUUID(),
         createdAt: new Date().toISOString(),
         ...values,
       };
 
-      // TODO: integrate with backend/redux slice when available
       return newItem;
     } finally {
       setSubmitting(false);

@@ -77,5 +77,3 @@ const InvoiceDetailFooter = ({
 };
 
 export default InvoiceDetailFooter;
-
-

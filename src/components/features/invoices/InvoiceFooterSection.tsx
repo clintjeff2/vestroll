@@ -9,13 +9,13 @@ export default function InvoiceFooterSection() {
       {/* Left Card */}
       <div className="flex items-center justify-between bg-white rounded-2xl border border-[#E9EAF0] p-4 sm:p-5">
         <div className="flex items-center gap-3">
-            <Image
-              src="/contract-icon.png"
-              alt="Contract Icon"
-              width={48}
-              height={48}
-              className="rounded-lg"
-            />
+          <Image
+            src="/contract-icon.png"
+            alt="Contract Icon"
+            width={48}
+            height={48}
+            className="rounded-lg"
+          />
           <div>
             <p className="text-sm sm:text-base font-medium text-[#17171C]">
               Quikdash
@@ -41,13 +41,13 @@ export default function InvoiceFooterSection() {
       {/* Right Card */}
       <div className="flex items-center justify-between bg-white rounded-2xl border border-[#E9EAF0] p-4 sm:p-5">
         <div className="flex items-center gap-3">
-            <Image
-              src="/profile-icon.png"
-              alt="Profile Icon"
-              width={48}
-              height={48}
-              className="rounded-lg"
-            />
+          <Image
+            src="/profile-icon.png"
+            alt="Profile Icon"
+            width={48}
+            height={48}
+            className="rounded-lg"
+          />
           <div>
             <p className="text-sm sm:text-base font-medium text-[#17171C]">
               James Akinbiola

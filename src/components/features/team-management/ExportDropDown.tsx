@@ -1,5 +1,3 @@
-// The dropdown menu for exporting data in different formats.
-
 import { Upload, ChevronDown, FileText, File } from "lucide-react";
 
 type ExportDropdownProps = {

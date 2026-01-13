@@ -50,5 +50,3 @@ function QuickAction() {
 }
 
 export default QuickAction;
-
-

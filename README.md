@@ -1,79 +1,132 @@
 # VestRoll Payroll System - Web Application
 
-Enterprise Payroll management web platform built with React, TypeScript and Next.js featuring real-time analytics, cryptocurrency integration, and AI insights.
+VestRoll is a premium Enterprise Payroll management platform designed for modern businesses. Built with **Next.js 15**, **TypeScript**, and **React 19**, it provides a seamless experience for managing contracts, team members, and financial operations with integrated cryptocurrency support.
 
-## Technology Stack
+---
 
-- **Framework**: Next.js 14+ (App Router)
-- **Language**: TypeScript 5+
-- **UI Library**: React 18+
-- **Styling**: Tailwind CSS 3+
-- **State Management**: Zustand / Redux Toolkit
-- **Data Fetching**: React Query (TanStack Query)
-- **Forms**: React Hook Form + Zod validation
-- **Charts**: Recharts / Chart.js
-- **Blockchain**: ethers.js / web3.js
-- **Authentication**: NextAuth.js
-- **Testing**: Jest + React Testing Library + Playwright
+## 🚀 Technology Stack
 
+### Core
 
+- **Framework**: [Next.js 15.5](https://nextjs.org/) (App Router & Turbopack)
+- **Library**: [React 19](https://react.dev/)
+- **Language**: [TypeScript 5](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/) with `tw-animate-css`
 
-## Installation
+### State & Data
 
-```bash
-# Clone repository
-git clone https://github.com/SafeVault/vestroll-frontend.git
-cd vestroll-frontend
+- **Global State**: [Redux Toolkit](https://redux-toolkit.js.org/) & [Zustand](https://zustand-demo.pmnd.rs/)
+- **Data Fetching**: [TanStack Query v5](https://tanstack.com/query/latest)
+- **Forms**: `react-hook-form` + `zod` validation
 
-# Install dependencies
-npm install
-# or
-yarn install
-# or
-pnpm install
+### UI & UX
 
-# Copy environment variables
-cp .env.example .env.local
-# Edit .env.local with your values
+- **Components**: [Radix UI](https://www.radix-ui.com/) primitives & [Lucide React](https://lucide.dev/) icons
+- **Animations**: [Framer Motion 12](https://www.framer.com/motion/)
+- **Charts**: [Recharts](https://recharts.org/)
+- **Themes**: `next-themes` (Dark/Light mode support)
 
-# Run development server
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+### Web3 & Finance
+
+- **Blockchain**: `ethers.js v6`, `web3.js v4`, and `web3-react`
+- **Utilities**: `date-fns`, `html2canvas`, `jspdf` for invoice generation
+
+---
+
+## 📂 Project Structure
+
+```text
+vestroll/
+├── src/
+│   ├── api/                # Backend-related logic & Service Orchestration
+│   │   ├── db/             # Database connection/configs
+│   │   ├── services/       # Core business logic services
+│   │   ├── transactions/   # Transaction processing logic
+│   │   └── validations/    # API request/response schemas
+│   ├── app/                # Next.js App Router (Routes & Layouts)
+│   │   ├── (auth)/         # Authentication routes (Login, Register, etc.)
+│   │   └── app/            # Main application shell
+│   │       └── (dashboard)/# Protected dashboard routes
+│   │           ├── contracts/    # Contract management (Fixed/Milestone/Pay-as-you-go)
+│   │           ├── payroll/      # Payroll processing & history
+│   │           ├── finance/      # Wallet & Asset management
+│   │           └── team-management/ # Employee & Contractor directories
+│   ├── components/         # React Components
+│   │   ├── ui/             # Reusable atomic UI components (Button, Input, etc.)
+│   │   ├── shared/         # Common components (Modals, Headers, Navigation)
+│   │   └── features/       # Feature-specific complex components
+│   ├── hooks/              # Custom React hooks (useSort, useModal, etc.)
+│   ├── lib/                # Utility libraries & Redux slices
+│   │   ├── slice/          # Redux Toolkit slices (e.g., modalSlice)
+│   │   ├── data/           # Mock data & Constant definitions
+│   │   └── store.ts        # Redux store configuration
+│   ├── styles/             # Global CSS & Tailwind configuration
+│   ├── types/              # TypeScript interfaces & types
+│   └── utils/              # Helper functions (cn, formatters)
+└── public/                 # Static assets (Images, Fonts, SVGs)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+---
 
-## Available Scripts
+## ✨ Key Features
 
-```bash
-# Development
-npm run dev              # Start dev server (hot reload enabled)
-npm run build            # Build production bundle
-npm run start            # Start production server
-npm run lint             # Run ESLint
-npm run lint:fix         # Fix linting issues
-npm run type-check       # Run TypeScript type checking
+- **Automated Payroll**: Schedule and execute payments in fiat or cryptocurrency.
+- **Contract Management**: Multi-step creation flow for Fixed Rate, Pay As You Go, and Milestone-based contracts.
+- **Crypto-Ready**: Integrated wallet support for USDT, USDC, ETH, and BTC payments.
+- **Finance Analytics**: Real-time tracking of expenses, payouts, and balance metrics.
+- **Team Management**: Robust directory for managing employees and contractors with permission controls.
+- **Compliance & Invoicing**: Automated invoice generation (PDF/Image) and compliance tracking.
 
-# Testing
-npm run test             # Run all tests
-npm run test:watch       # Run tests in watch mode
-npm run test:coverage    # Generate coverage report
-npm run test:e2e         # Run end-to-end tests
-npm run test:unit        # Run unit tests only
+---
 
-# Code Quality
-npm run format           # Format code with Prettier
-npm run format:check     # Check code formatting
-npm run analyze          # Analyze bundle size
-npm run prepare          # Setup Husky git hooks
+## 🛠️ Getting Started
 
-# Database (if using Prisma)
-npm run db:generate      # Generate Prisma client
-npm run db:push          # Push schema changes
-npm run db:migrate       # Run migrations
-npm run db:studio        # Open Prisma Studio
-```
+### Prerequisites
 
+- Node.js 18.x or higher
+- **pnpm** (preferred) or npm/yarn
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/SafeVault/vestroll-frontend.git
+   cd vestroll
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   pnpm install
+   ```
+
+3. Configure Environment:
+   Create a `.env.local` file in the root directory and add necessary variables (see `.env.example`).
+
+4. Start development server:
+   ```bash
+   pnpm dev
+   ```
+
+### Available Scripts
+
+- `pnpm dev`: Runs the app in development mode with Turbopack.
+- `pnpm build`: Builds the application for production.
+- `pnpm start`: Starts the production server.
+- `pnpm lint`: Runs ESLint for code quality checks.
+
+---
+
+## 🛡️ Coding Standards
+
+- **TypeScript**: Strict typing is required. Avoid `any`.
+- **Components**: Follow the `features/` vs `shared/` modular structure.
+- **State**: Use Redux for UI-heavy state (modals, global app state) and Zustand for lightweight store needs.
+- **Styling**: Use the `cn()` utility for conditional Tailwind classes.
+
+---
+
+## 📄 License
+
+Commercial - All rights reserved to SafeVault/VestRoll.

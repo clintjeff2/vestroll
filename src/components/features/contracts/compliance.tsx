@@ -201,7 +201,13 @@ const fileIconsMap: Record<string, string | React.ElementType> = {
   xlsx: GitPullRequestDraftIcon,
 };
 
-function FilePreview({ files, onDeleteFiles }: { files: File[], onDeleteFiles: (file: File) => void }) {
+function FilePreview({
+  files,
+  onDeleteFiles,
+}: {
+  files: File[];
+  onDeleteFiles: (file: File) => void;
+}) {
   const onDeleteClick = (file: File) => {
     onDeleteFiles(file);
   };
@@ -220,11 +226,12 @@ function FilePreview({ files, onDeleteFiles }: { files: File[], onDeleteFiles: (
               >
                 {/* <RemoveFormattingIcon  /> */}
               </div>
-              {typeof IconOrSrc === "function" || typeof IconOrSrc === "object" && IconOrSrc !== null ? (
-                 (() => {
-                    const Comp = IconOrSrc as React.ElementType;
-                    return <Comp width={48} height={48} className="w-12 h-12" />;
-                 })()
+              {typeof IconOrSrc === "function" ||
+              (typeof IconOrSrc === "object" && IconOrSrc !== null) ? (
+                (() => {
+                  const Comp = IconOrSrc as React.ElementType;
+                  return <Comp width={48} height={48} className="w-12 h-12" />;
+                })()
               ) : (
                 <Image
                   width={48}

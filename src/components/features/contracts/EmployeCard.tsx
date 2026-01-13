@@ -12,11 +12,14 @@ function EmployeeCard({ employeeDetails }: EmployeeCardProps) {
   };
 
   const OpenContractReviewModal = () => {
-    showEnhancedModal(<ContractReviewModal onClose={closeModal} onConfirm={closeModal} />, {
-      showCloseButton: false,
-      size: "lg",
-      onCancel: closeModal,
-    });
+    showEnhancedModal(
+      <ContractReviewModal onClose={closeModal} onConfirm={closeModal} />,
+      {
+        showCloseButton: false,
+        size: "lg",
+        onCancel: closeModal,
+      }
+    );
   };
 
   return (
@@ -51,5 +54,3 @@ function EmployeeCard({ employeeDetails }: EmployeeCardProps) {
 }
 
 export default EmployeeCard;
-
-

@@ -100,5 +100,3 @@ function InvoiceHeader({
 }
 
 export default InvoiceHeader;
-
-

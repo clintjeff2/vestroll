@@ -57,4 +57,3 @@ export const Accordion: FC<AccordionProps> = ({
     </div>
   );
 };
-

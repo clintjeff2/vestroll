@@ -14,7 +14,6 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const checklist = (await params).checklist
 
-  // fetch post information (handleChecklistMetadata returns sensible defaults)
   const checklistMeta = handleChecklistMetadata(checklist);
 
   return {
@@ -25,7 +24,6 @@ export async function generateMetadata(
 
 export default async function ChecklistPage({ params, searchParams }: Props) {
     const checklist = (await params).checklist;
-    // check the checklist param and render accordingly
     const handleContent = () => {
         switch (checklist) {
             case "kyb-verification":

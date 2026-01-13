@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Smartphone, Monitor } from "lucide-react"
+import { useState } from "react";
+import { Smartphone, Monitor } from "lucide-react";
 
 interface Device {
-  id: string
-  name: string
-  type: "mobile" | "desktop"
-  location: string
-  lastLogin: string
-  isCurrent?: boolean
+  id: string;
+  name: string;
+  type: "mobile" | "desktop";
+  location: string;
+  lastLogin: string;
+  isCurrent?: boolean;
 }
 
 const devices: Device[] = [
@@ -35,27 +35,31 @@ const devices: Device[] = [
     location: "Location: Lagos, Nigeria • 102.89.68.30",
     lastLogin: "Last login: 20th Apr 2025, 04:40 PM",
   },
-]
+];
 
 export function DeviceManagementSection() {
-  const [deviceList, setDeviceList] = useState(devices)
+  const [deviceList, setDeviceList] = useState(devices);
 
   const handleRemoveDevice = (deviceId: string) => {
-    setDeviceList((prev) => prev.filter((device) => device.id !== deviceId))
-  }
+    setDeviceList((prev) => prev.filter((device) => device.id !== deviceId));
+  };
 
   return (
     <div className="bg-white rounded-lg p-6 space-y-4">
       <div>
         <h2 className="text-lg font-medium">Device Management</h2>
         <p className="text-sm text-gray-500">
-          See all devices that have logged into your account. Remove any for added security.
+          See all devices that have logged into your account. Remove any for
+          added security.
         </p>
       </div>
 
       <div className="space-y-3">
         {deviceList.map((device) => (
-          <div key={device.id} className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+          <div
+            key={device.id}
+            className="flex items-center justify-between p-4 border border-gray-200 rounded-lg"
+          >
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
                 {device.type === "mobile" ? (
@@ -91,5 +95,5 @@ export function DeviceManagementSection() {
         ))}
       </div>
     </div>
-  )
+  );
 }

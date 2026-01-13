@@ -11,16 +11,18 @@ interface Step1Props {
     vat?: string;
     website?: string;
   };
-  setFormData: (data: Partial<{
-    logo?: string | null;
-    brandName?: string;
-    registeredName?: string;
-    registrationNumber?: string;
-    country?: string;
-    size?: string;
-    vat?: string;
-    website?: string;
-  }>) => void;
+  setFormData: (
+    data: Partial<{
+      logo?: string | null;
+      brandName?: string;
+      registeredName?: string;
+      registrationNumber?: string;
+      country?: string;
+      size?: string;
+      vat?: string;
+      website?: string;
+    }>
+  ) => void;
 }
 
 const Step1: React.FC<Step1Props> = ({ formData, setFormData }) => {
@@ -57,7 +59,7 @@ const Step1: React.FC<Step1Props> = ({ formData, setFormData }) => {
           onClick={() => fileInputRef.current?.click()}
           className="flex items-center gap-1 text-sm text-violet-700 hover:underline cursor-pointer"
         >
-          <img src={"/gallery-add.png"} alt="gallery-icon"/>
+          <img src={"/gallery-add.png"} alt="gallery-icon" />
           Upload image
         </button>
 
@@ -161,7 +163,7 @@ const Step1: React.FC<Step1Props> = ({ formData, setFormData }) => {
             <input
               type="text"
               className="w-full border rounded-md px-3 py-2 text-sm placeholder:text-gray-300 bg-gray-100"
-            placeholder="--"
+              placeholder="--"
               value={formData.vat || ""}
               onChange={(e) =>
                 setFormData({ ...formData, vat: e.target.value })

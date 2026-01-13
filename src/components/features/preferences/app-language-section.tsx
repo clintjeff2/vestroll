@@ -1,12 +1,14 @@
-
-import { ChevronRight } from "lucide-react"
+import { ChevronRight } from "lucide-react";
 
 interface AppLanguageSectionProps {
-  selectedLanguage: string
-  onLanguageClick: () => void
+  selectedLanguage: string;
+  onLanguageClick: () => void;
 }
 
-export function AppLanguageSection({ selectedLanguage, onLanguageClick }: AppLanguageSectionProps) {
+export function AppLanguageSection({
+  selectedLanguage,
+  onLanguageClick,
+}: AppLanguageSectionProps) {
   return (
     <div className="bg-white rounded-lg p-6 space-y-4">
       <div>
@@ -25,5 +27,5 @@ export function AppLanguageSection({ selectedLanguage, onLanguageClick }: AppLan
         </div>
       </button>
     </div>
-  )
+  );
 }

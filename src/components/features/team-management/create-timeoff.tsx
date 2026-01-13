@@ -6,14 +6,12 @@ import { CreateTimeOffForm } from "./timeOff/CreateTimeOffForm";
 import { useRouter } from "next/navigation";
 
 export default function CreateTimeOffPage() {
-    const router = useRouter();
+  const router = useRouter();
   const allEmployees = generateMockEmployees();
   return (
     <div className="w-full flex flex-col min-h-screen">
       {/* Header */}
-      <header
-        className="bg-background-b0 w-full py-4"
-      >
+      <header className="bg-background-b0 w-full py-4">
         <div className="px-7 space-y-3 pt-2 w-fit">
           <p
             className="flex items-center gap-2 cursor-pointer"
@@ -31,4 +29,4 @@ export default function CreateTimeOffPage() {
       </main>
     </div>
   );
-};
+}

@@ -9,12 +9,7 @@ type FormProps = {
 };
 function ReviewAndSignModal() {
   const { hideModal, showEnhancedModal } = useModal();
-  // const OpenContractReviewModal = () => {
-  //   showEnhancedModal(<ContractReviewModal />, {
-  //     showCloseButton: false,
-  //     size: "md",
-  //   });
-  // };
+
   const openContractCreatedModal = () => {
     showEnhancedModal(<ContractCompletionModal />);
   };
@@ -119,9 +114,7 @@ function ReviewAndSignModal() {
           </div>
         </div>
         <div className="flex flex-col w-full gap-2 sm:flex-row">
-          <button
-            className="w-full border border-gray-500 rounded-lg cursor-pointer h-14 dark:border-gray-100 hover:opacity-90"
-          >
+          <button className="w-full border border-gray-500 rounded-lg cursor-pointer h-14 dark:border-gray-100 hover:opacity-90">
             Back
           </button>
 
@@ -138,5 +131,3 @@ function ReviewAndSignModal() {
 }
 
 export default ReviewAndSignModal;
-
-

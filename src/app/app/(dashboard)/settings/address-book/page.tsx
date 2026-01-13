@@ -75,8 +75,6 @@ export default function AddressBook() {
   useEffect(() => {
     const mockAddresses = generateMockAddresses();
     setAddresses(mockAddresses);
-
-    // Also check localStorage for saved addresses
     const savedAddresses = localStorage.getItem("cryptoAddresses");
     if (savedAddresses) {
       setAddresses(JSON.parse(savedAddresses));

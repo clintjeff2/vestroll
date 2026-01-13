@@ -2,8 +2,8 @@
 import React, { useRef, useState, useEffect } from "react";
 
 const OTP_LENGTH = 6;
-const RESEND_TIME = 60; // seconds
-const MASK_DELAY = 300; // ms
+const RESEND_TIME = 60;
+const MASK_DELAY = 300;
 
 const OtpForm: React.FC = () => {
   const [otp, setOtp] = useState<string[]>(Array(OTP_LENGTH).fill(""));
@@ -76,7 +76,6 @@ const OtpForm: React.FC = () => {
     setTimer(RESEND_TIME);
     setActiveInput(0);
     inputsRef.current[0]?.focus();
-    // Add resend logic here
   };
 
   return (

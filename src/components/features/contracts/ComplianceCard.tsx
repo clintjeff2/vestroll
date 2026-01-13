@@ -46,5 +46,3 @@ function ComplianceCard({ additionalAgreement }: ComplianceCardProps) {
 }
 
 export default ComplianceCard;
-
-

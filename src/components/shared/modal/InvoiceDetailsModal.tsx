@@ -29,7 +29,7 @@ interface InvoiceData {
   contract: string;
   contractType: string;
   employee: string;
-  availablePayments?: PaymentDetail[]; // Optional to avoid showing breakdown
+  availablePayments?: PaymentDetail[];
   transactionIds?: string[];
   paymentHashes?: string[];
 }
@@ -361,4 +361,3 @@ export default function InvoiceDetailsModal({
     </div>
   );
 }
-

@@ -1,5 +1,3 @@
-// The search input and filter button component.
-
 import { Search, ListFilter } from "lucide-react";
 
 type SearchFilterBarProps = {

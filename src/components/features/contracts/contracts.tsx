@@ -111,7 +111,13 @@ function Contracts() {
   );
 }
 
-function StepContent({ steps, activeStep }: { steps: Step[]; activeStep: number }) {
+function StepContent({
+  steps,
+  activeStep,
+}: {
+  steps: Step[];
+  activeStep: number;
+}) {
   if (!steps[activeStep]) return null;
   return <div>{steps[activeStep].content}</div>;
 }

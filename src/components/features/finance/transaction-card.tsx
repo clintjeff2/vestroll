@@ -1,15 +1,13 @@
-import React from 'react';
-import Image from 'next/image';
-import { StatusBadge } from './status-badge';
-import { Transaction } from '@/types/finance.types';
+import React from "react";
+import Image from "next/image";
+import { StatusBadge } from "./status-badge";
+import { Transaction } from "@/types/finance.types";
 
 interface TransactionCardProps {
   transaction: Transaction;
 }
 
-export function TransactionCard ({ 
-  transaction 
-}:TransactionCardProps)  {
+export function TransactionCard({ transaction }: TransactionCardProps) {
   return (
     <div className="bg-white p-4 rounded-lg border border-gray-100 mb-3 shadow-sm">
       <div className="flex items-start justify-between mb-3">
@@ -17,9 +15,7 @@ export function TransactionCard ({
           <p className="text-sm font-medium text-[#0F172A] mb-1 line-clamp-2">
             {transaction.description}
           </p>
-          <p className="text-xs text-[#64748B] font-mono">
-            {transaction.id}
-          </p>
+          <p className="text-xs text-[#64748B] font-mono">{transaction.id}</p>
         </div>
         <StatusBadge status={transaction.status} />
       </div>
@@ -29,22 +25,18 @@ export function TransactionCard ({
             {transaction.amount}
           </span>
           <div className="flex items-center gap-1.5">
-            <Image 
-            src="/tether-icon.svg" 
-            alt="USDT" 
-            width={20} 
-            height={20}
-            className="object-contain"
-          />
-            <span className="text-xs text-[#64748B]">
-              {transaction.asset}
-            </span>
+            <Image
+              src="/tether-icon.svg"
+              alt="USDT"
+              width={20}
+              height={20}
+              className="object-contain"
+            />
+            <span className="text-xs text-[#64748B]">{transaction.asset}</span>
           </div>
         </div>
-        <span className="text-xs text-[#94A3B8]">
-          {transaction.timestamp}
-        </span>
+        <span className="text-xs text-[#94A3B8]">{transaction.timestamp}</span>
       </div>
     </div>
   );
-};
+}

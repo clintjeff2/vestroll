@@ -18,7 +18,6 @@ interface TeamMgtEmployeesProps {
 const TeamMgtEmployees: React.FC<TeamMgtEmployeesProps> = ({ employees }) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  // use-sort hook for filtering, searching, and pagination
   const {
     data: paginatedEmployees,
     currentPage,

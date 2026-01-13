@@ -17,7 +17,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Vestroll Payroll System",
-  description: "Enterprise Payroll management web platform built with real-time analytics, cryptocurrency integration, and AI insights.",
+  description:
+    "Enterprise Payroll management web platform built with real-time analytics, cryptocurrency integration, and AI insights.",
 };
 
 export default function RootLayout({
@@ -31,12 +32,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} bg-background text-text-primary antialiased`}
       >
         <ReduxProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            // disableTransitionOnChange
-          >
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Modal />
             {children}
           </ThemeProvider>
@@ -45,5 +41,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-

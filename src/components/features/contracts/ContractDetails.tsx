@@ -8,43 +8,7 @@ import Dropdown from "@/components/ui/dropdown";
 import { z } from "zod";
 import { currencies } from "@/constants";
 
-interface ContractFormData {
-  contractType: number;
-  clientName: string;
-  clientEmail: string;
-  clientPhone: string;
-  clientAddress: string;
-  startDate: string;
-  endDate: string;
-  terminationNotice: string;
-  network: string;
-  asset: string;
-  amount: string;
-  calculatedAmount: string;
-  invoiceFrequency: string;
-  issueInvoiceOn: string;
-  paymentDue: string;
-  firstInvoiceType: "full" | "custom";
-  firstInvoiceDate: string;
-  firstInvoiceAmount: string;
-  walletAddress: string;
-  walletType: string;
-  contractDuration: string;
-  renewalTerms: string;
-  milestones: Array<{
-    id: string;
-    title: string;
-    description: string;
-    dueDate: string;
-    amount: string;
-  }>;
-  taxType: string;
-  taxId: string;
-  taxRate: string;
-  uploadedFiles: File[];
-  paymentType: string;
-  paymentFrequency?: "Hourly" | "Daily" | "Weekly" | "Per Deliverable";
-}
+import { ContractFormData } from "@/types/interface";
 
 interface FormErrors {
   [key: string]: string;
@@ -78,7 +42,13 @@ const assets = [
   { label: "Stellar", icon: "/stellar.svg" },
 ];
 
-const invoiceFrequencies = ["Weekly", "Bi-weekly", "Monthly", "Quarterly", "Annually"];
+const invoiceFrequencies = [
+  "Weekly",
+  "Bi-weekly",
+  "Monthly",
+  "Quarterly",
+  "Annually",
+];
 const issueInvoiceOptions = [
   "1st of the month",
   "15th of the month",
@@ -158,11 +128,11 @@ export default function ContractDetails({
   onPrev,
 }: ContractDetailsProps) {
   const [dragOver, setDragOver] = useState(false);
-  // ✅ FIXED: Proper useState syntax on single line
-  const [paymentFrequency, setPaymentFrequency] = useState<"Hourly" | "Daily" | "Weekly" | "Per Deliverable">("Hourly");
-  const [paymentType, setPaymnentType] = useState<string>('Fiat');
+  const [paymentFrequency, setPaymentFrequency] = useState<
+    "Hourly" | "Daily" | "Weekly" | "Per Deliverable"
+  >("Hourly");
+  const [paymentType, setPaymnentType] = useState<string>("Fiat");
 
-  // Sync payment frequency with formData
   useEffect(() => {
     if (formData.paymentFrequency) {
       setPaymentFrequency(formData.paymentFrequency);
@@ -311,8 +281,9 @@ export default function ContractDetails({
           type="date"
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className={`w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-[#5E2A8C] focus:border-transparent text-[#414F62] bg-[#F5F6F7] border-0 ${error ? "ring-2 ring-red-500" : ""
-            }`}
+          className={`w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-[#5E2A8C] focus:border-transparent text-[#414F62] bg-[#F5F6F7] border-0 ${
+            error ? "ring-2 ring-red-500" : ""
+          }`}
         />
         <Image
           src="/calander.svg"
@@ -332,8 +303,11 @@ export default function ContractDetails({
         Contract Documents
       </label>
       <div
-        className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors ${dragOver ? "border-[#5E2A8C] bg-[#F3EBF9]" : "border-[#E5E7EB] bg-[#F5F6F7]"
-          }`}
+        className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors ${
+          dragOver
+            ? "border-[#5E2A8C] bg-[#F3EBF9]"
+            : "border-[#E5E7EB] bg-[#F5F6F7]"
+        }`}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
@@ -427,450 +401,387 @@ export default function ContractDetails({
               label="Payment Type"
               value={paymentType}
               options={paymentTypes}
-              onChange={(value) => { handleInputChange("paymentType", value); setPaymnentType(value); }}
+              onChange={(value) => {
+                handleInputChange("paymentType", value);
+                setPaymnentType(value);
+              }}
               error={errors.network}
             />
-            {paymentType === "Crypto Currency"
-            ?
-            <>
-            <Dropdown
-              label="Network"
-              value={formData.network}
-              options={networks}
-              onChange={(value) => handleInputChange("network", value)}
-              error={errors.network}
-            />
-            </>
-            :<>
-            <Dropdown
-              label="Currency"
-              value={formData.asset}
-              options={currencies}
-              onChange={(value) => handleInputChange("asset", value)}
-              error={errors.network}
-            />
-            </>}
+            {paymentType === "Crypto Currency" ? (
+              <>
+                <Dropdown
+                  label="Network"
+                  value={formData.network}
+                  options={networks}
+                  onChange={(value) => handleInputChange("network", value)}
+                  error={errors.network}
+                />
+              </>
+            ) : (
+              <>
+                <Dropdown
+                  label="Currency"
+                  value={formData.asset}
+                  options={currencies}
+                  onChange={(value) => handleInputChange("asset", value)}
+                  error={errors.network}
+                />
+              </>
+            )}
           </div>
           {/* Amount */}
-          {paymentType === "Crypto Currency"
-          ?
-          <>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-2 w-full relative">
-            <Dropdown
-              label="Asset"
-              value={formData.asset}
-              options={assets}
-              onChange={(value) => handleInputChange("asset", value)}
-              error={errors.asset}
-            />
-            <div className="w-full flex flex-col justify-center">
-              <small className="text-right md:-mt-4 text-[#414F62]">
-                ~{netAmount.toFixed(3)}
-              </small>
-              <div className="relative h-fit">
-                <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#414F62]">
-                  $
-                </span>
-                <input
-                  type="number"
-                  step="0.01"
-                  value={formData.amount}
-                  onChange={(e) => handleInputChange("amount", e.target.value)}
-                  className={`w-full pl-8 pr-4 py-3 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-[#414F62] bg-[#F5F6F7] ${
-                    errors.amount ? "border-red-300" : "border-gray-300"
-                  }`}
-                  placeholder="0.00"
-                />
-              </div>
-            </div>
-          </div>
-          </>
-          :
-          <>
-          <div className="grid w-full h-fit relative">
-            <div className="w-full flex flex-col gap-2 justify-center">
-              <small className="md: text-[#414F62]">
-                Enter Amount
-              </small>
-              <div className="relative h-fit">
-                <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#414F62]">
-                  $
-                </span>
-                <input
-                  type="number"
-                  step="0.01"
-                  value={formData.amount}
-                  onChange={(e) => handleInputChange("amount", e.target.value)}
-                  className={`w-full pl-8 pr-4 py-3 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-[#414F62] bg-[#F5F6F7] ${
-                    errors.amount ? "border-red-300" : "border-gray-300"
-                  }`}
-                  placeholder="0.00"
-                />
-              </div>
-            </div>
-          </div>
-          </>}
-          {/* <div>
-            <div className="flex items-center w-full px-4 py-3 bg-[#F5F6F7] rounded-lg">
-              <div className="flex items-center gap-2 flex-1">
-                <Image
-                  src={assets.find((a) => a.label === formData.asset)?.icon || "/Tether.svg"}
-                  alt={formData.asset}
-                  width={24}
-                  height={24}
-                />
-                <select
+          {paymentType === "Crypto Currency" ? (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-2 w-full relative">
+                <Dropdown
+                  label="Asset"
                   value={formData.asset}
-                  onChange={(e) => handleInputChange("asset", e.target.value)}
-                  className="bg-transparent border-0 focus:outline-none text-[#414F62] cursor-pointer appearance-none"
-                >
-                  {assets.map((a) => (
-                    <option key={a.label} value={a.label}>
-                      {a.label}
-                    </option>
-                  ))}
-                </select>
-                <svg className="w-4 h-4 text-[#414F62]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </div>
-              <input
-                type="text"
-                value={`$ ${formData.amount}`}
-                onChange={(e) => handleInputChange("amount", e.target.value.replace("$ ", ""))}
-                className="text-right bg-transparent border-0 focus:outline-none text-[#414F62] w-32"
-              />
-            </div>
-            {errors.asset && <p className="text-red-500 text-sm mt-1">{errors.asset}</p>}
-            {errors.amount && <p className="text-red-500 text-sm mt-1">{errors.amount}</p>}
-          </div>
-        </div> */}
-      </div>
-
-      {/* Payment Frequency - NEW ADDITION FROM FIGMA */}
-      {formData.contractType === 2 && (
-      <div className="mb-6">
-        <label className="block text-sm font-medium text-[#414F62] mb-3">
-          Rate unit (Payment is based on the exact number of units submitted.)
-        </label>
-        <div className="flex flex-wrap gap-3">
-          {(["Hourly", "Daily", "Weekly", "Per Deliverable"] as const).map((freq) => (
-            <button
-              key={freq}
-              type="button"
-              onClick={() => {
-                setPaymentFrequency(freq);
-                onFormDataChange({ ...formData, paymentFrequency: freq });
-              }}
-              className={`px-6 py-2 rounded-lg text-sm font-medium transition-colors ${paymentFrequency === freq
-                ? "bg-[#5E2A8C] text-white"
-                : "bg-white border border-[#E5E7EB] text-[#414F62] hover:border-[#5E2A8C]"
-                }`}
-            >
-              {freq}
-            </button>
-          ))}
-        </div>
-      </div>
-      )}
-
-      {/* Invoice Details */}
-      {formData.contractType !== 3 && (
-        <>
-      <div>
-        <h3 className="text-lg font-semibold text-[#17171C] mb-6">
-          Invoice details
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Dropdown
-            label="Invoice frequency"
-            value={formData.invoiceFrequency}
-            options={invoiceFrequencies}
-            onChange={(value) => handleInputChange("invoiceFrequency", value)}
-            error={errors.invoiceFrequency}
-            placeholder="--"
-          />
-          <Dropdown
-            label="Issue Invoice on"
-            value={formData.issueInvoiceOn}
-            options={issueInvoiceOptions}
-            onChange={(value) => handleInputChange("issueInvoiceOn", value)}
-            placeholder="--"
-          />
-        </div>
-        <div className="mt-6">
-          <Dropdown
-            label="Payment due"
-            value={formData.paymentDue}
-            options={paymentDueOptions}
-            onChange={(value) => handleInputChange("paymentDue", value)}
-            error={errors.paymentDue}
-            placeholder="--"
-          />
-        </div>
-      </div>
-
-      {/* First Invoice */}
-      <div>
-        <h3 className="text-lg font-semibold text-[#17171C] mb-6">
-          First Invoice
-        </h3>
-        <div className="space-y-4">
-          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-8">
-            <label className="flex items-center cursor-pointer">
-              <input
-                type="radio"
-                name="firstInvoiceType"
-                value="full"
-                checked={formData.firstInvoiceType === "full"}
-                onChange={(e) =>
-                  handleInputChange("firstInvoiceType", e.target.value)
-                }
-                className="sr-only"
-              />
-              <div
-                className={`w-5 h-5 rounded-full border-2 mr-3 flex items-center justify-center transition-colors ${formData.firstInvoiceType === "full"
-                  ? "border-[#5E2A8C] bg-[#5E2A8C]"
-                  : "border-[#E5E7EB] bg-white"
-                  }`}
-              >
-                {formData.firstInvoiceType === "full" && (
-                  <div className="w-2.5 h-2.5 rounded-full bg-white"></div>
-                )}
-              </div>
-              <span className="text-sm font-medium text-[#414F62]">
-                Full amount
-              </span>
-            </label>
-            <label className="flex items-center cursor-pointer">
-              <input
-                type="radio"
-                name="firstInvoiceType"
-                value="custom"
-                checked={formData.firstInvoiceType === "custom"}
-                onChange={(e) =>
-                  handleInputChange("firstInvoiceType", e.target.value)
-                }
-                className="sr-only"
-              />
-              <div
-                className={`w-5 h-5 rounded-full border-2 mr-3 flex items-center justify-center transition-colors ${formData.firstInvoiceType === "custom"
-                  ? "border-[#5E2A8C] bg-[#5E2A8C]"
-                  : "border-[#E5E7EB] bg-white"
-                  }`}
-              >
-                {formData.firstInvoiceType === "custom" && (
-                  <div className="w-2.5 h-2.5 rounded-full bg-white"></div>
-                )}
-              </div>
-              <span className="text-sm font-medium text-[#414F62]">
-                Custom amount
-              </span>
-            </label>
-          </div>
-          <p className="text-sm text-[#7F8C9F]">
-            You would receive the full monthly amount for your first payment.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <DatePicker
-              label="Date"
-              value={formData.firstInvoiceDate}
-              onChange={(value) =>
-                handleInputChange("firstInvoiceDate", value)
-              }
-              error={errors.firstInvoiceDate}
-            />
-            <InputField
-              id="firstInvoiceAmount"
-              label="Amount"
-              placeholder="0.00"
-              value={formData.firstInvoiceAmount}
-              onChange={(e) =>
-                handleInputChange("firstInvoiceAmount", e.target.value)
-              }
-              error={errors.firstInvoiceAmount}
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Add inclusive tax (optional) */}
-      <div>
-        <h3 className="text-lg font-semibold text-[#17171C] mb-6">
-          Add inclusive tax (optional)
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <Dropdown
-            label="Tax type"
-            value={formData.taxType}
-            options={taxTypes}
-            onChange={(value) => handleInputChange("taxType", value)}
-            error={errors.taxType}
-            placeholder="e.g VAT, GST, HST, PST"
-          />
-          <InputField
-            id="taxId"
-            label="ID / account number"
-            placeholder="Enter tax ID or account number"
-            value={formData.taxId}
-            onChange={(e) => handleInputChange("taxId", e.target.value)}
-            error={errors.taxId}
-          />
-        </div>
-        <Dropdown
-          label="Tax rate"
-          value={formData.taxRate}
-          options={taxRates}
-          onChange={(value) => handleInputChange("taxRate", value)}
-          placeholder="--"
-        />
-      </div>
-      </>)}
-
-      {/* Contract Wallet - PRESERVED */}
-      {/* <div>
-        <h3 className="text-lg font-semibold text-[#17171C] mb-6">
-          Contract Wallet
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <InputField
-            id="walletAddress"
-            label="Wallet Address"
-            placeholder="Enter wallet address"
-            value={formData.walletAddress}
-            onChange={(e) => handleInputChange("walletAddress", e.target.value)}
-            error={errors.walletAddress}
-          />
-          <InputField
-            id="walletType"
-            label="Wallet Type"
-            placeholder="e.g., MetaMask, Trust Wallet"
-            value={formData.walletType}
-            onChange={(e) => handleInputChange("walletType", e.target.value)}
-            error={errors.walletType}
-          />
-        </div>
-      </div> */}
-
-      {/* End Period - PRESERVED */}
-      {/* <div>
-        <h3 className="text-lg font-semibold text-[#17171C] mb-6">
-          Contract Period
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <InputField
-            id="contractDuration"
-            label="Contract Duration"
-            placeholder="e.g., 6 months"
-            value={formData.contractDuration}
-            onChange={(e) =>
-              handleInputChange("contractDuration", e.target.value)
-            }
-            error={errors.contractDuration}
-          />
-          <InputField
-            id="renewalTerms"
-            label="Renewal Terms"
-            placeholder="e.g., Auto-renew"
-            value={formData.renewalTerms}
-            onChange={(e) => handleInputChange("renewalTerms", e.target.value)}
-            error={errors.renewalTerms}
-          />
-        </div>
-      </div> */}
-
-      {/* Milestones/Deliverables - PRESERVED */}
-      {formData.contractType === 3 && (<div>
-        <div className="flex items-center justify-between mb-6">
-          <h3 className="text-lg font-semibold text-[#17171C]">
-            Milestones / Deliverables
-          </h3>
-          <button
-            type="button"
-            onClick={addMilestone}
-            className="px-4 py-2 bg-[#5E2A8C] text-white rounded-lg hover:bg-[#4A2270] transition-colors text-sm font-medium"
-          >
-            + Add Milestone
-          </button>
-        </div>
-        {formData.milestones.length === 0 ? (
-          <p className="text-[#7F8C9F] text-center py-8">
-            No milestones added yet. Click &quot;Add Milestone&quot; to create one.
-          </p>
-        ) : (
-          <div className="space-y-4">
-            {formData.milestones.map((milestone, index) => (
-              <div
-                key={milestone.id}
-                className="p-4 border border-[#E5E7EB] rounded-lg bg-[#F5F6F7]"
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <h4 className="font-medium text-[#17171C]">
-                    Milestone {index + 1}
-                  </h4>
-                  <button
-                    onClick={() => removeMilestone(milestone.id)}
-                    className="text-red-500 hover:text-red-700 transition-colors"
-                  >
-                    <X size={20} />
-                  </button>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <InputField
-                    id={`milestone-title-${milestone.id}`}
-                    label="Title"
-                    placeholder="Milestone title"
-                    value={milestone.title}
-                    onChange={(e) =>
-                      updateMilestone(milestone.id, "title", e.target.value)
-                    }
-                    error={errors[`milestones.${index}.title`]}
-                  />
-                  <InputField
-                    id={`milestone-amount-${milestone.id}`}
-                    label="Amount"
-                    placeholder="0.00"
-                    value={milestone.amount}
-                    onChange={(e) =>
-                      updateMilestone(milestone.id, "amount", e.target.value)
-                    }
-                    error={errors[`milestones.${index}.amount`]}
-                  />
-                  <div className="md:col-span-2">
-                    <InputField
-                      id={`milestone-description-${milestone.id}`}
-                      label="Description"
-                      placeholder="Describe the milestone"
-                      value={milestone.description}
+                  options={assets}
+                  onChange={(value) => handleInputChange("asset", value)}
+                  error={errors.asset}
+                />
+                <div className="w-full flex flex-col justify-center">
+                  <small className="text-right md:-mt-4 text-[#414F62]">
+                    ~{netAmount.toFixed(3)}
+                  </small>
+                  <div className="relative h-fit">
+                    <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#414F62]">
+                      $
+                    </span>
+                    <input
+                      type="number"
+                      step="0.01"
+                      value={formData.amount}
                       onChange={(e) =>
-                        updateMilestone(
-                          milestone.id,
-                          "description",
-                          e.target.value
-                        )
+                        handleInputChange("amount", e.target.value)
                       }
-                      error={errors[`milestones.${index}.description`]}
+                      className={`w-full pl-8 pr-4 py-3 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-[#414F62] bg-[#F5F6F7] ${
+                        errors.amount ? "border-red-300" : "border-gray-300"
+                      }`}
+                      placeholder="0.00"
                     />
                   </div>
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="grid w-full h-fit relative">
+                <div className="w-full flex flex-col gap-2 justify-center">
+                  <small className="md: text-[#414F62]">Enter Amount</small>
+                  <div className="relative h-fit">
+                    <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#414F62]">
+                      $
+                    </span>
+                    <input
+                      type="number"
+                      step="0.01"
+                      value={formData.amount}
+                      onChange={(e) =>
+                        handleInputChange("amount", e.target.value)
+                      }
+                      className={`w-full pl-8 pr-4 py-3 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-[#414F62] bg-[#F5F6F7] ${
+                        errors.amount ? "border-red-300" : "border-gray-300"
+                      }`}
+                      placeholder="0.00"
+                    />
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+
+        {/* Payment Frequency - NEW ADDITION FROM FIGMA */}
+        {formData.contractType === 2 && (
+          <div className="mb-6">
+            <label className="block text-sm font-medium text-[#414F62] mb-3">
+              Rate unit (Payment is based on the exact number of units
+              submitted.)
+            </label>
+            <div className="flex flex-wrap gap-3">
+              {(["Hourly", "Daily", "Weekly", "Per Deliverable"] as const).map(
+                (freq) => (
+                  <button
+                    key={freq}
+                    type="button"
+                    onClick={() => {
+                      setPaymentFrequency(freq);
+                      onFormDataChange({ ...formData, paymentFrequency: freq });
+                    }}
+                    className={`px-6 py-2 rounded-lg text-sm font-medium transition-colors ${
+                      paymentFrequency === freq
+                        ? "bg-[#5E2A8C] text-white"
+                        : "bg-white border border-[#E5E7EB] text-[#414F62] hover:border-[#5E2A8C]"
+                    }`}
+                  >
+                    {freq}
+                  </button>
+                )
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Invoice Details */}
+        {formData.contractType !== 3 && (
+          <>
+            <div>
+              <h3 className="text-lg font-semibold text-[#17171C] mb-6">
+                Invoice details
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Dropdown
+                  label="Invoice frequency"
+                  value={formData.invoiceFrequency}
+                  options={invoiceFrequencies}
+                  onChange={(value) =>
+                    handleInputChange("invoiceFrequency", value)
+                  }
+                  error={errors.invoiceFrequency}
+                  placeholder="--"
+                />
+                <Dropdown
+                  label="Issue Invoice on"
+                  value={formData.issueInvoiceOn}
+                  options={issueInvoiceOptions}
+                  onChange={(value) =>
+                    handleInputChange("issueInvoiceOn", value)
+                  }
+                  placeholder="--"
+                />
+              </div>
+              <div className="mt-6">
+                <Dropdown
+                  label="Payment due"
+                  value={formData.paymentDue}
+                  options={paymentDueOptions}
+                  onChange={(value) => handleInputChange("paymentDue", value)}
+                  error={errors.paymentDue}
+                  placeholder="--"
+                />
+              </div>
+            </div>
+
+            {/* First Invoice */}
+            <div>
+              <h3 className="text-lg font-semibold text-[#17171C] mb-6">
+                First Invoice
+              </h3>
+              <div className="space-y-4">
+                <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-8">
+                  <label className="flex items-center cursor-pointer">
+                    <input
+                      type="radio"
+                      name="firstInvoiceType"
+                      value="full"
+                      checked={formData.firstInvoiceType === "full"}
+                      onChange={(e) =>
+                        handleInputChange("firstInvoiceType", e.target.value)
+                      }
+                      className="sr-only"
+                    />
+                    <div
+                      className={`w-5 h-5 rounded-full border-2 mr-3 flex items-center justify-center transition-colors ${
+                        formData.firstInvoiceType === "full"
+                          ? "border-[#5E2A8C] bg-[#5E2A8C]"
+                          : "border-[#E5E7EB] bg-white"
+                      }`}
+                    >
+                      {formData.firstInvoiceType === "full" && (
+                        <div className="w-2.5 h-2.5 rounded-full bg-white"></div>
+                      )}
+                    </div>
+                    <span className="text-sm font-medium text-[#414F62]">
+                      Full amount
+                    </span>
+                  </label>
+                  <label className="flex items-center cursor-pointer">
+                    <input
+                      type="radio"
+                      name="firstInvoiceType"
+                      value="custom"
+                      checked={formData.firstInvoiceType === "custom"}
+                      onChange={(e) =>
+                        handleInputChange("firstInvoiceType", e.target.value)
+                      }
+                      className="sr-only"
+                    />
+                    <div
+                      className={`w-5 h-5 rounded-full border-2 mr-3 flex items-center justify-center transition-colors ${
+                        formData.firstInvoiceType === "custom"
+                          ? "border-[#5E2A8C] bg-[#5E2A8C]"
+                          : "border-[#E5E7EB] bg-white"
+                      }`}
+                    >
+                      {formData.firstInvoiceType === "custom" && (
+                        <div className="w-2.5 h-2.5 rounded-full bg-white"></div>
+                      )}
+                    </div>
+                    <span className="text-sm font-medium text-[#414F62]">
+                      Custom amount
+                    </span>
+                  </label>
+                </div>
+                <p className="text-sm text-[#7F8C9F]">
+                  You would receive the full monthly amount for your first
+                  payment.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <DatePicker
-                    label="Due Date"
-                    value={milestone.dueDate}
+                    label="Date"
+                    value={formData.firstInvoiceDate}
                     onChange={(value) =>
-                      updateMilestone(milestone.id, "dueDate", value)
+                      handleInputChange("firstInvoiceDate", value)
                     }
-                    error={errors[`milestones.${index}.dueDate`]}
+                    error={errors.firstInvoiceDate}
+                  />
+                  <InputField
+                    id="firstInvoiceAmount"
+                    label="Amount"
+                    placeholder="0.00"
+                    value={formData.firstInvoiceAmount}
+                    onChange={(e) =>
+                      handleInputChange("firstInvoiceAmount", e.target.value)
+                    }
+                    error={errors.firstInvoiceAmount}
                   />
                 </div>
               </div>
-            ))}
+            </div>
+
+            {/* Add inclusive tax (optional) */}
+            <div>
+              <h3 className="text-lg font-semibold text-[#17171C] mb-6">
+                Add inclusive tax (optional)
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <Dropdown
+                  label="Tax type"
+                  value={formData.taxType}
+                  options={taxTypes}
+                  onChange={(value) => handleInputChange("taxType", value)}
+                  error={errors.taxType}
+                  placeholder="e.g VAT, GST, HST, PST"
+                />
+                <InputField
+                  id="taxId"
+                  label="ID / account number"
+                  placeholder="Enter tax ID or account number"
+                  value={formData.taxId}
+                  onChange={(e) => handleInputChange("taxId", e.target.value)}
+                  error={errors.taxId}
+                />
+              </div>
+              <Dropdown
+                label="Tax rate"
+                value={formData.taxRate}
+                options={taxRates}
+                onChange={(value) => handleInputChange("taxRate", value)}
+                placeholder="--"
+              />
+            </div>
+          </>
+        )}
+
+        {/* Milestones/Deliverables - PRESERVED */}
+        {formData.contractType === 3 && (
+          <div>
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-lg font-semibold text-[#17171C]">
+                Milestones / Deliverables
+              </h3>
+              <button
+                type="button"
+                onClick={addMilestone}
+                className="px-4 py-2 bg-[#5E2A8C] text-white rounded-lg hover:bg-[#4A2270] transition-colors text-sm font-medium"
+              >
+                + Add Milestone
+              </button>
+            </div>
+            {formData.milestones.length === 0 ? (
+              <p className="text-[#7F8C9F] text-center py-8">
+                No milestones added yet. Click &quot;Add Milestone&quot; to
+                create one.
+              </p>
+            ) : (
+              <div className="space-y-4">
+                {formData.milestones.map((milestone, index) => (
+                  <div
+                    key={milestone.id}
+                    className="p-4 border border-[#E5E7EB] rounded-lg bg-[#F5F6F7]"
+                  >
+                    <div className="flex items-center justify-between mb-4">
+                      <h4 className="font-medium text-[#17171C]">
+                        Milestone {index + 1}
+                      </h4>
+                      <button
+                        onClick={() => removeMilestone(milestone.id)}
+                        className="text-red-500 hover:text-red-700 transition-colors"
+                      >
+                        <X size={20} />
+                      </button>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <InputField
+                        id={`milestone-title-${milestone.id}`}
+                        label="Title"
+                        placeholder="Milestone title"
+                        value={milestone.title}
+                        onChange={(e) =>
+                          updateMilestone(milestone.id, "title", e.target.value)
+                        }
+                        error={errors[`milestones.${index}.title`]}
+                      />
+                      <InputField
+                        id={`milestone-amount-${milestone.id}`}
+                        label="Amount"
+                        placeholder="0.00"
+                        value={milestone.amount}
+                        onChange={(e) =>
+                          updateMilestone(
+                            milestone.id,
+                            "amount",
+                            e.target.value
+                          )
+                        }
+                        error={errors[`milestones.${index}.amount`]}
+                      />
+                      <div className="md:col-span-2">
+                        <InputField
+                          id={`milestone-description-${milestone.id}`}
+                          label="Description"
+                          placeholder="Describe the milestone"
+                          value={milestone.description}
+                          onChange={(e) =>
+                            updateMilestone(
+                              milestone.id,
+                              "description",
+                              e.target.value
+                            )
+                          }
+                          error={errors[`milestones.${index}.description`]}
+                        />
+                      </div>
+                      <DatePicker
+                        label="Due Date"
+                        value={milestone.dueDate}
+                        onChange={(value) =>
+                          updateMilestone(milestone.id, "dueDate", value)
+                        }
+                        error={errors[`milestones.${index}.dueDate`]}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         )}
-      </div>)}
 
-      {/* File Upload - PRESERVED */}
-      {/* <FileUpload /> */}
-    </div>
+        {/* File Upload - PRESERVED */}
+        {/* <FileUpload /> */}
+      </div>
     </div>
   );
 }
-

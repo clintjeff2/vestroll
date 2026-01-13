@@ -16,20 +16,15 @@ export default function QRScanPage() {
   };
 
   const handleContinue = () => {
-    // Handle verification logic here
     console.log("Verifying code:", verificationCode);
-    // After successful verification, redirect to success page or dashboard
-    // router.push("/2fa/success");
   };
 
   const handleCopyKey = () => {
-    // This would copy the actual setup key in a real app
     const setupKey = "VEST-ROLL-2FA-SETUP-KEY-EXAMPLE";
     navigator.clipboard
       .writeText(setupKey)
       .then(() => {
         console.log("Setup key copied to clipboard");
-        // You could add a toast notification here
       })
       .catch((err) => {
         console.error("Failed to copy: ", err);
@@ -37,7 +32,7 @@ export default function QRScanPage() {
   };
 
   const handlePrev = () => {
-    router.push("/2fa"); // Go back to 2FA method selection
+    router.push("/2fa");
   };
 
   const handleNext = () => {
@@ -150,4 +145,3 @@ export default function QRScanPage() {
     </div>
   );
 }
-

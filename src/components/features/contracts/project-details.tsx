@@ -131,16 +131,6 @@ function SelectScope() {
             <Input placeholder="search" />
           </DialogDescription>
         </DialogHeader>
-        {/* <Select open={open} onOpenChange={setOpen}>
-          <SelectTrigger className="hidden">
-            <button className="hidden">Open</button>
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="one">One</SelectItem>
-            <SelectItem value="one">One</SelectItem>
-            <SelectItem value="one">One</SelectItem>
-          </SelectContent>
-        </Select> */}
         <ul className="bg-[#F5F6F7]">
           {items.map((el) => (
             <div key={el.value + el.title}>

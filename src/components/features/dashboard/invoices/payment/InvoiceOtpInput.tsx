@@ -38,8 +38,6 @@ const InvoiceOtpInput: React.FC<InvoiceOtpInputProps> = ({
 
       // Check if OTP is complete
       if (newOtp.every((digit) => digit !== "")) {
-        // handle submit here
-        //   onComplete(newOtp.join(""));
       }
     }
   };
@@ -76,8 +74,6 @@ const InvoiceOtpInput: React.FC<InvoiceOtpInputProps> = ({
 
       // Focus the last input after paste
       inputRefs.current[length - 1]?.focus();
-
-      // Fire onComplete callback
       if (onComplete) {
         onComplete(pastedData);
       }

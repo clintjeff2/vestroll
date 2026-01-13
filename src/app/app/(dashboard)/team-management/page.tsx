@@ -1,8 +1,6 @@
-// This is the main dashboard component that orchestrates everything.
 "use client";
 import React, { useState } from "react";
 
-// Import all our new components
 import { NavigationTabs } from "@/components/features/team-management/NavigationTabs";
 import TeamMgtTimeSheet from "@/components/features/team-management/time-tracking";
 import TeamMgtMilestone from "@/components/features/team-management/milestone";
@@ -18,7 +16,6 @@ import { CreateFirstContact } from "@/components/features/team-management/Create
 const TeamManagementDashboard = () => {
   const [activeTab, setActiveTab] = useState("Employees");
   const [isExportOpen, setIsExportOpen] = useState(false);
-  /* const [isFilterOpen, setIsFilterOpen] = useState(false); */
 
   const allEmployees = generateMockEmployees();
 
@@ -29,11 +26,11 @@ const TeamManagementDashboard = () => {
       case "Time off":
         return <TeamMgtTimeoff />;
       case "Milestone":
-        return <TeamMgtMilestone />
+        return <TeamMgtMilestone />;
       case "Time tracking":
-        return <TeamMgtTimeSheet />
+        return <TeamMgtTimeSheet />;
       case "Expense":
-        return <TeamMgtExpense />
+        return <TeamMgtExpense />;
       default:
         return null;
     }
@@ -56,8 +53,12 @@ const TeamManagementDashboard = () => {
                 onToggle={() => setIsExportOpen(!isExportOpen)}
               />
               {activeTab === "Time off" && (
-                <Link className="flex items-center gap-2 bg-primary-500 text-white md:h-10 px-4 rounded-lg" href={"/app/team-management/create-timeoff"}>
-                  <Plus /> <span className="hidden md:inline">Create request</span>
+                <Link
+                  className="flex items-center gap-2 bg-primary-500 text-white md:h-10 px-4 rounded-lg"
+                  href={"/app/team-management/create-timeoff"}
+                >
+                  <Plus />{" "}
+                  <span className="hidden md:inline">Create request</span>
                 </Link>
               )}
             </div>
@@ -73,7 +74,6 @@ const TeamManagementDashboard = () => {
           renderTabContent()
         )}
       </div>
-
 
       {isExportOpen && (
         <div
@@ -96,4 +96,3 @@ const TeamManagementDashboard = () => {
 };
 
 export default TeamManagementDashboard;
-

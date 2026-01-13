@@ -17,7 +17,6 @@ export default function TemplateInfoPage() {
 
   const handleGoBack = () => {
     router.back();
-    // alert("Going back to previous step...");
   };
 
   const [formData, setFormData] = useState<FormData>({
@@ -26,7 +25,7 @@ export default function TemplateInfoPage() {
     timeOffDays: 0,
   });
 
-  const isFormValid = true; // Placeholder for form validation logic
+  const isFormValid = true;
 
   return (
     <div className="min-h-screen ">
@@ -79,12 +78,12 @@ export default function TemplateInfoPage() {
             <InputField
               id="timeoffdays"
               label="Time Off"
-              value={formData.timeOffDays.toString()} // Convert number to string
+              value={formData.timeOffDays.toString()}
               onChange={(e) =>
                 setFormData((prev) => ({
                   ...prev,
                   timeOffDays:
-                    e.target.value === "" ? 0 : parseInt(e.target.value) || 0, // Convert back to number
+                    e.target.value === "" ? 0 : parseInt(e.target.value) || 0,
                 }))
               }
               placeholder="--"
@@ -108,4 +107,3 @@ export default function TemplateInfoPage() {
     </div>
   );
 }
-

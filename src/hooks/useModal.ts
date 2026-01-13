@@ -102,7 +102,6 @@ const useModal = () => {
           text: cancelText,
           variant: "secondary",
           onClick: () => {
-            // Cancel action - modal will close automatically
           },
         },
         {
@@ -122,13 +121,10 @@ const useModal = () => {
       customComponent,
       size,
       type: "custom",
-      showButtons: false, // No default buttons for custom modals
+      showButtons: false, 
     });
   };
 
-  // NEW ENHANCED METHODS
-
-  // Modal with no buttons (just content and optional close X)
   const showContentOnlyModal = (
     content: React.ReactNode,
     options: CustomModalOptions = {}
@@ -194,7 +190,7 @@ const useModal = () => {
       buttons,
       size,
       showButtons: true,
-      showCloseButton: false, // Force user to choose a button
+      showCloseButton: false, 
       type: "custom",
     });
   };

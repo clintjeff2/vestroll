@@ -1,5 +1,3 @@
-// Lays out the employee cards in a responsive grid.
-
 import Link from "next/link";
 import { Employee } from "@/types/teamManagement.types";
 import { EmployeeCard } from "./EmployeeCard";

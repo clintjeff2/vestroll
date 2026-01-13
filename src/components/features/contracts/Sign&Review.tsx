@@ -1,10 +1,5 @@
 import { useState } from "react";
-import {
-  Briefcase,
-  Calendar,
-  Clock,
-  Notebook,
-} from "lucide-react";
+import { Briefcase, Calendar, Clock, Notebook } from "lucide-react";
 import { Accordion } from "@/components/ui/Accordion";
 import EmployeeCard from "@/components/features/contracts/EmployeCard";
 import PaymentCard from "@/components/features/contracts/PaymentCard";

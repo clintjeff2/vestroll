@@ -7,7 +7,7 @@ import { X } from "lucide-react";
 interface PermissionsInfoModalProps {
   isOpen: boolean;
   onClose: () => void;
-  iconSrc?: string; // e.g. "/permission-icon.png"
+  iconSrc?: string;
 }
 
 const permissionsDetails = [

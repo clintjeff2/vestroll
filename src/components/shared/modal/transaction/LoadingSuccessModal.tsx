@@ -6,8 +6,8 @@ import { motion, AnimatePresence } from "framer-motion";
 interface SuccessProps {
   amount: string;
   walletAddress: string;
-  loading: boolean; // new prop
-  onClose: () => void; // to close modal
+  loading: boolean;
+  onClose: () => void;
 }
 
 const LoadingSuccessModal: React.FC<SuccessProps> = ({

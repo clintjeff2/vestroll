@@ -102,8 +102,6 @@ export default function AppShell({
             </div>
           </header>
 
-          {/* second navigation bar */}
-
           {/* Main Content Area */}
           <main className="min-h-screen bg-[#f3f4f6]">{children}</main>
         </div>
@@ -111,5 +109,3 @@ export default function AppShell({
     </div>
   );
 }
-
-

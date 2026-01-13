@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import React, { useState, useMemo } from "react";
@@ -74,13 +73,21 @@ const Table = <T extends Record<string, any>>({
   const totalPages = Math.ceil(data.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const paginatedData = useMemo(() => data.slice(startIndex, endIndex), [data, startIndex, endIndex]);
+  const paginatedData = useMemo(
+    () => data.slice(startIndex, endIndex),
+    [data, startIndex, endIndex]
+  );
 
-  const allSelected = paginatedData.length > 0 && paginatedData.every(item => {
-    const itemId = getItemId ? getItemId(item) : item.id || item._id || String(Math.random());
-    return selectedItems.includes(itemId);
-  });
-  const isAllDataSelected = data.length > 0 && selectedItems.length === data.length;
+  const allSelected =
+    paginatedData.length > 0 &&
+    paginatedData.every((item) => {
+      const itemId = getItemId
+        ? getItemId(item)
+        : item.id || item._id || String(Math.random());
+      return selectedItems.includes(itemId);
+    });
+  const isAllDataSelected =
+    data.length > 0 && selectedItems.length === data.length;
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -88,19 +95,22 @@ const Table = <T extends Record<string, any>>({
 
   const handleSelectAll = (checked: boolean) => {
     if (showPagination) {
-      // For paginated tables, select all items on current page
-      const currentPageIds = paginatedData.map(item => getItemId ? getItemId(item) : item.id || item._id || String(Math.random()));
+      const currentPageIds = paginatedData.map((item) =>
+        getItemId
+          ? getItemId(item)
+          : item.id || item._id || String(Math.random())
+      );
 
       if (checked) {
         // Add current page items to selection
-        currentPageIds.forEach(id => {
+        currentPageIds.forEach((id) => {
           if (!selectedItems.includes(id)) {
             onSelectItem?.(id, true);
           }
         });
       } else {
         // Remove current page items from selection
-        currentPageIds.forEach(id => {
+        currentPageIds.forEach((id) => {
           if (selectedItems.includes(id)) {
             onSelectItem?.(id, false);
           }

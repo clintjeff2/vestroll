@@ -59,9 +59,15 @@ const Invoices: React.FC = () => {
   const renderInvoiceCell = (item: Invoice, column: TableColumn) => {
     switch (column.key) {
       case "title":
-        return <div className="text-text-header font-semibold">{item.title}</div>;
+        return (
+          <div className="text-text-header font-semibold">{item.title}</div>
+        );
       case "amount":
-        return <div className="text-text-header font-semibold">{item.amount.toLocaleString()}.00</div>;
+        return (
+          <div className="text-text-header font-semibold">
+            {item.amount.toLocaleString()}.00
+          </div>
+        );
       case "paidIn":
         return (
           <div className="flex items-center font-medium gap-1 py-1.5 px-3 border border-border-primary bg-fill-background rounded-full w-fit mx-auto">
@@ -71,7 +77,9 @@ const Invoices: React.FC = () => {
         );
       case "status":
         return (
-          <span className={`px-2 py-1 rounded-full text-sm font-semibold border ${getStatusBadge(item.status)}`}>
+          <span
+            className={`px-2 py-1 rounded-full text-sm font-semibold border ${getStatusBadge(item.status)}`}
+          >
             {item.status}
           </span>
         );
@@ -80,7 +88,10 @@ const Invoices: React.FC = () => {
       case "issueDate":
         return <span className="text-gray-600">{item.issueDate}</span>;
       default:
-        return (item as Record<string, string | number | undefined>)[column.key] || "-";
+        return (
+          (item as Record<string, string | number | undefined>)[column.key] ||
+          "-"
+        );
     }
   };
 
@@ -93,13 +104,17 @@ const Invoices: React.FC = () => {
           <div className="w-px self-stretch bg-gray-150" />
           <div className="flex items-center font-medium gap-1 ">
             <UsdtIcon />
-            <span className="text-gray-600 text-sm font-medium">{item.paidIn}</span>
+            <span className="text-gray-600 text-sm font-medium">
+              {item.paidIn}
+            </span>
           </div>
         </span>
       </div>
 
       <div className="space-y-2 shrink-0 flex flex-col items-end justify-between">
-        <span className={`px-2 py-1 rounded-full text-xs font-semibold border ${getStatusBadge(item.status)}`}>
+        <span
+          className={`px-2 py-1 rounded-full text-xs font-semibold border ${getStatusBadge(item.status)}`}
+        >
           {item.status}
         </span>
         <p className="text-xs font-medium text-gray-400">{item.issueDate}</p>
@@ -108,7 +123,9 @@ const Invoices: React.FC = () => {
   );
 
   const handleSelectItem = (id: string, checked: boolean) =>
-    setSelectedItems((prev) => (checked ? [...prev, id] : prev.filter((x) => x !== id)));
+    setSelectedItems((prev) =>
+      checked ? [...prev, id] : prev.filter((x) => x !== id)
+    );
 
   const handleSelectAll = (checked: boolean) =>
     setSelectedItems(checked ? filteredInvoices.map((i) => i.id) : []);
@@ -141,7 +158,9 @@ const Invoices: React.FC = () => {
                         <p className="mb-1 text-2xl font-bold text-text-header lg:text-4xl">
                           {metric.value}
                         </p>
-                        <p className="text-sm font-medium text-[#7F8C9F]">{metric.subValue}</p>
+                        <p className="text-sm font-medium text-[#7F8C9F]">
+                          {metric.subValue}
+                        </p>
                       </span>
                       <span className="text-primary-500">{metric.icon}</span>
                     </div>
@@ -179,7 +198,3 @@ const Invoices: React.FC = () => {
 };
 
 export default Invoices;
-
-
-
-

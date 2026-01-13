@@ -36,12 +36,12 @@ export default function InvoiceDetailsSection({ invoice }: Props) {
     invoice.status === "Pending"
       ? "border-[#E79A23] text-[#E79A23] bg-[#FEF7EB]"
       : invoice.status === "Overdue"
-      ? "border-[#C64242] text-[#C64242] bg-[#FEECEC]"
-      : invoice.status === "Paid"
-      ? "border-[#26902B] text-[#26902B] bg-[#EDFEEC]"
-      : invoice.status === "Approved"
-      ? "border-[#6B7AFF] text-[#4751D6] bg-[#EEF0FF]"
-      : "border-gray-300 text-gray-600 bg-gray-50";
+        ? "border-[#C64242] text-[#C64242] bg-[#FEECEC]"
+        : invoice.status === "Paid"
+          ? "border-[#26902B] text-[#26902B] bg-[#EDFEEC]"
+          : invoice.status === "Approved"
+            ? "border-[#6B7AFF] text-[#4751D6] bg-[#EEF0FF]"
+            : "border-gray-300 text-gray-600 bg-gray-50";
 
   return (
     <section className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full max-w-[852px] mx-auto mt-6">
@@ -53,21 +53,23 @@ export default function InvoiceDetailsSection({ invoice }: Props) {
 
         {/* Status / Invoice no */}
         <div className="mb-3">
-        <div className="grid grid-cols-2 bg-[#F5F6F7] text-[#5D6B82] text-xs sm:text-sm px-3 sm:px-4 py-1 font-medium rounded-md">
-          <p>Status</p>
-          <p className="text-right">Invoice no</p>
-        </div>
-        <div className="grid grid-cols-2 items-center px-2 sm:px-3 py-2 border-[#E9EAF0]">
-          <div>
-            <span className={`inline-block px-2.5 py-1 text-[11px] font-medium rounded-full border ${statusChip}`}>
-              {invoice.status}
-            </span>
+          <div className="grid grid-cols-2 bg-[#F5F6F7] text-[#5D6B82] text-xs sm:text-sm px-3 sm:px-4 py-1 font-medium rounded-md">
+            <p>Status</p>
+            <p className="text-right">Invoice no</p>
           </div>
-          <p className="text-right font-medium text-gray-900 text-sm sm:text-base">
-            {invoice.invoiceNo}
-          </p>
+          <div className="grid grid-cols-2 items-center px-2 sm:px-3 py-2 border-[#E9EAF0]">
+            <div>
+              <span
+                className={`inline-block px-2.5 py-1 text-[11px] font-medium rounded-full border ${statusChip}`}
+              >
+                {invoice.status}
+              </span>
+            </div>
+            <p className="text-right font-medium text-gray-900 text-sm sm:text-base">
+              {invoice.invoiceNo}
+            </p>
+          </div>
         </div>
-      </div>
 
         {/* Type / Paid in */}
         <div className="mb-4">
@@ -81,7 +83,9 @@ export default function InvoiceDetailsSection({ invoice }: Props) {
             </p>
             <div className="flex justify-end items-center gap-2">
               <Image src="/usdt.png" alt="Ethereum" width={18} height={18} />
-              <p className="text-gray-800 text-[13px] sm:text-sm font-medium">{invoice.paidIn}</p>
+              <p className="text-gray-800 text-[13px] sm:text-sm font-medium">
+                {invoice.paidIn}
+              </p>
             </div>
           </div>
         </div>
@@ -97,8 +101,15 @@ export default function InvoiceDetailsSection({ invoice }: Props) {
               {invoice.title}
             </p>
             <div className="flex justify-end items-center gap-2">
-              <Image src="/ethereum-icon.png" alt="Ethereum" width={18} height={18} />
-              <p className="text-gray-800 text-[13px] sm:text-sm font-medium">Ethereum</p>
+              <Image
+                src="/ethereum-icon.png"
+                alt="Ethereum"
+                width={18}
+                height={18}
+              />
+              <p className="text-gray-800 text-[13px] sm:text-sm font-medium">
+                Ethereum
+              </p>
             </div>
           </div>
         </div>
@@ -110,8 +121,12 @@ export default function InvoiceDetailsSection({ invoice }: Props) {
             <p className="text-right">Due Date</p>
           </div>
           <div className="grid grid-cols-2 px-2 py-2">
-            <p className="text-gray-800 text-[13px] sm:text-sm font-medium">{invoice.issueDate}</p>
-            <p className="text-right text-gray-800 text-[13px] sm:text-sm font-medium">{dueDate}</p>
+            <p className="text-gray-800 text-[13px] sm:text-sm font-medium">
+              {invoice.issueDate}
+            </p>
+            <p className="text-right text-gray-800 text-[13px] sm:text-sm font-medium">
+              {dueDate}
+            </p>
           </div>
         </div>
       </div>
@@ -126,7 +141,9 @@ export default function InvoiceDetailsSection({ invoice }: Props) {
         <div className="mb-5">
           <div className="grid grid-cols-2 bg-[#F5F6F7] text-[#5D6B82] text-[13px] px-3 py-3 font-medium rounded-md">
             <p>Item Name</p>
-            <p className="text-right text-gray-900 font-medium">${subtotal.toFixed(2)}</p>
+            <p className="text-right text-gray-900 font-medium">
+              ${subtotal.toFixed(2)}
+            </p>
           </div>
           <div className="grid grid-cols-2 px-3 pt-2 text-[#5D6B82] text-xs">
             <span />
@@ -138,7 +155,9 @@ export default function InvoiceDetailsSection({ invoice }: Props) {
         <div className="mb-5">
           <div className="grid grid-cols-2 bg-[#F5F6F7] text-[#5D6B82] text-[13px] px-3 py-3 font-medium rounded-md">
             <p>Subtotal</p>
-            <p className="text-right text-gray-900 font-medium">${subtotal.toFixed(2)}</p>
+            <p className="text-right text-gray-900 font-medium">
+              ${subtotal.toFixed(2)}
+            </p>
           </div>
         </div>
 
@@ -146,7 +165,9 @@ export default function InvoiceDetailsSection({ invoice }: Props) {
         <div className="mb-5">
           <div className="grid grid-cols-2 bg-white text-[#5D6B82] text-[13px] px-3 py-3 font-medium rounded-md">
             <p>VAT ({Math.round(vatRate * 100)}%)</p>
-            <p className="text-right text-gray-900 font-medium">${vat.toFixed(2)}</p>
+            <p className="text-right text-gray-900 font-medium">
+              ${vat.toFixed(2)}
+            </p>
           </div>
         </div>
 

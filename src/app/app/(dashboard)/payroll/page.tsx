@@ -5,9 +5,7 @@ import { Filter, ChevronDown, ShareIcon } from "lucide-react";
 import Image from "next/image";
 import { Geist } from "next/font/google";
 import searchIcon from "@/../public/images/search-payroll.png";
-// import PageNavHeader from "@/components/shared/reuseables/PageNavHeader";
-// import ProfileDetails from "../../app/payroll/components/ProfileDetails";
-// import QuickDash from "../../app/payroll/components/QuickDash";
+
 import PayoutHistory from "@/app/app/(dashboard)/payroll/components/PayoutHistory";
 
 const geistSans = Geist({
@@ -226,13 +224,6 @@ export default function PayrollPage() {
               <div className="flex flex-col items-center justify-center py-16 sm:py-20 px-4 text-center">
                 {/* Empty State Illustration */}
                 <div className="mb-8">
-                  {/* <img
-                  className="bg-gradient-to-r from-[#5E2A8C] to-[#A855F7] rounded-2xl p-6 sm:p-8 mb-8 text-white relative overflow-hidden"
-                  style={{
-                    backgroundImage: "url(/images/payout-group.png)",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                  }} /> */}
                   <Image
                     className="h-14 w-14"
                     width={100}
@@ -248,17 +239,6 @@ export default function PayrollPage() {
                 <p className="text-[#9CA3AF] max-w-sm text-sm">
                   Employees you put on payroll will be displayed here
                 </p>
-                {/* Additional payroll UI below empty state */}
-                {/* <div className="">
-                  <PageNavHeader name="James Akinbiola" />
-                  <div className="p-4 md:px-6 md:pt-6 flex flex-col lg:w-max ">
-                    <div className="flex lg:flex-row flex-col gap-6 lg:gap-10 mb-6">
-                      <ProfileDetails />
-                      <QuickDash />
-                    </div>
-                    <PayoutHistory />
-                  </div>
-                </div> */}
               </div>
             </div>
           </>
@@ -269,6 +249,3 @@ export default function PayrollPage() {
     </div>
   );
 }
-
-
-

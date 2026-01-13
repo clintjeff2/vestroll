@@ -2,8 +2,8 @@ export type Contract = {
   id: string;
   title: string;
   amount: number;
-  paymentType: number; // 1: Fiat, 2: Crypto Currency
-  contractType: 'Fixed rate' | 'Pay as you go' | 'Milestone'; // 1: Fixed rate, 2: Pay as you go, 3: Milestone
+  paymentType: number; 
+  contractType: 'Fixed rate' | 'Pay as you go' | 'Milestone'; 
   status: 'In Review' | 'Rejected' | 'Active' | 'Completed';
   period: {startDate: string; endDate: string;};
 };

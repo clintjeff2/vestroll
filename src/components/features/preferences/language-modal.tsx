@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Search, X } from "lucide-react"
-import Image from "next/image"
+import { useState, useEffect } from "react";
+import { Search, X } from "lucide-react";
+import Image from "next/image";
 
 interface Language {
-  code: string
-  name: string
-  countryCode: string
+  code: string;
+  name: string;
+  countryCode: string;
 }
 
 const languages: Language[] = [
@@ -21,80 +21,88 @@ const languages: Language[] = [
   { code: "ja", name: "Japanese", countryCode: "jp" },
   { code: "pt", name: "Portuguese", countryCode: "pt" },
   { code: "es", name: "Spanish", countryCode: "es" },
-]
+];
 
 interface LanguageModalProps {
-  isOpen: boolean
-  onClose: () => void
-  onLanguageSelect: (language: string) => void
-  selectedLanguage: string
+  isOpen: boolean;
+  onClose: () => void;
+  onLanguageSelect: (language: string) => void;
+  selectedLanguage: string;
 }
 
-export function LanguageModal({ isOpen, onClose, onLanguageSelect, selectedLanguage }: LanguageModalProps) {
-  const [searchQuery, setSearchQuery] = useState("")
-  const [tempSelectedLanguage, setTempSelectedLanguage] = useState(selectedLanguage)
-  const [isVisible, setIsVisible] = useState(false)
-  const [isAnimating, setIsAnimating] = useState(false)
+export function LanguageModal({
+  isOpen,
+  onClose,
+  onLanguageSelect,
+  selectedLanguage,
+}: LanguageModalProps) {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [tempSelectedLanguage, setTempSelectedLanguage] =
+    useState(selectedLanguage);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const filteredLanguages = languages.filter((language) =>
-    language.name.toLowerCase().includes(searchQuery.toLowerCase()),
-  )
+    language.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   // Handle opening animation
   useEffect(() => {
     if (isOpen) {
-      setIsVisible(true)
-      setTimeout(() => setIsAnimating(true), 10)
-      setTempSelectedLanguage(selectedLanguage)
-      setSearchQuery("")
+      setIsVisible(true);
+      setTimeout(() => setIsAnimating(true), 10);
+      setTempSelectedLanguage(selectedLanguage);
+      setSearchQuery("");
     } else {
-      setIsAnimating(false)
-      setTimeout(() => setIsVisible(false), 200)
+      setIsAnimating(false);
+      setTimeout(() => setIsVisible(false), 200);
     }
-  }, [isOpen, selectedLanguage])
+  }, [isOpen, selectedLanguage]);
 
   const handleClose = () => {
-    setIsAnimating(false)
+    setIsAnimating(false);
     setTimeout(() => {
-      onClose()
-      setIsVisible(false)
-    }, 200)
-  }
+      onClose();
+      setIsVisible(false);
+    }, 200);
+  };
 
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
-      handleClose()
+      handleClose();
     }
-  }
+  };
 
   const handleSave = () => {
-    onLanguageSelect(tempSelectedLanguage)
-    handleClose()
-  }
+    onLanguageSelect(tempSelectedLanguage);
+    handleClose();
+  };
 
   // Handle escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isOpen) {
-        handleClose()
+        handleClose();
       }
-    }
-    document.addEventListener("keydown", handleEscape)
-    return () => document.removeEventListener("keydown", handleEscape)
-  }, [isOpen])
+    };
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [isOpen]);
 
-  if (!isVisible) return null
+  if (!isVisible) return null;
 
   return (
-    <div 
+    <div
       className={`fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 transition-opacity duration-200 ${
         isAnimating ? "opacity-100" : "opacity-0"
       }`}
       onClick={handleBackdropClick}
     >
-      <div className={`bg-white rounded-lg w-full max-w-md flex flex-col transition-all duration-200 ${
-        isAnimating ? "opacity-100 scale-100" : "opacity-0 scale-95"
-      }`}>
+      <div
+        className={`bg-white rounded-lg w-full max-w-md flex flex-col transition-all duration-200 ${
+          isAnimating ? "opacity-100 scale-100" : "opacity-0 scale-95"
+        }`}
+      >
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
           <h2 className="text-lg font-semibold">Select language</h2>
@@ -140,11 +148,13 @@ export function LanguageModal({ isOpen, onClose, onLanguageSelect, selectedLangu
                   </div>
                   <span className="font-medium">{language.name}</span>
                 </div>
-                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
-                  tempSelectedLanguage === language.name 
-                    ? "border-purple-600 bg-purple-600" 
-                    : "border-gray-300"
-                }`}>
+                <div
+                  className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
+                    tempSelectedLanguage === language.name
+                      ? "border-purple-600 bg-purple-600"
+                      : "border-gray-300"
+                  }`}
+                >
                   {tempSelectedLanguage === language.name && (
                     <div className="w-2 h-2 bg-white rounded-full" />
                   )}
@@ -165,5 +175,5 @@ export function LanguageModal({ isOpen, onClose, onLanguageSelect, selectedLangu
         </div>
       </div>
     </div>
-  )
+  );
 }

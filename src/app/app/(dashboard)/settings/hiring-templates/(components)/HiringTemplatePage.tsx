@@ -32,7 +32,6 @@ const HiringTemplatePage: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const editorRef = useRef<HTMLDivElement>(null);
 
-  // Rich text editor functions
   const execCommand = (command: string, value?: string): void => {
     document.execCommand(command, false, value || "");
     editorRef.current?.focus();
@@ -95,13 +94,11 @@ const HiringTemplatePage: React.FC = () => {
         localStorage.getItem("hringTeplates") || "[]"
       );
 
-      // Add new template
       const updatedTemplates = [...existingTemplates, newTemplate];
       localStorage.setItem("hiringTemplates", JSON.stringify(updatedTemplates));
 
       alert("Template created successfully!");
 
-      // Redirect back to templates list or previous page
       router.push("/app/settings");
     } catch (error) {
       console.error("Error submitting form:", error);

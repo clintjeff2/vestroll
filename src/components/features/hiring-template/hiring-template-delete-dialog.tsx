@@ -13,7 +13,6 @@ export default function HiringTemplateDeleteDialog({
   onFormSubmit,
   children,
 }: HiringTemplateDeleteDialog) {
-
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>

@@ -248,7 +248,9 @@ export default function EmployeeDetails() {
               <div className="flex gap-2">
                 <div className="relative" ref={phoneCodeDropdownRef}>
                   <button
-                    onClick={() => setPhoneCodeDropdownOpen(!phoneCodeDropdownOpen)}
+                    onClick={() =>
+                      setPhoneCodeDropdownOpen(!phoneCodeDropdownOpen)
+                    }
                     className="h-full px-3 py-3 bg-[#F5F6F7] rounded-[8px] flex items-center gap-2 hover:bg-gray-50 transition-colors"
                   >
                     <span className="text-xl">{selectedPhoneCode.flag}</span>
@@ -281,7 +283,9 @@ export default function EmployeeDetails() {
                 <input
                   type="tel"
                   value={formData.phoneNumber}
-                  onChange={(e) => handleInputChange("phoneNumber", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("phoneNumber", e.target.value)
+                  }
                   className="flex-1 px-4 py-3 bg-[#F5F6F7] rounded-[8px] focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
                   placeholder=""
                 />
@@ -363,7 +367,9 @@ export default function EmployeeDetails() {
               <input
                 type="text"
                 value={formData.postalCode}
-                onChange={(e) => handleInputChange("postalCode", e.target.value)}
+                onChange={(e) =>
+                  handleInputChange("postalCode", e.target.value)
+                }
                 className="w-full px-4 py-3 bg-[#F5F6F7] rounded-[8px] focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
                 placeholder=""
               />

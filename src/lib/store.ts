@@ -8,8 +8,6 @@ export const Store = () => {
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
-        // We intentionally store React nodes and functions inside modal state
-        // for UI composition, so ignore serializability checks for this slice
         serializableCheck: {
           ignoredPaths: [
             "modal.modalProps",
@@ -24,8 +22,6 @@ export const Store = () => {
   });
 };
 
-// Infer the type of makeStore
 export type AppStore = ReturnType<typeof Store>;
-// Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<AppStore["getState"]>;
 export type AppDispatch = AppStore["dispatch"];

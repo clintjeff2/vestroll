@@ -1,41 +1,41 @@
-import React, { useState } from 'react';
-import { Calendar } from 'lucide-react';
+import React, { useState } from "react";
+import { Calendar } from "lucide-react";
 
 export default function ContractForm() {
-  const [network, setNetwork] = useState('Ethereum');
-  const [asset, setAsset] = useState('USDT');
-  const [amount, setAmount] = useState('2000.00');
-  const [firstInvoiceType, setFirstInvoiceType] = useState('full');
-  const [endDate, setEndDate] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [terminationPeriod, setTerminationPeriod] = useState('');
-  const [invoiceFrequency, setInvoiceFrequency] = useState('');
-  const [issueInvoiceOn, setIssueInvoiceOn] = useState('');
-  const [paymentDue, setPaymentDue] = useState('');
-  const [firstInvoiceDate, setFirstInvoiceDate] = useState('');
-  const [firstInvoiceAmount, setFirstInvoiceAmount] = useState('');
-  const [taxType, setTaxType] = useState('');
-  const [taxId, setTaxId] = useState('');
-  const [taxRate, setTaxRate] = useState('');
+  const [network, setNetwork] = useState("Ethereum");
+  const [asset, setAsset] = useState("USDT");
+  const [amount, setAmount] = useState("2000.00");
+  const [firstInvoiceType, setFirstInvoiceType] = useState("full");
+  const [endDate, setEndDate] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [terminationPeriod, setTerminationPeriod] = useState("");
+  const [invoiceFrequency, setInvoiceFrequency] = useState("");
+  const [issueInvoiceOn, setIssueInvoiceOn] = useState("");
+  const [paymentDue, setPaymentDue] = useState("");
+  const [firstInvoiceDate, setFirstInvoiceDate] = useState("");
+  const [firstInvoiceAmount, setFirstInvoiceAmount] = useState("");
+  const [taxType, setTaxType] = useState("");
+  const [taxId, setTaxId] = useState("");
+  const [taxRate, setTaxRate] = useState("");
 
   const networks = [
-    { name: 'Ethereum', color: 'purple' },
-    { name: 'Polygon', color: 'purple' },
-    { name: 'Binance Smart Chain', color: 'yellow' },
-    { name: 'Avalanche', color: 'red' },
-    { name: 'Arbitrum', color: 'blue' }
+    { name: "Ethereum", color: "purple" },
+    { name: "Polygon", color: "purple" },
+    { name: "Binance Smart Chain", color: "yellow" },
+    { name: "Avalanche", color: "red" },
+    { name: "Arbitrum", color: "blue" },
   ];
 
   const assets = [
-    { name: 'USDT', symbol: '₮' },
-    { name: 'USDC', symbol: '$' },
-    { name: 'DAI', symbol: 'D' },
-    { name: 'BUSD', symbol: 'B' }
+    { name: "USDT", symbol: "₮" },
+    { name: "USDC", symbol: "$" },
+    { name: "DAI", symbol: "D" },
+    { name: "BUSD", symbol: "B" },
   ];
 
   const getAssetSymbol = () => {
-    const currentAsset = assets.find(a => a.name === asset);
-    return currentAsset ? currentAsset.symbol : '₮';
+    const currentAsset = assets.find((a) => a.name === asset);
+    return currentAsset ? currentAsset.symbol : "₮";
   };
 
   return (
@@ -57,9 +57,7 @@ export default function ContractForm() {
           </div>
         </div>
         <div>
-          <label className="block text-sm text-gray-700 mb-2">
-            Start date
-          </label>
+          <label className="block text-sm text-gray-700 mb-2">Start date</label>
           <div className="relative">
             <input
               type="date"
@@ -85,31 +83,46 @@ export default function ContractForm() {
           className="w-full px-4 py-3 bg-gray-50 border-0 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <p className="text-sm text-gray-500 mt-3">
-          Either party may terminate this contract by the specified notice, after which the contract will end.
+          Either party may terminate this contract by the specified notice,
+          after which the contract will end.
         </p>
       </div>
 
       {/* Payment Details */}
-      <h2 className="text-lg font-semibold text-gray-900 mb-6">Payment details</h2>
-      
+      <h2 className="text-lg font-semibold text-gray-900 mb-6">
+        Payment details
+      </h2>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <div>
           <label className="block text-sm text-gray-700 mb-2">Network</label>
           <div className="relative">
-            <select 
+            <select
               value={network}
               onChange={(e) => setNetwork(e.target.value)}
               className="w-full px-4 py-3 pl-12 bg-gray-50 border-0 rounded-lg text-gray-900 appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               {networks.map((net) => (
-                <option key={net.name} value={net.name}>{net.name}</option>
+                <option key={net.name} value={net.name}>
+                  {net.name}
+                </option>
               ))}
             </select>
             <div className="absolute left-4 top-1/2 -translate-y-1/2 w-6 h-6 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center pointer-events-none">
               <div className="w-3 h-3 border-2 border-white rounded-full"></div>
             </div>
-            <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            <svg
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
             </svg>
           </div>
         </div>
@@ -121,7 +134,9 @@ export default function ContractForm() {
           <div className="relative">
             <div className="flex items-center w-full px-4 py-3 bg-gray-50 border-0 rounded-lg">
               <div className="w-6 h-6 bg-teal-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                <span className="text-white text-xs font-bold">{getAssetSymbol()}</span>
+                <span className="text-white text-xs font-bold">
+                  {getAssetSymbol()}
+                </span>
               </div>
               <select
                 value={asset}
@@ -129,16 +144,28 @@ export default function ContractForm() {
                 className="bg-transparent border-0 focus:outline-none text-gray-900 cursor-pointer appearance-none pr-2"
               >
                 {assets.map((a) => (
-                  <option key={a.name} value={a.name}>{a.name}</option>
+                  <option key={a.name} value={a.name}>
+                    {a.name}
+                  </option>
                 ))}
               </select>
-              <svg className="w-5 h-5 text-gray-400 mr-auto flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              <svg
+                className="w-5 h-5 text-gray-400 mr-auto flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
               </svg>
               <input
                 type="text"
                 value={`$ ${amount}`}
-                onChange={(e) => setAmount(e.target.value.replace('$ ', ''))}
+                onChange={(e) => setAmount(e.target.value.replace("$ ", ""))}
                 className="text-right bg-transparent border-0 focus:outline-none text-gray-900 w-28"
               />
             </div>
@@ -147,13 +174,17 @@ export default function ContractForm() {
       </div>
 
       {/* Invoice Details */}
-      <h2 className="text-lg font-semibold text-gray-900 mb-6">Invoice details</h2>
-      
+      <h2 className="text-lg font-semibold text-gray-900 mb-6">
+        Invoice details
+      </h2>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         <div>
-          <label className="block text-sm text-gray-700 mb-2">Invoice frequency</label>
+          <label className="block text-sm text-gray-700 mb-2">
+            Invoice frequency
+          </label>
           <div className="relative">
-            <select 
+            <select
               value={invoiceFrequency}
               onChange={(e) => setInvoiceFrequency(e.target.value)}
               className="w-full px-4 py-3 bg-gray-50 border-0 rounded-lg text-gray-700 appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -165,15 +196,27 @@ export default function ContractForm() {
               <option value="quarterly">Quarterly</option>
               <option value="annually">Annually</option>
             </select>
-            <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            <svg
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
             </svg>
           </div>
         </div>
         <div>
-          <label className="block text-sm text-gray-700 mb-2">Issue invoice on</label>
+          <label className="block text-sm text-gray-700 mb-2">
+            Issue invoice on
+          </label>
           <div className="relative">
-            <select 
+            <select
               value={issueInvoiceOn}
               onChange={(e) => setIssueInvoiceOn(e.target.value)}
               className="w-full px-4 py-3 bg-gray-50 border-0 rounded-lg text-gray-700 appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -185,8 +228,18 @@ export default function ContractForm() {
               <option value="start">Start of contract period</option>
               <option value="end">End of contract period</option>
             </select>
-            <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            <svg
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
             </svg>
           </div>
         </div>
@@ -195,7 +248,7 @@ export default function ContractForm() {
       <div className="mb-8">
         <label className="block text-sm text-gray-700 mb-2">Payment due</label>
         <div className="relative">
-          <select 
+          <select
             value={paymentDue}
             onChange={(e) => setPaymentDue(e.target.value)}
             className="w-full px-4 py-3 bg-gray-50 border-0 rounded-lg text-gray-700 appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -208,15 +261,27 @@ export default function ContractForm() {
             <option value="60">Within 60 days</option>
             <option value="90">Within 90 days</option>
           </select>
-          <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          <svg
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 9l-7 7-7-7"
+            />
           </svg>
         </div>
       </div>
 
       {/* First Invoice Section */}
-      <h2 className="text-lg font-semibold text-gray-900 mb-6">First Invoice</h2>
-      
+      <h2 className="text-lg font-semibold text-gray-900 mb-6">
+        First Invoice
+      </h2>
+
       <div className="mb-6">
         <div className="flex gap-6 mb-3">
           <label className="flex items-center cursor-pointer">
@@ -224,7 +289,7 @@ export default function ContractForm() {
               type="radio"
               name="invoiceType"
               value="full"
-              checked={firstInvoiceType === 'full'}
+              checked={firstInvoiceType === "full"}
               onChange={(e) => setFirstInvoiceType(e.target.value)}
               className="w-5 h-5 text-purple-600 border-gray-300 focus:ring-purple-500"
             />
@@ -235,7 +300,7 @@ export default function ContractForm() {
               type="radio"
               name="invoiceType"
               value="custom"
-              checked={firstInvoiceType === 'custom'}
+              checked={firstInvoiceType === "custom"}
               onChange={(e) => setFirstInvoiceType(e.target.value)}
               className="w-5 h-5 text-purple-600 border-gray-300 focus:ring-purple-500"
             />
@@ -273,13 +338,15 @@ export default function ContractForm() {
       </div>
 
       {/* Add Inclusive Tax Section */}
-      <h2 className="text-lg font-semibold text-gray-900 mb-6">Add inclusive tax (optional)</h2>
-      
+      <h2 className="text-lg font-semibold text-gray-900 mb-6">
+        Add inclusive tax (optional)
+      </h2>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         <div>
           <label className="block text-sm text-gray-700 mb-2">Tax type</label>
           <div className="relative">
-            <select 
+            <select
               value={taxType}
               onChange={(e) => setTaxType(e.target.value)}
               className="w-full px-4 py-3 bg-gray-50 border-0 rounded-lg text-gray-700 appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -291,13 +358,25 @@ export default function ContractForm() {
               <option value="PST">PST - Provincial Sales Tax</option>
               <option value="SST">SST - State Sales Tax</option>
             </select>
-            <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            <svg
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
             </svg>
           </div>
         </div>
         <div>
-          <label className="block text-sm text-gray-700 mb-2">ID / account number</label>
+          <label className="block text-sm text-gray-700 mb-2">
+            ID / account number
+          </label>
           <div className="relative">
             <input
               type="text"
@@ -313,7 +392,7 @@ export default function ContractForm() {
       <div>
         <label className="block text-sm text-gray-700 mb-2">Tax rate</label>
         <div className="relative">
-          <select 
+          <select
             value={taxRate}
             onChange={(e) => setTaxRate(e.target.value)}
             className="w-full px-4 py-3 bg-gray-50 border-0 rounded-lg text-gray-700 appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -328,8 +407,18 @@ export default function ContractForm() {
             <option value="20">20%</option>
             <option value="25">25%</option>
           </select>
-          <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          <svg
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 9l-7 7-7-7"
+            />
           </svg>
         </div>
       </div>

@@ -52,9 +52,7 @@ const Step2: React.FC<Step2Props> = ({ formData, setFormData }) => {
           className="w-full border rounded-md px-3 py-2 text-sm placeholder:text-gray-300 bg-gray-100"
           placeholder="--"
           value={formData.city || ""}
-          onChange={(e) =>
-            setFormData({ ...formData, city: e.target.value })
-          }
+          onChange={(e) => setFormData({ ...formData, city: e.target.value })}
         />
       </div>
 
@@ -67,9 +65,7 @@ const Step2: React.FC<Step2Props> = ({ formData, setFormData }) => {
           className="w-full border rounded-md px-3 py-2 text-sm placeholder:text-gray-300 bg-gray-100"
           placeholder="--"
           value={formData.region || ""}
-          onChange={(e) =>
-            setFormData({ ...formData, region: e.target.value })
-          }
+          onChange={(e) => setFormData({ ...formData, region: e.target.value })}
         />
       </div>
 
@@ -100,9 +96,7 @@ const Step2: React.FC<Step2Props> = ({ formData, setFormData }) => {
           className="w-full border rounded-md px-3 py-2 text-sm placeholder:text-gray-300 bg-gray-100"
           placeholder="--"
           value={formData.zip || ""}
-          onChange={(e) =>
-            setFormData({ ...formData, zip: e.target.value })
-          }
+          onChange={(e) => setFormData({ ...formData, zip: e.target.value })}
         />
       </div>
     </div>

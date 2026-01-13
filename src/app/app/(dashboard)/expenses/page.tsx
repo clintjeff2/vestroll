@@ -26,8 +26,6 @@ export default function ExpenseDetailsPage() {
   }
 
   function handleConfirmReject(reason: string) {
-    // TODO: send `reason` to API when wired
-    // keep the param used so linters don't complain
     console.log("Reject reason:", reason);
     setStatus("Rejected");
     closeRejectModal();

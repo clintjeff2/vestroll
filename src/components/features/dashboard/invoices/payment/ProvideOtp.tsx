@@ -13,8 +13,8 @@ const ProvideOtp = () => {
         "
         >
           Authorize transaction with the{" "}
-          <span className="text-gray-500">OTP</span> sent to
-          your email address to complete process
+          <span className="text-gray-500">OTP</span> sent to your email address
+          to complete process
         </p>
       </div>
 

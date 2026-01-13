@@ -1,11 +1,12 @@
-// Renders the main navigation tabs for the dashboard.
-
 type NavigationTabsProps = {
   activeTab: string;
   onTabChange: (tab: string) => void;
 };
 
-export const NavigationTabs = ({ activeTab, onTabChange }: NavigationTabsProps) => {
+export const NavigationTabs = ({
+  activeTab,
+  onTabChange,
+}: NavigationTabsProps) => {
   const tabs = [
     "Employees",
     "Time tracking",

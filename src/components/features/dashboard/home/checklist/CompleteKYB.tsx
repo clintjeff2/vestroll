@@ -24,10 +24,8 @@ const businessRegistrationTypes = [
   "S Corporation",
   "Non-Profit Corporation",
   "Professional Corporation",
-  "Other"
+  "Other",
 ];
-
-
 
 export default function CompleteKYBPage() {
   const [formData, setFormData] = useState<FormData>({
@@ -39,23 +37,22 @@ export default function CompleteKYBPage() {
   });
 
   const handleInputChange = (field: keyof FormData, value: string) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [field]: value
+      [field]: value,
     }));
   };
 
   const handleFileSelect = (field: keyof FormData, file: File | null) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [field]: file
+      [field]: file,
     }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
-    // Handle form submission logic here
   };
 
   return (
@@ -66,7 +63,9 @@ export default function CompleteKYBPage() {
           label="Business registration type"
           options={businessRegistrationTypes}
           value={formData.businessRegistrationType}
-          onChange={(value) => handleInputChange("businessRegistrationType", value)}
+          onChange={(value) =>
+            handleInputChange("businessRegistrationType", value)
+          }
           placeholder="--"
         />
 
@@ -77,14 +76,18 @@ export default function CompleteKYBPage() {
           type="text"
           placeholder="--"
           value={formData.businessRegistrationNo}
-          onChange={(e) => handleInputChange("businessRegistrationNo", e.target.value)}
+          onChange={(e) =>
+            handleInputChange("businessRegistrationNo", e.target.value)
+          }
         />
 
         {/* File Uploads */}
         <FileUpload
           key="incorporation-certificate"
           label="Upload Incorporation Certificate"
-          onFileSelect={(file) => handleFileSelect("incorporationCertificate", file)}
+          onFileSelect={(file) =>
+            handleFileSelect("incorporationCertificate", file)
+          }
           file={formData.incorporationCertificate}
           maxSize={5}
           isUploading={false}
@@ -126,4 +129,3 @@ export default function CompleteKYBPage() {
     </div>
   );
 }
-

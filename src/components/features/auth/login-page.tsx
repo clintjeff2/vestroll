@@ -91,17 +91,6 @@ export default function LoginPage({
     }
   };
 
-  // const handleSubmit = (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   if (!validateForm()) return;
-
-  //   setIsLoading(true);
-  //   setTimeout(() => {
-  //     console.log("Login:", formData);
-  //     setIsLoading(false);
-  //   }, 1500);
-  // };
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
 
@@ -355,5 +344,3 @@ export default function LoginPage({
     </div>
   );
 }
-
-

@@ -52,7 +52,6 @@ const modalSlice = createSlice({
     },
     closeModal: (state) => {
       state.isOpen = false;
-      // Keep the modal props in state to prevent UI flicker during close animation
     },
     resetModal: () => {
       return initialState;

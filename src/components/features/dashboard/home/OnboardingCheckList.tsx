@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { ArrowRightIcon, CheckCircleIcon } from "@/../public/svg";
 import CircularProgress from "./CircularProgress";
-// import Bg from "@/../public/images/onboarding_bg.png";
+
 function OnboardingCheckList() {
   const checkList = [
     {
@@ -119,5 +119,3 @@ function OnboardingCheckList() {
 }
 
 export default OnboardingCheckList;
-
-

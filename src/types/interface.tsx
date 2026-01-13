@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 export interface BtnProp {
-  variant: "primary" | "secondary" | "outline"; // add button type here
+  variant: "primary" | "secondary" | "outline";
   onclick?: () => void;
   text: string;
 }
@@ -90,3 +90,42 @@ export type ContractProps = {
   rateUnit?: string;
   totalMilestoneAmount?: string;
 };
+
+export interface ContractFormData {
+  contractType: number;
+  clientName: string;
+  clientEmail: string;
+  clientPhone: string;
+  clientAddress: string;
+  startDate: string;
+  endDate: string;
+  terminationNotice: string;
+  network: string;
+  asset: string;
+  amount: string;
+  calculatedAmount: string;
+  invoiceFrequency: string;
+  issueInvoiceOn: string;
+  paymentDue: string;
+  firstInvoiceType: "full" | "custom";
+  firstInvoiceDate: string;
+  firstInvoiceAmount: string;
+  walletAddress: string;
+  walletType: string;
+  contractDuration: string;
+  renewalTerms: string;
+  milestones: Array<{
+    id: string;
+    title: string;
+    description: string;
+    dueDate: string;
+    amount: string;
+  }>;
+  taxType: string;
+  taxId: string;
+  taxRate: string;
+  uploadedFiles: File[];
+  paymentType: string;
+  paymentFrequency?: "Hourly" | "Daily" | "Weekly" | "Per Deliverable";
+  [key: string]: unknown;
+}

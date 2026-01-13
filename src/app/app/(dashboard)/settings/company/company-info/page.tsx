@@ -9,7 +9,7 @@ import {
 } from "@/components/features/hiring-template/select-components";
 import { countries } from "@/components/features/hiring-template/utils";
 import { Button } from "@/components/ui/button";
-// import FileUpload from '@/components/ui/file-upload';
+
 import { ImagePlus } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -30,7 +30,6 @@ export default function CompanyInfoPage() {
 
   const handleGoBack = () => {
     router.back();
-    // alert("Going back to previous step...");
   };
 
   const [formData, setFormData] = useState<FormData>({
@@ -44,20 +43,20 @@ export default function CompanyInfoPage() {
     companyWebsite: "",
   });
 
-  const isFormValid = true; // Placeholder for form validation logic
+  const isFormValid = true;
 
   const sampleSizes = ["2", "5", "10-50", "50-100", "100-500", "500+"];
   const sampleVATNumbers = ["3455", "1234", "5678", "91011"];
 
   const onUpload = (file: File) => {
-    const maxSize = 1024 * 1024; // 1MB in bytes - Could be adjusted as needed
+    const maxSize = 1024 * 1024;
     if (file.size > maxSize) {
       alert("File size exceeds 1MB. Please choose a smaller file.");
       return;
     }
     setFormData((prev) => ({ ...prev, companyLogo: file }));
     if (logoInputRef.current) {
-      logoInputRef.current.value = ""; // Reset the input value to allow re-uploading the same file if needed
+      logoInputRef.current.value = "";
     }
   };
 
@@ -208,4 +207,3 @@ export default function CompanyInfoPage() {
     </div>
   );
 }
-

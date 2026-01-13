@@ -1,27 +1,27 @@
-import React from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import React from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { PaginationProps } from '@/types/finance.types';
+} from "@/components/ui/select";
+import { PaginationProps } from "@/types/finance.types";
 
-export function Pagination ({
+export function Pagination({
   currentPage,
   totalPages,
   totalItems,
   resultsPerPage,
   onPageChange,
-  onResultsPerPageChange
-}:PaginationProps)  {
+  onResultsPerPageChange,
+}: PaginationProps) {
   const getPageNumbers = (): number[] => {
     const pages: number[] = [];
     const showPages = 5;
-    
+
     if (totalPages <= showPages) {
       for (let i = 1; i <= totalPages; i++) {
         pages.push(i);
@@ -41,11 +41,11 @@ export function Pagination ({
         }
       }
     }
-    
+
     return pages;
   };
 
-  const startItem = ((currentPage - 1) * resultsPerPage) + 1;
+  const startItem = (currentPage - 1) * resultsPerPage + 1;
   const endItem = Math.min(currentPage * resultsPerPage, totalItems);
 
   return (
@@ -53,7 +53,7 @@ export function Pagination ({
       <p className="text-sm text-[#64748B]">
         Showing {startItem} - {endItem} of {totalItems}
       </p>
-      
+
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-2">
           <Button
@@ -64,8 +64,8 @@ export function Pagination ({
           >
             <ChevronLeft size={18} />
           </Button>
-          
-          {getPageNumbers().map(page => (
+
+          {getPageNumbers().map((page) => (
             <Button
               key={page}
               onClick={() => onPageChange(page)}
@@ -73,14 +73,14 @@ export function Pagination ({
               size="icon"
               className={`w-9 h-9 cursor-pointer ${
                 currentPage === page
-                  ? 'bg-[#E8E5FA] text-[#5A42DE] border border-[#5A42DE]'
-                  : 'text-[#64748B] hover:bg-[#E8E5FA]'
+                  ? "bg-[#E8E5FA] text-[#5A42DE] border border-[#5A42DE]"
+                  : "text-[#64748B] hover:bg-[#E8E5FA]"
               }`}
             >
               {page}
             </Button>
           ))}
-          
+
           <Button
             onClick={() => onPageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
@@ -90,32 +90,32 @@ export function Pagination ({
             <ChevronRight size={18} />
           </Button>
         </div>
-        
+
         <div className="flex items-center gap-2">
           <span className="text-sm text-[#64748B] whitespace-nowrap">
             Results per page
           </span>
-          <Select 
-            value={resultsPerPage.toString()} 
+          <Select
+            value={resultsPerPage.toString()}
             onValueChange={(val) => onResultsPerPageChange(Number(val))}
           >
             <SelectTrigger className="w-[70px] h-9 border-[#D1D5DB] text-[#5A42DE] hover:border-[#5A42DE] focus:border-[#5A42DE] focus:ring-[#E8E5FA]">
               <SelectValue />
             </SelectTrigger>
             <SelectContent className="border-[#D1D5DB] bg-white">
-              <SelectItem 
-                value="10" 
+              <SelectItem
+                value="10"
                 className="text-[#64748B] focus:bg-[#E8E5FA] focus:text-[#5A42DE] cursor-pointer"
               >
                 10
               </SelectItem>
-              <SelectItem 
+              <SelectItem
                 value="20"
                 className="text-[#64748B] focus:bg-[#E8E5FA] focus:text-[#5A42DE] cursor-pointer"
               >
                 20
               </SelectItem>
-              <SelectItem 
+              <SelectItem
                 value="50"
                 className="text-[#64748B] focus:bg-[#E8E5FA] focus:text-[#5A42DE] cursor-pointer"
               >
@@ -127,4 +127,4 @@ export function Pagination ({
       </div>
     </div>
   );
-};
+}

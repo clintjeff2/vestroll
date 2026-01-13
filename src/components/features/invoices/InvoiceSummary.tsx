@@ -51,18 +51,18 @@ export default function InvoiceSummary({
       <InvoiceDetailsSection invoice={invoice} />
 
       <div className="rounded-2xl border border-[#E9EAF0] bg-white shadow-sm p-5 sm:p-6 w-full max-w-[852px] mx-auto">
-      <span className="inline-block bg-[#EAE6F7] text-[#6B5CD6] text-[11px] sm:text-xs font-medium px-2.5 py-1 rounded-md mb-3">
-        Payment Memo
-      </span>
+        <span className="inline-block bg-[#EAE6F7] text-[#6B5CD6] text-[11px] sm:text-xs font-medium px-2.5 py-1 rounded-md mb-3">
+          Payment Memo
+        </span>
 
-      <p className="text-[#17171C] text-[13px] sm:text-[14px] leading-relaxed">
-        Thank you for your business. Please remit payment according to the terms
-        outlined in this invoice. If you have any questions regarding this
-        invoice or the payment process, do not hesitate to contact us.
-      </p>
-    </div>
+        <p className="text-[#17171C] text-[13px] sm:text-[14px] leading-relaxed">
+          Thank you for your business. Please remit payment according to the
+          terms outlined in this invoice. If you have any questions regarding
+          this invoice or the payment process, do not hesitate to contact us.
+        </p>
+      </div>
 
-    <InvoiceFooterSection />
+      <InvoiceFooterSection />
     </section>
   );
 }

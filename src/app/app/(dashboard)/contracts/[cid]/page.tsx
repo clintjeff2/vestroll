@@ -34,17 +34,18 @@ export default function CidPage({ params }: Props) {
     ];
 
     const renderTabContent = () => {
+      if (!contract) return null;
       switch (activeTab) {
         case 1:
             return <ContractReviewAccordion />;
         case 2:
-            return <ContractTypeMetric contract />;
+            return <ContractTypeMetric contract={contract} />;
         case 3:
-            return <ContractPaymentHistory contract />;
+            return <ContractPaymentHistory contract={contract} />;
         case 4:
-            return <ContractExpense contract />;
+            return <ContractExpense contract={contract} />;
         case 5:
-            return <ContractTimeOff contract />;
+            return <ContractTimeOff contract={contract} />;
         default:
             return null;
       }

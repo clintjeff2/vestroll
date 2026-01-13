@@ -6,7 +6,6 @@ import mobileLogo from "@/../public/logo/mologo.png";
 import leftImg from "@/../public/images/Left.png";
 import ModalWelcomeOnboard from "@/components/shared/modal-welcome-onboard";
 
-// Type definitions
 interface FormData {
   companyName: string;
   companySize: string;
@@ -282,7 +281,7 @@ const BusinessRegistrationForm: React.FC = () => {
                     onChange={(e) =>
                       handleInputChange("companyName", e.target.value)
                     }
-                    placeholder="What&apos;s the name of your company"
+                    placeholder="What's the name of your company"
                     className={`w-full px-4 py-3 bg-[#F5F6F7] text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200 ${
                       errors.companyName ? "border-red-300" : "border-gray-300"
                     }`}
@@ -432,4 +431,3 @@ const BusinessRegistrationForm: React.FC = () => {
 };
 
 export default BusinessRegistrationForm;
-

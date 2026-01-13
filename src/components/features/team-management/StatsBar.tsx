@@ -1,5 +1,3 @@
-// Displays the statistics bar with total and active employees.
-
 import { User } from "lucide-react";
 
 type StatsBarProps = {
@@ -7,7 +5,10 @@ type StatsBarProps = {
   activeEmployees: number;
 };
 
-export const StatsBar = ({ totalEmployees, activeEmployees }: StatsBarProps) => {
+export const StatsBar = ({
+  totalEmployees,
+  activeEmployees,
+}: StatsBarProps) => {
   const percentage =
     totalEmployees > 0 ? (activeEmployees / totalEmployees) * 100 : 0;
 

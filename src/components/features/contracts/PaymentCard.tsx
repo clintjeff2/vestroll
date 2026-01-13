@@ -83,15 +83,6 @@ function PaymentCard({ contractDetails, contractType }: PaymentCardProps) {
               <p>Inclusive Tax</p>
             </div>
             <div className="flex items-center justify-between p-2 text-sm font-semibold text-gray-500 dark:text-gray-150">
-              {/* <p>
-                {contractDetails.firstInvoice?.type === "full"
-                  ? `Full amount • ${contractDetails.firstInvoice.amount?.toString()} ${
-                      contractDetails.paymentDetails.asset
-                    }`
-                  : contractDetails.firstInvoice?.type === "custom"
-                    ? "Custom amount"
-                    : "Not specified"}
-              </p> */}
               <p>{contractDetails.taxDetails?.taxRate || "No tax applied"}</p>
             </div>
           </div>

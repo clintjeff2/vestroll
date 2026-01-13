@@ -3,10 +3,14 @@ import React from "react";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
-import HiringTemplateButtonGroup, {type HiringTemplateButtonGroupProps} from "./hiring-template-button-group";
+import HiringTemplateButtonGroup, {
+  type HiringTemplateButtonGroupProps,
+} from "./hiring-template-button-group";
 
-export default function HiringTemplateHeader({onDeleteTemplate, className}: HiringTemplateButtonGroupProps) {
-
+export default function HiringTemplateHeader({
+  onDeleteTemplate,
+  className,
+}: HiringTemplateButtonGroupProps) {
   return (
     <div className="w-full flex bg-white justify-between p-4 relative">
       <div>
@@ -20,7 +24,10 @@ export default function HiringTemplateHeader({onDeleteTemplate, className}: Hiri
         <span className="font-bold text-2xl">Hiring Template</span>
       </div>
 
-      <HiringTemplateButtonGroup onDeleteTemplate={onDeleteTemplate} className={className}/>
+      <HiringTemplateButtonGroup
+        onDeleteTemplate={onDeleteTemplate}
+        className={className}
+      />
     </div>
   );
 }

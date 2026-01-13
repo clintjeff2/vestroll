@@ -1,5 +1,4 @@
 interface StepperProps {
-  // Define any props if needed
   currentStep?: number;
   totalSteps?: number;
   className?: string;

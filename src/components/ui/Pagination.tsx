@@ -38,10 +38,22 @@ const Pagination: React.FC<PaginationProps> = ({
         pages.push(1, 2, 3, 4, 5);
       } else if (currentPage >= totalPages - 2) {
         // Show last 5 pages with ellipsis at the beginning
-        pages.push(totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
+        pages.push(
+          totalPages - 4,
+          totalPages - 3,
+          totalPages - 2,
+          totalPages - 1,
+          totalPages
+        );
       } else {
         // Show current page and surrounding pages
-        pages.push(currentPage - 2, currentPage - 1, currentPage, currentPage + 1, currentPage + 2);
+        pages.push(
+          currentPage - 2,
+          currentPage - 1,
+          currentPage,
+          currentPage + 1,
+          currentPage + 2
+        );
       }
     }
 
@@ -77,11 +89,17 @@ const Pagination: React.FC<PaginationProps> = ({
         {/* Page numbers */}
         {pageNumbers.map((page, index) => {
           const isCurrentPage = page === currentPage;
-          const isEllipsis = page !== currentPage && index > 0 && pageNumbers[index - 1] !== page - 1;
+          const isEllipsis =
+            page !== currentPage &&
+            index > 0 &&
+            pageNumbers[index - 1] !== page - 1;
 
           if (isEllipsis) {
             return (
-              <span key={`ellipsis-${index}`} className="px-2 py-1 sm:px-3 sm:py-2 text-gray-500 text-xs sm:text-sm">
+              <span
+                key={`ellipsis-${index}`}
+                className="px-2 py-1 sm:px-3 sm:py-2 text-gray-500 text-xs sm:text-sm"
+              >
                 ...
               </span>
             );

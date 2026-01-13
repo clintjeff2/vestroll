@@ -40,7 +40,6 @@ const ResetPassword: React.FC = () => {
 
   const onSubmit = async (data: PasswordFormData) => {
     console.log("Password reset data:", data);
-    // TODO: replace with real API call
     setTimeout(() => {
       alert("Password has been set successfully");
     }, 1500);
@@ -316,5 +315,3 @@ const ResetPassword: React.FC = () => {
 };
 
 export default ResetPassword;
-
-

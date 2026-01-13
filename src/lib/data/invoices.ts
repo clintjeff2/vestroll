@@ -1,13 +1,11 @@
-// src/data/invoices.ts
-
 export type InvoiceStatus = "Pending" | "Approved" | "Overdue" | "Paid" | "Rejected";
 
 export interface Invoice {
-  id: string;              // stable id used in the route
-  invoiceNo: string;       // human-readable number, e.g. "#INV-2025-010"
+  id: string;              
+  invoiceNo: string;     
   title: string;
   amount: number;
-  paidIn: string;          // e.g. "USDT"
+  paidIn: string;      
   status: InvoiceStatus;
   issueDate: string;
   name?: string;
@@ -16,7 +14,6 @@ export interface Invoice {
   [key: string]: string | number | undefined;
 }
 
-// Mock dataset (expand later or replace with API)
 export const mockInvoices: Invoice[] = [
   {
     id: "1",

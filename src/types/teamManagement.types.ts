@@ -1,4 +1,3 @@
-// This file contains all the shared type definitions for the dashboard.
 export type Employee = {
   id: number;
   name: string;

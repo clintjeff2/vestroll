@@ -28,7 +28,7 @@ export default function EditProfilePage() {
     confirmNewPassword: "",
   });
 
-  const isFormValid = true; // Placeholder for form validation logic
+  const isFormValid = true;
 
   return (
     <div className="min-h-screen ">
@@ -133,4 +133,3 @@ export default function EditProfilePage() {
     </div>
   );
 }
-

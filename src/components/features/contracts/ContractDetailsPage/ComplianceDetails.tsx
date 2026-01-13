@@ -1,5 +1,4 @@
-"use client"
-
+"use client";
 
 import { FileText, Eye } from "lucide-react";
 
@@ -15,19 +14,19 @@ export default function ComplianceDetails() {
           </div>
         </div>
         <button className="text-purple-600 bg-purple-100 border py-2 px-4 rounded-full  text-sm font-medium flex items-center gap-1 ">
-           Preview
+          Preview
         </button>
       </div>
 
-     <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2">
         <span>Additional terms</span>
-         <div className="text-gray-700 bg-gray-100 p-4 rounded-2xl text-sm leading-relaxed">
-        In the event that any payment due under this Agreement is not received
-        by the Contractor within fifteen (15) days after the due date, the
-        Client agrees to pay a late fee of 1.5% per month on any overdue amount,
-        or the maximum amount permitted by law, whichever is lower.
+        <div className="text-gray-700 bg-gray-100 p-4 rounded-2xl text-sm leading-relaxed">
+          In the event that any payment due under this Agreement is not received
+          by the Contractor within fifteen (15) days after the due date, the
+          Client agrees to pay a late fee of 1.5% per month on any overdue
+          amount, or the maximum amount permitted by law, whichever is lower.
+        </div>
       </div>
-     </div>
     </div>
   );
 }

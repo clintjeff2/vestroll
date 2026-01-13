@@ -2,7 +2,7 @@
 
 import { ChevronDown } from "lucide-react";
 import Image, { StaticImageData } from "next/image";
-import avatar from "@/../public/avatar/avatar.png";   
+import avatar from "@/../public/avatar/avatar.png";
 
 interface DesktopHeaderProps {
   user: {
@@ -14,9 +14,14 @@ interface DesktopHeaderProps {
   onSearch?: (value: string) => void;
 }
 
-export default function DesktopHeader({ 
-  user = { name: "Peter", userType: "Administrator", avatar, miniAvatar: "/avatar/Component 4.svg" },
-  onSearch 
+export default function DesktopHeader({
+  user = {
+    name: "Peter",
+    userType: "Administrator",
+    avatar,
+    miniAvatar: "/avatar/Component 4.svg",
+  },
+  onSearch,
 }: DesktopHeaderProps) {
   return (
     <header className="hidden lg:flex items-center justify-between border-b border-gray-200 bg-white px-6 py-3">
@@ -35,7 +40,12 @@ export default function DesktopHeader({
             stroke="currentColor"
             viewBox="0 0 24 24"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
           </svg>
         </div>
       </div>
@@ -57,38 +67,43 @@ export default function DesktopHeader({
 
         {/* User profile */}
         <div className="flex items-center gap-2 cursor-pointer">
-         <div className="relative h-9 w-9 ">
-             <div className="relative h-9 w-9 rounded-full overflow-hidden">
-            {user.avatar ? (
-              <Image
-                src={user.avatar}
-                alt={user.name}
-                width={36}
-                height={36}
-                className="h-full w-full object-cover"
-              />
-            ) : (
-              <div className="h-full w-full bg-[#6d28d9] flex items-center justify-center text-white text-sm font-medium">
-                {user.name.charAt(0).toUpperCase()}
-              </div>
-            )}
-            {/* Mini avatar overlay */}
-            {user.miniAvatar && (
-              <Image
-                src={typeof user.miniAvatar === "string" ? user.miniAvatar : "/avatar/Component 4.svg"}
-                alt="miniAvatar"
-                width={16}
-                height={16}
-                className="absolute bottom-[-3px] right-[-3px] h-4 w-4 object-cover"
-              />
-            )}
+          <div className="relative h-9 w-9 ">
+            <div className="relative h-9 w-9 rounded-full overflow-hidden">
+              {user.avatar ? (
+                <Image
+                  src={user.avatar}
+                  alt={user.name}
+                  width={36}
+                  height={36}
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <div className="h-full w-full bg-[#6d28d9] flex items-center justify-center text-white text-sm font-medium">
+                  {user.name.charAt(0).toUpperCase()}
+                </div>
+              )}
+              {/* Mini avatar overlay */}
+              {user.miniAvatar && (
+                <Image
+                  src={
+                    typeof user.miniAvatar === "string"
+                      ? user.miniAvatar
+                      : "/avatar/Component 4.svg"
+                  }
+                  alt="miniAvatar"
+                  width={16}
+                  height={16}
+                  className="absolute bottom-[-3px] right-[-3px] h-4 w-4 object-cover"
+                />
+              )}
+            </div>
           </div>
-
-         </div>
 
           {/* User info */}
           <div className="flex flex-col text-left">
-            <span className="text-sm font-medium text-gray-900">{user.name}</span>
+            <span className="text-sm font-medium text-gray-900">
+              {user.name}
+            </span>
             <span className="text-xs text-gray-500">{user.userType}</span>
           </div>
 
@@ -99,5 +114,3 @@ export default function DesktopHeader({
     </header>
   );
 }
-
-

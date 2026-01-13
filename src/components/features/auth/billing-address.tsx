@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import { ArrowLeft, ChevronDown, Search } from "lucide-react";
 
-// Type definitions
 interface BillingAddressFormData {
   addressLine1: string;
   addressLine2: string;

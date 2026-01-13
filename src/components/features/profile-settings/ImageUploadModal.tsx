@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useCallback} from "react";
+import React, { useState, useRef, useCallback } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import Image from "next/image";
 import { X, Upload, Camera, RotateCw, ZoomIn, ZoomOut } from "lucide-react";

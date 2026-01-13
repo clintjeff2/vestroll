@@ -64,4 +64,3 @@ const PermissionsInfoModal = () => {
 };
 
 export default PermissionsInfoModal;
-

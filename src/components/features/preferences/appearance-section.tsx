@@ -1,37 +1,37 @@
-"use client"
+"use client";
 
-import { useTheme } from "next-themes"
-import { useEffect, useState } from "react"
-import Image from "next/image"
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const themes = [
   {
     id: "light",
     name: "Light",
-    preview: "/theme-light.svg", 
+    preview: "/theme-light.svg",
   },
   {
-    id: "dark", 
+    id: "dark",
     name: "Dark",
     preview: "/theme-dark.svg",
   },
   {
     id: "system",
-    name: "System", 
+    name: "System",
     preview: "/theme-system.svg",
   },
-]
+];
 
 export function AppearanceSection() {
-  const { theme, setTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   if (!mounted) {
-    return null
+    return null;
   }
 
   return (
@@ -46,8 +46,8 @@ export function AppearanceSection() {
             key={themeOption.id}
             onClick={() => setTheme(themeOption.id)}
             className={`flex flex-col items-center gap-3 p-4 rounded-lg border transition-colors ${
-              theme === themeOption.id 
-                ? "border-purple-500 bg-purple-50" 
+              theme === themeOption.id
+                ? "border-purple-500 bg-purple-50"
                 : "border-gray-200 hover:bg-gray-50"
             }`}
           >
@@ -68,5 +68,5 @@ export function AppearanceSection() {
         ))}
       </div>
     </div>
-  )
+  );
 }

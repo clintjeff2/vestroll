@@ -15,20 +15,15 @@ export default function EmailVerificationPage() {
   };
 
   const handleSendCode = () => {
-    // Simulate sending verification code
     console.log("Verification code sent to email");
   };
 
   const handleVerifyCode = () => {
-    // Handle verification logic here
     const fullCode = verificationCode.join("");
     console.log("Verifying email code:", fullCode);
-    // After successful verification, redirect to success page or dashboard
-    // router.push("/2fa/success");
   };
 
   const handleInputChange = (index: number, value: string) => {
-    // Only allow digits
     const digit = value.replace(/\D/g, "");
 
     if (digit.length <= 1) {
@@ -36,7 +31,6 @@ export default function EmailVerificationPage() {
       newCode[index] = digit;
       setVerificationCode(newCode);
 
-      // Auto-focus next input
       if (digit && index < 5) {
         const nextInput = document.getElementById(`otp-${index + 1}`);
         if (nextInput) {
@@ -47,7 +41,6 @@ export default function EmailVerificationPage() {
   };
 
   const handleKeyDown = (index: number, e: React.KeyboardEvent) => {
-    // Handle backspace
     if (e.key === "Backspace" && !verificationCode[index] && index > 0) {
       const prevInput = document.getElementById(`otp-${index - 1}`);
       if (prevInput) {

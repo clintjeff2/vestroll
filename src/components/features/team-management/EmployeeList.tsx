@@ -42,7 +42,7 @@ export const EmployeeList = ({ employees }: EmployeeListProps) => {
             </div>
           </div>
 
-          <hr className="mb-3 bg-border-primary"/>
+          <hr className="mb-3 bg-border-primary" />
 
           {/* Bottom section: Both Badges in a row */}
           <div className="flex items-center justify-between gap-3">
@@ -61,9 +61,11 @@ export const EmployeeList = ({ employees }: EmployeeListProps) => {
                   : "secondary"
               }
               className={`
-                ${employee.status.toLowerCase() === "active"
-                  ? "bg-green-100 text-green-700 hover:bg-green-100 border-[#26902B]"
-                  : "bg-gray-100 text-gray-600 hover:bg-gray-100 border-gray-200"}
+                ${
+                  employee.status.toLowerCase() === "active"
+                    ? "bg-green-100 text-green-700 hover:bg-green-100 border-[#26902B]"
+                    : "bg-gray-100 text-gray-600 hover:bg-gray-100 border-gray-200"
+                }
                 font-semibold rounded-3xl
               `}
             >

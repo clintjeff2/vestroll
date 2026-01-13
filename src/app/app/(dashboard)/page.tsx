@@ -1,4 +1,3 @@
-// Optional: redirect to a default app page or show a simple landing within the shell
 export default function AppHome() {
   return (
     <div className="rounded-xl border border-[#e5e7eb] bg-white p-6 shadow-sm">

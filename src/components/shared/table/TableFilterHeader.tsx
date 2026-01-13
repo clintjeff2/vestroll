@@ -58,4 +58,3 @@ const TableFilterHeader: React.FC<TableFilterHeaderProps> = ({
 };
 
 export default TableFilterHeader;
-

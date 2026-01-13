@@ -5,7 +5,7 @@ import NotificationItem from "./NotificationItem";
 import { NotificationSettings } from "./types";
 
 type SectionItem = {
-    id: number;
+  id: number;
   title: string;
   description?: string;
   key: keyof NotificationSettings;
@@ -30,7 +30,7 @@ const NotificationSection: React.FC<NotificationSectionProps> = ({
     <div className="space-y-1">
       {items.map((item) => (
         <NotificationItem
-        id={item.id}
+          id={item.id}
           key={item.key}
           title={item.title}
           description={item.description}

@@ -7,7 +7,12 @@ interface OTPInputProps {
   error?: string | null;
 }
 
-export function OTPInput({ value, onChange, disabled = false, error }: OTPInputProps) {
+export function OTPInput({
+  value,
+  onChange,
+  disabled = false,
+  error,
+}: OTPInputProps) {
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   const handleChange = (inputValue: string, index: number) => {
@@ -34,7 +39,7 @@ export function OTPInput({ value, onChange, disabled = false, error }: OTPInputP
     e.preventDefault();
     const pasteData = e.clipboardData.getData("text");
     const digits = pasteData.replace(/\D/g, "").slice(0, 6).split("");
-    
+
     if (digits.length > 0) {
       const newValue = [...value];
       digits.forEach((digit, index) => {
@@ -43,7 +48,7 @@ export function OTPInput({ value, onChange, disabled = false, error }: OTPInputP
         }
       });
       onChange(newValue);
-      
+
       // Focus the next empty field or the last field
       const nextIndex = Math.min(digits.length, 5);
       inputRefs.current[nextIndex]?.focus();
@@ -56,7 +61,9 @@ export function OTPInput({ value, onChange, disabled = false, error }: OTPInputP
         {value.map((digit, index) => (
           <input
             key={index}
-            ref={(el) => { inputRefs.current[index] = el; }}
+            ref={(el) => {
+              inputRefs.current[index] = el;
+            }}
             type="text"
             inputMode="numeric"
             maxLength={1}
@@ -72,11 +79,12 @@ export function OTPInput({ value, onChange, disabled = false, error }: OTPInputP
               transition-all duration-200
               focus:outline-none focus:ring-2 focus:ring-[#6366F1]/50
               disabled:bg-gray-100 disabled:cursor-not-allowed
-              ${error 
-                ? 'border-red-300 focus:border-red-500' 
-                : 'border-gray-200 focus:border-[#6366F1] hover:border-gray-300'
+              ${
+                error
+                  ? "border-red-300 focus:border-red-500"
+                  : "border-gray-200 focus:border-[#6366F1] hover:border-gray-300"
               }
-              ${digit ? 'bg-[#6366F1]/5' : ''}
+              ${digit ? "bg-[#6366F1]/5" : ""}
             `}
             aria-label={`Verification code digit ${index + 1}`}
           />

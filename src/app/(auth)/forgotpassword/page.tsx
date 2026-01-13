@@ -9,14 +9,12 @@ export default function Login() {
 
 function handleForgotPassword(){
     console.log('Forgot password clicked');
-    // Implement forgot password logic here
     router.push("/forgotpassword")
 
 }
 
   const handleBackToLogin= () => {
-    console.log('Forgot password clicked');
-    // Implement forgot password logic here
+    console.log('Forgot password clicked'); 
     router.push("/login")
 
   };

@@ -19,7 +19,7 @@ const steps = [
 
 function Contracts() {
   const [activeStep, setActiveStep] = useState(0);
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data: any) => console.log(data);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -55,12 +55,34 @@ function Contracts() {
   );
 }
 
-function StepContent({ steps, activeStep }) {
+interface Step {
+  id: number;
+  title: string;
+  content: React.ReactNode;
+}
+
+function StepContent({
+  steps,
+  activeStep,
+}: {
+  steps: Step[];
+  activeStep: number;
+}) {
   if (!steps[activeStep]) return;
   return <div className="py-10">{steps[activeStep].content}</div>;
 }
 
-function StepControls({ steps, activeStep, handleBack, handleNext }) {
+function StepControls({
+  steps,
+  activeStep,
+  handleBack,
+  handleNext,
+}: {
+  steps: Step[];
+  activeStep: number;
+  handleBack: () => void;
+  handleNext: () => void;
+}) {
   return (
     <div className="flex items-center">
       <button

@@ -29,7 +29,6 @@ export const FilterModal = ({
 }: FilterModalProps) => {
   const [localFilters, setLocalFilters] = useState(filters);
 
-  // Sync local filters when modal opens or external filters change
   useEffect(() => {
     setLocalFilters(filters);
   }, [filters, isOpen]);
@@ -72,7 +71,8 @@ export const FilterModal = ({
                       setLocalFilters({ ...localFilters, [group.key]: "All" })
                     }
                     className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                      !localFilters[group.key] || localFilters[group.key] === "All"
+                      !localFilters[group.key] ||
+                      localFilters[group.key] === "All"
                         ? "bg-purple-100 text-primary-500 border border-purple-300"
                         : "bg-gray-100 text-gray-700 border border-gray-200 hover:bg-gray-200"
                     }`}
@@ -83,7 +83,10 @@ export const FilterModal = ({
                     <button
                       key={option.value}
                       onClick={() =>
-                        setLocalFilters({ ...localFilters, [group.key]: option.value })
+                        setLocalFilters({
+                          ...localFilters,
+                          [group.key]: option.value,
+                        })
                       }
                       className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                         localFilters[group.key] === option.value

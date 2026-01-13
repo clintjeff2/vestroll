@@ -1,7 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { Eye, EyeOff, ArrowLeft, Check, X, HelpCircle, ChevronLeft } from "lucide-react";
+import {
+  Eye,
+  EyeOff,
+  ArrowLeft,
+  Check,
+  X,
+  HelpCircle,
+  ChevronLeft,
+} from "lucide-react";
 
 export default function CreatePassword() {
   const [password, setPassword] = useState("");
@@ -36,27 +44,36 @@ export default function CreatePassword() {
         <div className="p-5 sm:p-6 flex flex-col min-h-full">
           <div className="flex items-center justify-between mb-4">
             <button className="flex items-center cursor-pointer text-gray-600 hover:text-gray-800 text-sm">
-             <ChevronLeft/>
+              <ChevronLeft />
             </button>
 
             <button className="flex items-center border border-black text-black py-1 px-3 rounded-2xl gap-1 text-sm font-medium cursor-pointer">
-  <HelpCircle className="w-4 h-4" />
-  Need Help?
-</button>
-
+              <HelpCircle className="w-4 h-4" />
+              Need Help?
+            </button>
           </div>
 
           <div className="mb-4">
-            <h1 className="text-xl font-semibold text-gray-900">Create New Password</h1>
-            <p className="text-sm text-gray-500 mt-1">Enter a new password to keep your account Safe and Secure.</p>
+            <h1 className="text-xl font-semibold text-gray-900">
+              Create New Password
+            </h1>
+            <p className="text-sm text-gray-500 mt-1">
+              Enter a new password to keep your account Safe and Secure.
+            </p>
           </div>
 
           <div className="flex-1 flex flex-col">
             <div className="mb-4">
-              <label className="sr-only" htmlFor="password">New password</label>
+              <label className="sr-only" htmlFor="password">
+                New password
+              </label>
               <div
                 className={`relative rounded-lg ${
-                  password.length === 0 ? "border border-gray-200" : allValid ? "border border-green-300" : "border border-[#8B5CF6]"
+                  password.length === 0
+                    ? "border border-gray-200"
+                    : allValid
+                      ? "border border-green-300"
+                      : "border border-[#8B5CF6]"
                 }`}
               >
                 <input
@@ -79,43 +96,71 @@ export default function CreatePassword() {
               </div>
             </div>
 
-            <div className="text-xs text-gray-500 mb-2">Must Contain At Least:</div>
+            <div className="text-xs text-gray-500 mb-2">
+              Must Contain At Least:
+            </div>
             <div id="pw-rules" className="flex flex-wrap gap-2 mb-4">
               <div className={pillClass(rules.length, password.length === 0)}>
-                {rules.length ? <Check size={14} className=""/> : password.length === 0 ? null : <X size={14} />}
+                {rules.length ? (
+                  <Check size={14} className="" />
+                ) : password.length === 0 ? null : (
+                  <X size={14} />
+                )}
                 <span>8 characters</span>
               </div>
 
               <div className={pillClass(rules.number, password.length === 0)}>
-                {rules.number ? <Check size={14} /> : password.length === 0 ? null : <X size={14} />}
+                {rules.number ? (
+                  <Check size={14} />
+                ) : password.length === 0 ? null : (
+                  <X size={14} />
+                )}
                 <span>A number</span>
               </div>
 
-              <div className={pillClass(rules.uppercase, password.length === 0)}>
-                {rules.uppercase ? <Check size={14} /> : password.length === 0 ? null : <X size={14} />}
+              <div
+                className={pillClass(rules.uppercase, password.length === 0)}
+              >
+                {rules.uppercase ? (
+                  <Check size={14} />
+                ) : password.length === 0 ? null : (
+                  <X size={14} />
+                )}
                 <span>An uppercase letter</span>
               </div>
 
-              <div className={pillClass(rules.lowercase, password.length === 0)}>
-                {rules.lowercase ? <Check size={14} /> : password.length === 0 ? null : <X size={14} />}
+              <div
+                className={pillClass(rules.lowercase, password.length === 0)}
+              >
+                {rules.lowercase ? (
+                  <Check size={14} />
+                ) : password.length === 0 ? null : (
+                  <X size={14} />
+                )}
                 <span>A lowercase letter</span>
               </div>
 
               <div className={pillClass(rules.special, password.length === 0)}>
-                {rules.special ? <Check size={14} /> : password.length === 0 ? null : <X size={14} />}
+                {rules.special ? (
+                  <Check size={14} />
+                ) : password.length === 0 ? null : (
+                  <X size={14} />
+                )}
                 <span>A special character</span>
               </div>
             </div>
 
             <div className="mb-4">
-              <label className="sr-only" htmlFor="confirm">Confirm password</label>
+              <label className="sr-only" htmlFor="confirm">
+                Confirm password
+              </label>
               <div
                 className={`relative rounded-lg ${
                   confirm.length === 0
                     ? "border border-gray-200"
                     : passwordsMatch
-                    ? "border border-green-300"
-                    : "border border-red-300"
+                      ? "border border-green-300"
+                      : "border border-red-300"
                 }`}
               >
                 <input
@@ -137,7 +182,9 @@ export default function CreatePassword() {
               </div>
 
               {confirm.length > 0 && !passwordsMatch && (
-                <p className="text-xs text-red-600 mt-2">Passwords do not match.</p>
+                <p className="text-xs text-red-600 mt-2">
+                  Passwords do not match.
+                </p>
               )}
             </div>
 

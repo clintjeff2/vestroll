@@ -1,7 +1,10 @@
 "use client";
 
 import useAddAddress from "@/hooks/use-add-address";
-import type { SupportedAssetSymbol, SupportedNetwork } from "@/types/address-types";
+import type {
+  SupportedAssetSymbol,
+  SupportedNetwork,
+} from "@/types/address-types";
 import useModal from "@/hooks/useModal";
 
 type Option<T extends string> = { label: string; value: T };
@@ -39,9 +42,7 @@ export default function AddAddressModal() {
     try {
       const text = await navigator.clipboard.readText();
       if (text) setWalletAddress(text);
-    } catch {
-      // Clipboard not available
-    }
+    } catch {}
   };
 
   const assetIcon: Record<SupportedAssetSymbol, string> = {
@@ -53,7 +54,7 @@ export default function AddAddressModal() {
 
   const networkIcon: Record<SupportedNetwork, string> = {
     Ethereum: "/icons/eth.svg",
-    Polygon: "/globe.svg", // placeholder icon in public
+    Polygon: "/globe.svg",
     Arbitrum: "/globe.svg",
     Optimism: "/globe.svg",
     Stellar: "/stellar.svg",
@@ -69,7 +70,13 @@ export default function AddAddressModal() {
           className="p-2 rounded-md hover:bg-gray-100"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M15 18l-6-6 6-6" stroke="#111827" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <path
+              d="M15 18l-6-6 6-6"
+              stroke="#111827"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         </button>
         <h2 className="text-2xl font-semibold text-[#111827]">Add address</h2>
@@ -79,7 +86,13 @@ export default function AddAddressModal() {
           className="p-2 rounded-md hover:bg-gray-100"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M6 6l12 12M18 6L6 18" stroke="#111827" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <path
+              d="M6 6l12 12M18 6L6 18"
+              stroke="#111827"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         </button>
       </div>
@@ -90,7 +103,11 @@ export default function AddAddressModal() {
           <label className="text-sm text-[#111827]">Asset</label>
           <div className="relative">
             <div className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
-              <img src={assetIcon[values.asset]} alt={values.asset} className="h-6 w-6" />
+              <img
+                src={assetIcon[values.asset]}
+                alt={values.asset}
+                className="h-6 w-6"
+              />
               <span className="text-[#111827]">{values.asset}</span>
             </div>
             <select
@@ -106,7 +123,13 @@ export default function AddAddressModal() {
             </select>
             <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#6b7280]">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path
+                  d="M6 9l6 6 6-6"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </span>
           </div>
@@ -117,7 +140,11 @@ export default function AddAddressModal() {
           <label className="text-sm text-[#111827]">Network</label>
           <div className="relative">
             <div className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
-              <img src={networkIcon[values.network]} alt={values.network} className="h-6 w-6" />
+              <img
+                src={networkIcon[values.network]}
+                alt={values.network}
+                className="h-6 w-6"
+              />
               <span className="text-[#111827]">{values.network}</span>
             </div>
             <select
@@ -133,7 +160,13 @@ export default function AddAddressModal() {
             </select>
             <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#6b7280]">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path
+                  d="M6 9l6 6 6-6"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </span>
           </div>
@@ -159,12 +192,19 @@ export default function AddAddressModal() {
               </button>
               <button
                 type="button"
-                onClick={() => {/* Integrate QR scanner here */}}
+                onClick={() => {
+                  /* Integrate QR scanner here */
+                }}
                 className="p-2 rounded-lg bg-white border border-[#E5E7EB] hover:bg-gray-50"
                 aria-label="Scan address"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <path d="M7 3H5a2 2 0 0 0-2 2v2M17 3h2a2 2 0 0 1 2 2v2M7 21H5a2 2 0 0 1-2-2v-2M19 21a2 2 0 0 0 2-2v-2" stroke="#6B7280" strokeWidth="2" strokeLinecap="round" />
+                  <path
+                    d="M7 3H5a2 2 0 0 0-2 2v2M17 3h2a2 2 0 0 1 2 2v2M7 21H5a2 2 0 0 1-2-2v-2M19 21a2 2 0 0 0 2-2v-2"
+                    stroke="#6B7280"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
                 </svg>
               </button>
             </div>
@@ -199,6 +239,3 @@ export default function AddAddressModal() {
     </div>
   );
 }
-
-
-

@@ -6,7 +6,6 @@ import Link from "next/link";
 import left from "./loginimages/Left.png";
 import { useRouter } from "next/navigation";
 
-// Type definitions
 interface FormData {
   email: string;
 }
@@ -83,49 +82,7 @@ const ForgotPasswordForm: React.FC = () => {
     }
   };
 
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-
-  //   if (!validateForm()) {
-  //     return;
-  //   }
-
-  //   setIsSubmitting(true);
-
-  //   // Simulate API call
-  //   setTimeout(() => {
-  //     console.log("Reset password request:", formData);
-  //     alert("Reset link sent to your email!");
-  //     setIsSubmitting(false);
-  //   }, 2000);
-  // };
-
   // for testing
-  //   const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-
-  //   if (!validateForm()) {
-  //     return;
-  //   }
-
-  //   setIsSubmitting(true);
-
-  //   try {
-  //     await new Promise(resolve => setTimeout(resolve, 2000));
-
-  //     // Simulate successful API response
-  //     console.log("Reset password request:", formData);
-
-  //     // Redirect to OTP input page with email
-  //     router.push(`/reset-password-otp?email=${encodeURIComponent(formData.email)}`);
-
-  //   } catch (error) {
-  //     console.error('Error:', error);
-  //     alert("An error occurred. Please try again.");
-  //   } finally {
-  //     setIsSubmitting(false);
-  //   }
-  // };
 
   const handleInputChange = (field: keyof FormData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));

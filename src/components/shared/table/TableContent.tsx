@@ -1,6 +1,5 @@
 "use client";
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import EmptyState from "@/components/ui/EmptyState";
 import { TableColumn } from "./TableHeader";
@@ -146,7 +145,6 @@ const TableContent = <T extends Record<string, any>>({
       <div className="lg:hidden">
         {data.map((item, index) => {
           const itemId = getItemId(item);
-          // const isSelected = selectedItems.includes(itemId);
 
           return (
             <div

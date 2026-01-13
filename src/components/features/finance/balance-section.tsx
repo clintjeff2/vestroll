@@ -1,26 +1,21 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { ArrowDownLeft, ArrowUpRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import React from "react";
+import { ArrowDownLeft, ArrowUpRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface BalanceSectionProps {
   balance: string;
   change: string;
 }
 
-export function BalanceSection({
-  balance,
-  change
-}: BalanceSectionProps) {
+export function BalanceSection({ balance, change }: BalanceSectionProps) {
   const handleFundWallet = () => {
-    console.log('Fund wallet clicked');
-    // Add your fund wallet logic here
+    console.log("Fund wallet clicked");
   };
 
   const handleWithdraw = () => {
-    console.log('Withdraw clicked');
-    // Add your withdraw logic here
+    console.log("Withdraw clicked");
   };
 
   return (

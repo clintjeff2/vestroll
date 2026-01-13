@@ -63,7 +63,12 @@ function TwoFactorAuth() {
           </div>
         </main>
       </RadioGroup>
-      <Button className="mt-auto p-2 h-14 bg-[#5E2A8C] text-white font-medium text-base" variant="default">Continue</Button>
+      <Button
+        className="mt-auto p-2 h-14 bg-[#5E2A8C] text-white font-medium text-base"
+        variant="default"
+      >
+        Continue
+      </Button>
     </main>
   );
 }

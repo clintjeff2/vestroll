@@ -1,5 +1,3 @@
-// components/TransactionList.tsx (Revised for Mobile Responsiveness)
-
 import React from "react";
 import { Transaction } from "../types";
 import StatusBadge from "../StatusBadge";
@@ -12,11 +10,9 @@ interface TransactionListProps {
   onPageChange: (page: number) => void;
 }
 
-// --- Placeholder for an Asset Icon/Badge ---
 const AssetBadge: React.FC<{ asset: Transaction["asset"] }> = ({ asset }) => {
   return (
     <div className="flex items-center space-x-1">
-      {/* USDT Icon - assuming the path is correct and the icon exists */}
       {asset === "USDT" && (
         <Image src="/Component 13.svg" width={16} height={16} alt="USDT" />
       )}
@@ -31,13 +27,11 @@ interface PaginationControlsProps {
   onPageChange: (page: number) => void;
 }
 
-// --- Pagination Controls (Revised for Mobile) ---
 const PaginationControls: React.FC<PaginationControlsProps> = ({
   currentPage,
   totalPages,
   onPageChange,
 }) => {
-  // Only show a limited number of page numbers around the current one on mobile
   const maxPagesToShow = 5;
   const startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
   const endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
@@ -49,7 +43,6 @@ const PaginationControls: React.FC<PaginationControlsProps> = ({
 
   return (
     <div className="flex flex-col sm:flex-row justify-between items-center p-4 border-t border-gray-100 space-y-3 sm:space-y-0">
-      {/* Current Range/Total - More concise on mobile */}
       <div className="text-sm text-gray-500">
         Page {currentPage} of {totalPages}
       </div>
@@ -61,7 +54,6 @@ const PaginationControls: React.FC<PaginationControlsProps> = ({
           className="w-8 h-8 flex items-center justify-center text-gray-500 hover:bg-gray-100 rounded-full disabled:opacity-50 transition-colors"
           aria-label="Previous Page"
         >
-          {/* Chevron Left Icon */}
           <svg
             className="w-4 h-4"
             fill="none"
@@ -84,7 +76,7 @@ const PaginationControls: React.FC<PaginationControlsProps> = ({
             onClick={() => onPageChange(page)}
             className={`w-8 h-8 flex items-center justify-center rounded-full text-sm font-medium transition-colors ${
               page === currentPage
-                ? "bg-purple-100 text-purple-600" // Selected button style from design
+                ? "bg-purple-100 text-purple-600"
                 : "text-gray-700 hover:bg-gray-50"
             }`}
           >
@@ -128,7 +120,6 @@ const PaginationControls: React.FC<PaginationControlsProps> = ({
   );
 };
 
-// --- Mobile Card Component (Revised for better layout) ---
 const MobileTransactionCard: React.FC<{ transaction: Transaction }> = ({
   transaction,
 }) => (
@@ -168,7 +159,6 @@ const MobileTransactionCard: React.FC<{ transaction: Transaction }> = ({
   </div>
 );
 
-// --- Main Transaction List Component (Revised) ---
 const TransactionList: React.FC<TransactionListProps> = ({
   transactions,
   currentPage,
@@ -186,8 +176,6 @@ const TransactionList: React.FC<TransactionListProps> = ({
 
   return (
     <div className="p-0 mt-6">
-      {/* Desktop Table View */}
-      {/* Added `w-full` to the container to ensure it uses available space */}
       <div className="p-6 hidden lg:block overflow-x-auto w-full">
         <table className="min-w-full divide-y divide-gray-100">
           <thead className="bg-[#F5F6F7]">

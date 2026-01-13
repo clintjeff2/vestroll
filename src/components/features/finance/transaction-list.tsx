@@ -1,14 +1,12 @@
-import React from 'react';
-import { TransactionCard } from './transaction-card';
-import { Transaction } from '@/types/finance.types';
+import React from "react";
+import { TransactionCard } from "./transaction-card";
+import { Transaction } from "@/types/finance.types";
 
 interface TransactionListProps {
   transactions: Transaction[];
 }
 
-export function TransactionList({ 
-  transactions 
-}:TransactionListProps) {
+export function TransactionList({ transactions }: TransactionListProps) {
   return (
     <div className="md:hidden p-4">
       {transactions.map((transaction, index) => (
@@ -16,4 +14,4 @@ export function TransactionList({
       ))}
     </div>
   );
-};
+}

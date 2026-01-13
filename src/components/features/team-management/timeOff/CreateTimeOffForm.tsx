@@ -1,6 +1,5 @@
 "use client";
 
-// This component contains the entire form for creating a new time off record.
 import React, { useState, useRef } from "react";
 import {
   User,
@@ -11,15 +10,8 @@ import {
   File,
   Trash2,
 } from "lucide-react";
-import { TimeOffFormData, Employee } from "@/types/teamManagement.types"; // Import Employee type
-import { SelectEmployeeModal } from "./SelectEmployeeModal"; // Import the new modal
-
-// ============================================
-// SUB-COMPONENTS (Colocated)
-// These are only used within this form.
-// ============================================
-
-// This code goes inside your components/time-off/CreateTimeOffForm.tsx file
+import { TimeOffFormData, Employee } from "@/types/teamManagement.types";
+import { SelectEmployeeModal } from "./SelectEmployeeModal";
 
 const EmployeeSelector = ({
   selectedEmployee,
@@ -64,69 +56,85 @@ const EmployeeSelector = ({
 );
 
 const formatFileSize = (bytes: number): string => {
-    if (bytes === 0) return '0 Bytes';
-    const k = 1024;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  if (bytes === 0) return "0 Bytes";
+  const k = 1024;
+  const sizes = ["Bytes", "KB", "MB", "GB", "TB"];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
 };
 
 const formatDate = (dateString: string): string => {
-  if (!dateString) return '';
+  if (!dateString) return "";
   const date = new Date(dateString);
-  const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
+  const options: Intl.DateTimeFormatOptions = {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  };
 
   // To handle timezone issues and get the correct date
-  const utcDate = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
+  const utcDate = new Date(
+    date.getUTCFullYear(),
+    date.getUTCMonth(),
+    date.getUTCDate()
+  );
 
   let day = utcDate.getDate().toString();
-  const month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(utcDate);
+  const month = new Intl.DateTimeFormat("en-US", { month: "long" }).format(
+    utcDate
+  );
   const year = utcDate.getFullYear();
 
   // Add ordinal suffix (st, nd, rd, th)
-  if (day.endsWith('1') && day !== '11') {
-    day += 'st';
-  } else if (day.endsWith('2') && day !== '12') {
-    day += 'nd';
-  } else if (day.endsWith('3') && day !== '13') {
-    day += 'rd';
+  if (day.endsWith("1") && day !== "11") {
+    day += "st";
+  } else if (day.endsWith("2") && day !== "12") {
+    day += "nd";
+  } else if (day.endsWith("3") && day !== "13") {
+    day += "rd";
   } else {
-    day += 'th';
+    day += "th";
   }
 
   return `${day} ${month}, ${year}`;
 };
 
-const TimeOffTypeToggle = ({ type, onChange }: { type: 'paid' | 'unpaid'; onChange: (type: 'paid' | 'unpaid') => void; }) => (
-    <div className="mb-6">
-      <label className="block text-sm font-medium text-gray-700 mb-2">
-        Time off type
-      </label>
-      <div className="w-full bg-gray-100 p-1 rounded-full flex">
-        <button
-          type="button"
-          onClick={() => onChange('paid')}
-          className={`flex-1 py-2 px-4 rounded-full text-sm font-medium transition-colors focus:outline-none ${
-            type === 'paid'
-              ? 'bg-white text-primary-500 shadow-sm'
-              : 'text-gray-500 hover:text-gray-800'
-          }`}
-        >
-          Paid time off
-        </button>
-        <button
-          type="button"
-          onClick={() => onChange('unpaid')}
-          className={`flex-1 py-2 px-4 rounded-full text-sm font-medium transition-colors focus:outline-none ${
-            type === 'unpaid'
-              ? 'bg-white text-primary-500 shadow-sm'
-              : 'text-gray-500 hover:text-gray-800'
-          }`}
-        >
-          Unpaid time off
-        </button>
-      </div>
+const TimeOffTypeToggle = ({
+  type,
+  onChange,
+}: {
+  type: "paid" | "unpaid";
+  onChange: (type: "paid" | "unpaid") => void;
+}) => (
+  <div className="mb-6">
+    <label className="block text-sm font-medium text-gray-700 mb-2">
+      Time off type
+    </label>
+    <div className="w-full bg-gray-100 p-1 rounded-full flex">
+      <button
+        type="button"
+        onClick={() => onChange("paid")}
+        className={`flex-1 py-2 px-4 rounded-full text-sm font-medium transition-colors focus:outline-none ${
+          type === "paid"
+            ? "bg-white text-primary-500 shadow-sm"
+            : "text-gray-500 hover:text-gray-800"
+        }`}
+      >
+        Paid time off
+      </button>
+      <button
+        type="button"
+        onClick={() => onChange("unpaid")}
+        className={`flex-1 py-2 px-4 rounded-full text-sm font-medium transition-colors focus:outline-none ${
+          type === "unpaid"
+            ? "bg-white text-primary-500 shadow-sm"
+            : "text-gray-500 hover:text-gray-800"
+        }`}
+      >
+        Unpaid time off
+      </button>
     </div>
+  </div>
 );
 
 const ReasonSelect = ({
@@ -163,126 +171,144 @@ const ReasonSelect = ({
   </div>
 );
 
-const DateInput = ({ label, value, onChange }: { label: string; value: string; onChange: (value: string) => void; }) => {
-    const inputRef = useRef<HTMLInputElement>(null);
+const DateInput = ({
+  label,
+  value,
+  onChange,
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+}) => {
+  const inputRef = useRef<HTMLInputElement>(null);
 
-    return (
-        <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-                {label}
-            </label>
-            <div className="relative">
-                {/* This is the hidden input that handles date picking */}
-                <input
-                    ref={inputRef}
-                    type="date"
-                    value={value}
-                    onChange={(e) => onChange(e.target.value)}
-                    className="opacity-0 absolute top-0 left-0 w-full h-full cursor-pointer"
-                />
-                {/* This is the visible button-like display */}
-                <button
-                    type="button"
-                    onClick={() => inputRef.current?.showPicker()}
-                    className="w-full bg-gray-50 border border-gray-300 rounded-lg p-3 flex justify-between items-center text-left"
-                >
-                    <span className={value ? "text-gray-800" : "text-gray-500"}>
-                        {value ? formatDate(value) : "Select date"}
-                    </span>
-                    <Calendar className="text-gray-500" size={20} />
-                </button>
-            </div>
-        </div>
-    );
+  return (
+    <div className="mb-6">
+      <label className="block text-sm font-medium text-gray-700 mb-2">
+        {label}
+      </label>
+      <div className="relative">
+        {/* This is the hidden input that handles date picking */}
+        <input
+          ref={inputRef}
+          type="date"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          className="opacity-0 absolute top-0 left-0 w-full h-full cursor-pointer"
+        />
+        {/* This is the visible button-like display */}
+        <button
+          type="button"
+          onClick={() => inputRef.current?.showPicker()}
+          className="w-full bg-gray-50 border border-gray-300 rounded-lg p-3 flex justify-between items-center text-left"
+        >
+          <span className={value ? "text-gray-800" : "text-gray-500"}>
+            {value ? formatDate(value) : "Select date"}
+          </span>
+          <Calendar className="text-gray-500" size={20} />
+        </button>
+      </div>
+    </div>
+  );
 };
 
-const FileUpload = ({ file, onChange }: { file: File | null; onChange: (file: File | null) => void; }) => {
-    const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-      e.preventDefault();
-      const droppedFile = e.dataTransfer.files[0];
-      if (droppedFile) onChange(droppedFile);
-    };
+const FileUpload = ({
+  file,
+  onChange,
+}: {
+  file: File | null;
+  onChange: (file: File | null) => void;
+}) => {
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    const droppedFile = e.dataTransfer.files[0];
+    if (droppedFile) onChange(droppedFile);
+  };
 
-    const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-      e.preventDefault();
-    };
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+  };
 
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const selectedFile = e.target.files?.[0] || null;
-      onChange(selectedFile);
-    };
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files?.[0] || null;
+    onChange(selectedFile);
+  };
 
-    return (
-      <div className="mb-6">
-        <label className="block text-sm font-medium text-gray-700 mb-2">
-          Attachment (Optional)
-        </label>
+  return (
+    <div className="mb-6">
+      <label className="block text-sm font-medium text-gray-700 mb-2">
+        Attachment (Optional)
+      </label>
 
-        {file ? (
-            // UI to show when a file is selected
-            <div className="bg-purple-50 border border-purple-200 rounded-lg p-3 flex items-center justify-between">
-                <div className="flex items-center gap-3 min-w-0">
-                    <div className="w-10 h-10 bg-white border border-purple-200 rounded-full flex items-center justify-center flex-shrink-0">
-                        <File size={20} className="text-primary-500" />
-                    </div>
-                    <div className="min-w-0">
-                        <p className="text-sm font-medium text-gray-800 truncate">{file.name}</p>
-                        <p className="text-xs text-gray-500">{formatFileSize(file.size)}</p>
-                    </div>
-                </div>
-                <button
-                    onClick={() => onChange(null)}
-                    className="text-gray-500 hover:text-red-600 p-2 rounded-full transition-colors flex-shrink-0"
-                    aria-label="Remove file"
-                >
-                    <Trash2 size={20} />
-                </button>
+      {file ? (
+        // UI to show when a file is selected
+        <div className="bg-purple-50 border border-purple-200 rounded-lg p-3 flex items-center justify-between">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="w-10 h-10 bg-white border border-purple-200 rounded-full flex items-center justify-center flex-shrink-0">
+              <File size={20} className="text-primary-500" />
             </div>
-        ) : (
-            // The dropzone UI to show when no file is selected
-            <div
-                onDrop={handleDrop}
-                onDragOver={handleDragOver}
-                className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-primary-500 transition-colors cursor-pointer"
-            >
-                <div className="flex flex-col items-center">
-                    <div className="w-12 h-12 bg-primary-50 rounded-full flex items-center justify-center mb-3">
-                        <Upload size={24} className="text-primary-500" />
-                    </div>
-                    <p className="text-sm text-gray-700 mb-1">
-                        <label className="text-primary-500 font-medium cursor-pointer">
-                            Click to upload
-                            <input
-                                type="file"
-                                className="hidden"
-                                onChange={handleFileChange}
-                            />
-                        </label>
-                        {' '}or drag and drop
-                    </p>
-                    <p className="text-xs text-gray-500">
-                        SVG, PNG, JPG or GIF (max. 800x400px)
-                    </p>
-                </div>
+            <div className="min-w-0">
+              <p className="text-sm font-medium text-gray-800 truncate">
+                {file.name}
+              </p>
+              <p className="text-xs text-gray-500">
+                {formatFileSize(file.size)}
+              </p>
             </div>
-        )}
-      </div>
-    );
+          </div>
+          <button
+            onClick={() => onChange(null)}
+            className="text-gray-500 hover:text-red-600 p-2 rounded-full transition-colors flex-shrink-0"
+            aria-label="Remove file"
+          >
+            <Trash2 size={20} />
+          </button>
+        </div>
+      ) : (
+        // The dropzone UI to show when no file is selected
+        <div
+          onDrop={handleDrop}
+          onDragOver={handleDragOver}
+          className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-primary-500 transition-colors cursor-pointer"
+        >
+          <div className="flex flex-col items-center">
+            <div className="w-12 h-12 bg-primary-50 rounded-full flex items-center justify-center mb-3">
+              <Upload size={24} className="text-primary-500" />
+            </div>
+            <p className="text-sm text-gray-700 mb-1">
+              <label className="text-primary-500 font-medium cursor-pointer">
+                Click to upload
+                <input
+                  type="file"
+                  className="hidden"
+                  onChange={handleFileChange}
+                />
+              </label>{" "}
+              or drag and drop
+            </p>
+            <p className="text-xs text-gray-500">
+              SVG, PNG, JPG or GIF (max. 800x400px)
+            </p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 };
 
 const DurationDisplay = ({ days }: { days: number }) => (
-    <div className="flex items-center gap-3 my-6">
-      <div className="flex-grow h-px bg-gray-200" />
-      <p className="text-sm text-gray-500 whitespace-nowrap">
-        Duration of time off: <span className="font-medium text-gray-700">{days} {days === 1 ? 'day' : 'days'}</span>
-      </p>
-      <div className="flex-grow h-px bg-gray-200" />
-    </div>
+  <div className="flex items-center gap-3 my-6">
+    <div className="flex-grow h-px bg-gray-200" />
+    <p className="text-sm text-gray-500 whitespace-nowrap">
+      Duration of time off:{" "}
+      <span className="font-medium text-gray-700">
+        {days} {days === 1 ? "day" : "days"}
+      </span>
+    </p>
+    <div className="flex-grow h-px bg-gray-200" />
+  </div>
 );
 
-// ============================================
-// MAIN FORM COMPONENT
-// ============================================
 export const CreateTimeOffForm = ({ employees }: { employees: Employee[] }) => {
   const [formData, setFormData] = useState<TimeOffFormData>({
     employee: null,
