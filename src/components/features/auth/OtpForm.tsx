@@ -81,10 +81,15 @@ const OtpForm: React.FC = () => {
   return (
     <div className="space-y-5 ">
       <div className="space-y-2">
-        <label htmlFor="otp" className="text-xs font-medium text-text-header">
+        <label htmlFor="otp-group" className="text-xs font-medium text-text-header">
           OTP
         </label>
-        <div className="flex justify-between items-center gap-2 max-w-md ">
+        <div 
+          id="otp-group" 
+          className="flex justify-between items-center gap-2 max-w-md"
+          role="group"
+          aria-labelledby="otp-label"
+        >
           {otp.map((digit, idx) => (
             <input
               key={idx}
@@ -94,12 +99,13 @@ const OtpForm: React.FC = () => {
               type="text"
               inputMode="numeric"
               maxLength={1}
-              id="otp"
+              id={`otp-${idx}`}
               value={masked[idx] && digit ? "*" : digit}
               onChange={(e) => handleChange(e, idx)}
               onKeyDown={(e) => handleKeyDown(e, idx)}
               className="flex-1 bg-[#f5f6f7] rounded-lg border-0  text-center text-text-header outline-none focus:ring-0 flex appearance-none w-12.5 sm:w-16 py-5  font-semibold"
               autoFocus={idx === activeInput}
+              aria-label={`OTP digit ${idx + 1}`}
             />
           ))}
         </div>
@@ -110,7 +116,11 @@ const OtpForm: React.FC = () => {
             Resend code in <span className="text-primary-500">{timer}</span>
           </span>
         ) : (
-          <button className="text-primary-500" onClick={handleResend}>
+          <button 
+            className="text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded" 
+            onClick={handleResend}
+            aria-label="Resend OTP code"
+          >
             Resend Code
           </button>
         )}

@@ -104,8 +104,6 @@ const EmailVerification: React.FC<EmailVerificationProps> = ({
       const valid = await onVerify(otp.join(""));
       if (!valid) {
         setError("Invalid code. Try again.");
-        setOtp(Array(otpLength).fill(""));
-        inputRefs.current[0]?.focus();
       }
     } catch {
       setError("Verification failed. Try again.");
@@ -121,7 +119,6 @@ const EmailVerification: React.FC<EmailVerificationProps> = ({
     try {
       await onResend();
       setCountdown(resendCooldown);
-      setOtp(Array(otpLength).fill(""));
       inputRefs.current[0]?.focus();
       setShowDidntGetModal(false);
     } catch {
@@ -140,22 +137,22 @@ const EmailVerification: React.FC<EmailVerificationProps> = ({
 
   return (
     <>
-      <div className={`max-w-md  p-2  ${className}`}>
+      <div className={``}>
         <div className="mb-12">
-          <h1 className="md:text-[40px] text-3xl font-bold text-[#17171C] mb-3">
+          <h2 className="text-[#17171C] text-3xl md:text-[2.5rem] font-bold mb-2 tracking-[-2%]">
             Verify your email address
-          </h1>
-          <p className="text-[#414F62] text-[16px] font-medium">
+          </h2>
+          <p className="text-[#414F62] text-[16px] w-[440px]">
             Please enter the verification code sent to <br /> your email address{" "}
             <span className="font-medium">{maskEmail(email)}</span>
           </p>
         </div>
 
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block mb-2 text-sm font-medium text-gray-700">
             OTP
           </label>
-          <div className="flex gap-2 justify-between">
+          <div className="flex justify-between gap-2">
             {otp.map((digit, i) => (
               <div key={i} className="relative">
                 <input
@@ -168,10 +165,8 @@ const EmailVerification: React.FC<EmailVerificationProps> = ({
                   onChange={(e) => handleInput(i, e.target.value)}
                   onKeyDown={(e) => handleKey(i, e)}
                   onPaste={handlePaste}
-                  className={`w-[66px] h-[72px] text-center text-[#17171C] ${digit ? "text-[1px]" : "text-2xl"} font-medium border rounded-lg focus:ring-2 focus:ring-[#5E2A8C] transition-colors flex items-center ${
-                    error
-                      ? "border-red-300 bg-red-50"
-                      : "border-gray-300 bg-gray-50 hover:bg-white focus:bg-white"
+                  className={`w-13 md:w-16 outline-0 bg-[#F5F6F7] border border-gray-200 h-14 md:h-[72px] text-center text-[#17171C] ${digit ? "text-[1px]" : "text-2xl"} font-medium  rounded-lg  transition-colors flex items-center ${
+                    error ? " border-red-500" : ""
                   }`}
                   maxLength={1}
                   autoComplete="off"
@@ -192,11 +187,11 @@ const EmailVerification: React.FC<EmailVerificationProps> = ({
           </div>
         </div>
 
-        {error && (
-          <div className="mb-4 text-sm text-red-600 text-center">{error}</div>
-        )}
+        {/* {error && (
+          <div className="mb-4 text-sm text-center text-red-600">{error}</div>
+        )} */}
 
-        <div className="text-center mb-6">
+        <div className="mb-6 text-center">
           {countdown > 0 ? (
             <span className="text-[#BDC5D1]">
               Resend code{" "}
@@ -225,23 +220,13 @@ const EmailVerification: React.FC<EmailVerificationProps> = ({
           {verifying ? "Verifying..." : "Verify"}
         </button>
 
-        <div className="text-center mt-6">
+        <div className="mt-6 text-center">
           <button
             onClick={resend}
             disabled={!canResend}
             className="text-sm text-[#5E2A8C] hover:text-[#5E2A8C]/70 font-medium disabled:text-gray-400 disabled:cursor-not-allowed"
           >
             Didn&apos;t get the code?
-          </button>
-        </div>
-
-        <div className="text-center mb-4">
-          <button
-            type="button"
-            onClick={onGoBack}
-            className="text-sm text-[#5E2A8C] hover:underline"
-          >
-            Go back
           </button>
         </div>
       </div>
