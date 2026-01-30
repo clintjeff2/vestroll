@@ -76,26 +76,13 @@ export default function ForgotPasswordPage({
   };
 
   return (
-    <div className="min-h-screen w-full bg-white">
+    <div className="w-full min-h-screen bg-white">
       <div className="flex flex-col lg:flex-row">
-        <div className="lg:hidden flex items-center justify-start my-4 mx-4">
-          <img
-            src="/mobilelogo.png.png"
-            alt=""
-            className="w-10 h-10 -scale-y-100"
-          />
-        </div>
-
-        {/* Left Side - Hero Section (Desktop Only) */}
-        <div className="hidden lg:flex lg:w-1/2 bg-white text-white p-4 lg:p-8 flex-col justify-center relative overflow-hidden h-full w-full">
-          <div className="">
-            <img src="/left.svg" alt="left image" className="object-cover" />
-          </div>
-        </div>
+        
 
         {/* Right Side - Form Section */}
-        <div className="flex-1 flex flex-col">
-          <div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8">
+        <div className="flex flex-col flex-1">
+          <div className="flex items-center justify-center flex-1 px-4 py-8 sm:px-6 lg:px-8">
             <div className="w-full max-w-md lg:max-w-md">
               <div className="mb-8">
                 <h2 className="text-[#17171C] text-[40px] font-bold mb-2">
@@ -139,7 +126,7 @@ export default function ForgotPasswordPage({
                 >
                   {isLoading ? (
                     <div className="flex items-center justify-center">
-                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2"></div>
+                      <div className="w-5 h-5 mr-2 border-2 rounded-full border-white/30 border-t-white animate-spin"></div>
                       Signing in...
                     </div>
                   ) : (
@@ -147,7 +134,7 @@ export default function ForgotPasswordPage({
                   )}
                 </button>
 
-                <div className="flex justify-center items-center">
+                <div className="flex items-center justify-center">
                   <button
                     type="button"
                     disabled={isLoading}
