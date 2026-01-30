@@ -28,6 +28,12 @@ export class InternalServerError extends AppError {
   }
 }
 
+export class UnauthorizedError extends AppError {
+  constructor(message: string = "Authentication required") {
+    super(message, 401);
+  }
+}
+
 export class OAuthError extends AppError {
   constructor(message: string = "OAuth authentication failed", errors: Record<string, unknown> | null = null) {
     super(message, 401, errors);
@@ -58,3 +64,20 @@ export class IssuerMismatchError extends OAuthError {
   }
 }
 
+export class ForbiddenError extends AppError {
+  constructor(message: string = "Access forbidden") {
+    super(message, 403);
+  }
+}
+
+export class NotFoundError extends AppError {
+  constructor(message: string = "Resource not found") {
+    super(message, 404);
+  }
+}
+
+export class TooManyRequestsError extends AppError {
+  constructor(message: string = "Too many requests") {
+    super(message, 429);
+  }
+}
