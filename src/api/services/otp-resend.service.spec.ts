@@ -31,7 +31,7 @@ describe("OTPResendService", () => {
   });
 
   it("should throw NotFoundError if user does not exist", async () => {
-    vi.mocked(UserService.findByEmail).mockResolvedValue(null as MockUser);
+    vi.mocked(UserService.findByEmail).mockResolvedValue(null as unknown as MockUser);
 
     await expect(
       OTPResendService.resendOTP("nonexistent@example.com")
@@ -54,6 +54,11 @@ describe("OTPResendService", () => {
       twoFactorEnabledAt: null,
       failedTwoFactorAttempts: 0,
       twoFactorLockoutUntil: null,
+      failedLoginAttempts: 0,
+      lockedUntil: null,
+      oauthProvider: null,
+      oauthId: null,
+      lastLoginAt: null,
       createdAt: new Date(),
       updatedAt: new Date(),
     };
@@ -81,6 +86,11 @@ describe("OTPResendService", () => {
       twoFactorEnabledAt: null,
       failedTwoFactorAttempts: 0,
       twoFactorLockoutUntil: null,
+      failedLoginAttempts: 0,
+      lockedUntil: null,
+      oauthProvider: null,
+      oauthId: null,
+      lastLoginAt: null,
       createdAt: new Date(),
       updatedAt: new Date(),
     };
@@ -112,6 +122,11 @@ describe("OTPResendService", () => {
       twoFactorEnabledAt: null,
       failedTwoFactorAttempts: 0,
       twoFactorLockoutUntil: null,
+      failedLoginAttempts: 0,
+      lockedUntil: null,
+      oauthProvider: null,
+      oauthId: null,
+      lastLoginAt: null,
       createdAt: new Date(),
       updatedAt: new Date(),
     };
@@ -177,6 +192,11 @@ describe("OTPResendService", () => {
       twoFactorEnabledAt: null,
       failedTwoFactorAttempts: 0,
       twoFactorLockoutUntil: null,
+      failedLoginAttempts: 0,
+      lockedUntil: null,
+      oauthProvider: null,
+      oauthId: null,
+      lastLoginAt: null,
       createdAt: new Date(),
       updatedAt: new Date(),
     };
@@ -230,6 +250,11 @@ describe("OTPResendService", () => {
       twoFactorEnabledAt: null,
       failedTwoFactorAttempts: 0,
       twoFactorLockoutUntil: null,
+      failedLoginAttempts: 0,
+      lockedUntil: null,
+      oauthProvider: null,
+      oauthId: null,
+      lastLoginAt: null,
       createdAt: new Date(),
       updatedAt: new Date(),
     };

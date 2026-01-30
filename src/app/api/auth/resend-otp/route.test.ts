@@ -20,7 +20,7 @@ describe("POST /api/auth/resend-otp", () => {
     vi.restoreAllMocks();
   });
 
-  const createMockRequest = (body: any): NextRequest => {
+  const createMockRequest = (body: Record<string, unknown>): NextRequest => {
     return {
       json: async () => body,
     } as NextRequest;

@@ -16,3 +16,9 @@ export const ResendOTPSchema = z.object({
 });
 
 export type ResendOTPInput = z.infer<typeof ResendOTPSchema>;
+
+export const GoogleOAuthSchema = z.object({
+  idToken: z.string().min(1, "ID token is required"),
+});
+
+export type GoogleOAuthInput = z.infer<typeof GoogleOAuthSchema>;

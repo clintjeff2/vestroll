@@ -1,20 +1,31 @@
-'use client';
-import AuthLayer from '@/components/features/auth/AuthLayer';
-import Stepper from '@/components/features/auth/Stepper';
-import EmailVerification from '@/components/shared/emailVerificationModal';
-import { useRouter } from 'next/navigation';
+"use client";
+import EmailVerification from "@/components/shared/emailVerificationModal";
+import { useRouter } from "next/navigation";
 
 function VerifyEmailPage() {
   const router = useRouter();
-  const mockEmail = 'zanab12ab@gmail.com';
+  const mockEmail = "zanab12ab@gmail.com";
 
   const handleVerify = async (otp: string) => {
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    const isValid = otp === '123456';
+    const isValid = otp === "123456";
 
     if (isValid) {
-      router.push('/onboarding/complete');
+      // Update localStorage
+      const existingData = JSON.parse(
+        localStorage.getItem("registrationData") || "{}",
+      );
+      localStorage.setItem(
+        "registrationData",
+        JSON.stringify({
+          ...existingData,
+          emailVerified: true,
+          step: 3,
+        }),
+      );
+
+      router.push("/account-type");
     }
 
     return isValid;
@@ -22,7 +33,7 @@ function VerifyEmailPage() {
 
   const handleResend = async () => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log('Verification code resent!');
+    console.log("Verification code resent!");
   };
 
   const handleGoBack = () => {
@@ -30,21 +41,14 @@ function VerifyEmailPage() {
   };
 
   return (
-    <AuthLayer>
-      <div className="max-w-md mx-auto space-y-12">
-        <Stepper totalSteps={5} currentStep={3} />
-        <EmailVerification
-          email={mockEmail}
-          onVerify={handleVerify}
-          onResend={handleResend}
-          onGoBack={handleGoBack}
-          resendCooldown={60}
-          className="mt-8"
-        />
-      </div>
-    </AuthLayer>
+    <EmailVerification
+      email={mockEmail}
+      onVerify={handleVerify}
+      onResend={handleResend}
+      onGoBack={handleGoBack}
+      resendCooldown={60}
+    />
   );
 }
 
 export default VerifyEmailPage;
-
