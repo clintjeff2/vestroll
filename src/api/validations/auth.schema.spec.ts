@@ -87,7 +87,6 @@ describe("ResendOTPSchema", () => {
     expect(result.success).toBe(false);
   });
 });
-
 describe("VerifyEmailSchema", () => {
   it("should validate a correct payload", () => {
     const payload = {
