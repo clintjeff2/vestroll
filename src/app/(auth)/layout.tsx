@@ -5,5 +5,9 @@ export default function AuthLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <AuthLayer>{children}</AuthLayer>;
+  return (
+    <div className="light" data-theme="light">
+      <AuthLayer>{children}</AuthLayer>
+    </div>
+  );
 }

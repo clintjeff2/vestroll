@@ -116,7 +116,7 @@ export default function ContractForm() {
         <h2 className="text-lg font-semibold text-gray-900 mr-4 whitespace-nowrap dark:text-white">
           Payment details
         </h2>
-        <hr className="flex-grow border-t border-gray-200 dark:border-gray-700" />
+        <hr className="grow border-t border-gray-200 dark:border-gray-700" />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
@@ -136,7 +136,7 @@ export default function ContractForm() {
                 </option>
               ))}
             </Select>
-            <div className="absolute left-4 top-1/2 -translate-y-1/2 w-6 h-6 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center pointer-events-none">
+            <div className="absolute left-4 top-1/2 -translate-y-1/2 w-6 h-6 bg-linear-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center pointer-events-none">
               <div className="w-3 h-3 border-2 border-white rounded-full"></div>
             </div>
             <svg
@@ -163,7 +163,7 @@ export default function ContractForm() {
           </label>
           <div className="relative">
             <div className="flex items-center w-full px-4 py-3 bg-gray-50 border-0 rounded-lg dark:bg-gray-800">
-              <div className="w-8 h-6 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+              <div className="w-8 h-6 rounded-full flex items-center justify-center mr-3 shrink-0">
                 {getAssetIcon()}
               </div>
               <select
@@ -182,7 +182,7 @@ export default function ContractForm() {
                 ))}
               </select>
               <svg
-                className="w-5 h-5 text-gray-400 mr-auto flex-shrink-0"
+                className="w-5 h-5 text-gray-400 mr-auto shrink-0"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

@@ -122,17 +122,17 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
   return (
     <div className={`max-w-md  p-2  ${className}`}>
       <div className="mb-12">
-        <h1 className="md:text-[40px] text-3xl font-bold text-[#17171C] mb-3">
+        <h1 className="md:text-[40px] text-3xl font-bold text-gray-900 mb-3">
           Provide the 6-digit code
         </h1>
-        <p className="text-[#414F62] text-[16px] font-medium">
+        <p className="text-gray-600 text-[16px] font-medium">
           Please enter the verification code sent to <br /> your email address{" "}
           <span className="font-medium">{maskEmail(email)}</span>
         </p>
       </div>
 
       <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-900 mb-2">
           OTP
         </label>
         <div className="flex gap-2 justify-between">
@@ -148,10 +148,10 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
                 onChange={(e) => handleInput(i, e.target.value)}
                 onKeyDown={(e) => handleKey(i, e)}
                 onPaste={handlePaste}
-                className={`w-[66px] h-[72px] text-center text-[#17171C] ${digit ? "text-[1px]" : "text-2xl"} font-medium border rounded-lg focus:ring-2 focus:ring-[#5E2A8C] transition-colors flex items-center ${
+                className={`w-[66px] h-[72px] text-center text-gray-900 ${digit ? "text-[1px]" : "text-2xl"} font-medium border rounded-lg focus:ring-2 focus:ring-[#5E2A8C] transition-colors flex items-center ${
                   error
                     ? "border-red-300 bg-red-50"
-                    : "border-gray-300 bg-gray-50 hover:bg-white focus:bg-white"
+                    : "border-gray-200 bg-gray-50 hover:bg-white focus:bg-white"
                 }`}
                 maxLength={1}
                 autoComplete="off"
@@ -178,7 +178,7 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
 
       <div className="text-center mb-6">
         {countdown > 0 ? (
-          <span className="text-[#BDC5D1]">
+          <span className="text-gray-600">
             Resend code{" "}
             <span className="text-[#5E2A8C]">{formatTime(countdown)}</span>
           </span>
@@ -186,7 +186,7 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
           <button
             onClick={resend}
             disabled={!canResend}
-            className="text-sm text-[#5E2A8C] hover:text-[#5E2A8C]/70 font-medium disabled:opacity-50"
+            className="text-sm text-[#5E2A8C] hover:text-[#4E2275] font-medium disabled:opacity-50"
           >
             {resending ? "Sending..." : "Resend code"}
           </button>
@@ -198,8 +198,8 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
         disabled={!canVerify}
         className={`w-full py-3 px-4 rounded-lg font-medium text-white transition-all ${
           canVerify
-            ? "bg-[#5E2A8C] hover:bg-[#5E2A8C] shadow-sm hover:shadow-md"
-            : "bg-[#5E2A8C] cursor-not-allowed"
+            ? "bg-[#5E2A8C] hover:bg-[#4E2275] shadow-sm hover:shadow-md"
+            : "bg-[#5E2A8C] cursor-not-allowed opacity-50"
         }`}
       >
         {verifying ? "Verifying..." : "continue"}
@@ -209,7 +209,7 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
         <button
           onClick={resend}
           disabled={!canResend}
-          className="text-sm text-[#5E2A8C] hover:text-[#5E2A8C]/70 font-medium disabled:text-gray-400 disabled:cursor-not-allowed"
+          className="text-sm text-[#5E2A8C] hover:text-[#4E2275] font-medium disabled:text-gray-600 disabled:cursor-not-allowed"
         >
           Didn&apos;t get the code?
         </button>

@@ -82,7 +82,7 @@ export class GoogleOAuthService {
     }
   }
 
-  private static extractUserInfo(payload: any): GoogleUserInfo {
+  private static extractUserInfo(payload: any): OAuthUserInfo {
     const nameParts = (payload.name || "").split(" ");
     const firstName = nameParts[0] || payload.given_name || "";
     const lastName = nameParts.slice(1).join(" ") || payload.family_name || "";

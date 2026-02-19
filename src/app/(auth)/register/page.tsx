@@ -126,17 +126,17 @@ export default function Register() {
             <Stepper totalSteps={5} currentStep={1} />
           </div>
           <div className="mb-8">
-            <h2 className="text-[#17171C] text-3xl md:text-[2.5rem] font-bold mb-2 tracking-[-2%]">
+            <h2 className="text-gray-900 text-3xl md:text-[2.5rem] font-bold mb-2 tracking-[-2%]">
               Welcome to VestRoll!
             </h2>
-            <p className="text-[#414F62] text-[12px] md:text-[16px] md:font-medium md:leading-1.5">
+            <p className="text-gray-600 text-[12px] md:text-[16px] md:font-medium md:leading-1.5">
               Let&apos;s get to know you! Provide the details blow to continue
             </p>
           </div>
 
           <div className="mt-8 space-y-5">
             <div>
-              <label className="block text-[#17171C] text-[12px] font-medium mb-2">
+              <label className="block text-gray-900 text-[12px] font-medium mb-2">
                 First Name
               </label>
               <div className="text-gray-900 ">
@@ -147,9 +147,9 @@ export default function Register() {
                   placeholder="Provide your first name "
                   onChange={handleChange}
                   required
-                  className={`w-full pl-3 pr-3 py-3 sm:py-3.5 bg-[#F5F6F7] rounded-[8px] border ${
+                  className={`w-full pl-3 pr-3 py-3 sm:py-3.5 bg-gray-50 text-gray-900 rounded-[8px] border ${
                     errors.firstName ? "border-red-300" : "border-gray-200"
-                  } rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200 text-sm sm:text-base`}
+                  } rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5E2A8C] focus:border-[#5E2A8C] transition-all duration-200 text-sm sm:text-base`}
                 />
               </div>
               {errors.firstName && (
@@ -158,7 +158,7 @@ export default function Register() {
             </div>
 
             <div>
-              <label className="block text-[#17171C] text-[12px] font-medium mb-2">
+              <label className="block text-gray-900 text-[12px] font-medium mb-2">
                 Last Name
               </label>
               <div className="text-gray-900 ">
@@ -169,9 +169,9 @@ export default function Register() {
                   placeholder="Provide your last name "
                   onChange={handleChange}
                   required
-                  className={`w-full pl-3 pr-3 py-3 sm:py-3.5 bg-[#F5F6F7] rounded-[8px] border ${
+                  className={`w-full pl-3 pr-3 py-3 sm:py-3.5 bg-gray-50 text-gray-900 rounded-[8px] border ${
                     errors.lastName ? "border-red-300" : "border-gray-200"
-                  } rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200 text-sm sm:text-base`}
+                  } rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5E2A8C] focus:border-[#5E2A8C] transition-all duration-200 text-sm sm:text-base`}
                 />
               </div>
               {errors.lastName && (
@@ -180,7 +180,7 @@ export default function Register() {
             </div>
 
             <div>
-              <label className="block text-[#17171C] text-[12px] font-medium mb-2">
+              <label className="block text-gray-900 text-[12px] font-medium mb-2">
                 Business email address
               </label>
               <div className="text-gray-900 ">
@@ -191,9 +191,9 @@ export default function Register() {
                   placeholder="Provide email address "
                   onChange={handleChange}
                   required
-                  className={`w-full pl-3 pr-3 py-3 sm:py-3.5 bg-[#F5F6F7] rounded-[8px] border ${
+                  className={`w-full pl-3 pr-3 py-3 sm:py-3.5 bg-gray-50 text-gray-900 rounded-[8px] border ${
                     errors.businessEmail ? "border-red-300" : "border-gray-200"
-                  } rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200 text-sm sm:text-base`}
+                  } rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5E2A8C] focus:border-[#5E2A8C] transition-all duration-200 text-sm sm:text-base`}
                 />
               </div>
               {errors.businessEmail && (
@@ -212,7 +212,7 @@ export default function Register() {
                     type="checkbox"
                     checked={formData.agreement}
                     onChange={handleChange}
-                    className="w-5 h-5 border rounded appearance-none cursor-pointer peer border-primary-500 checked:bg-primary-500 checked:border-primary-500"
+                    className="w-5 h-5 border rounded appearance-none cursor-pointer peer border-[#5E2A8C] checked:bg-[#5E2A8C] checked:border-[#5E2A8C]"
                   />
 
                   {/* Check icon */}
@@ -247,7 +247,7 @@ export default function Register() {
               onClick={handleSubmit}
               className={`w-full py-3.5 sm:py-4 text-[16px] mt-8 px-4 rounded-[12px] font-semibold text-white text-sm sm:text-base transition-all duration-200 cursor-pointer ${
                 !isLoading
-                  ? "bg-[#5E2A8C] hover:bg-purple-800 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transform hover:scale-[1.02] active:scale-[0.98]"
+                  ? "bg-[#5E2A8C] hover:bg-[#4E2275] focus:outline-none focus:ring-2 focus:ring-[#5E2A8C] focus:ring-offset-2 transform hover:scale-[1.02] active:scale-[0.98]"
                   : "bg-gray-300 cursor-not-allowed"
               }`}
             >
@@ -267,7 +267,7 @@ export default function Register() {
               Already own a VestRoll account?
               <a
                 href="/login"
-                className="font-semibold text-[16px] text-purple-700 hover:text-purple-800"
+                className="font-semibold text-[16px] text-[#5E2A8C] hover:text-[#4E2275]"
               >
                 Login
               </a>

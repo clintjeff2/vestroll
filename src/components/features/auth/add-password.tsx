@@ -33,12 +33,12 @@ const RequirementItem: React.FC<RequirementItemProps> = ({ met, text }) => {
     <div className="flex items-center gap-3">
       <div
         className={`w-5 h-5 rounded-full flex items-center justify-center transition-all ${
-          met ? "bg-[#5E2A8C]" : "bg-white border-2 border-gray-300"
+          met ? "bg-primary-500" : "bg-white border-2 border-gray-200"
         }`}
       >
         {met && <Check size={14} className="text-white" />}
       </div>
-      <span className={`text-sm ${met ? "text-gray-900" : "text-gray-500"}`}>
+      <span className={`text-sm ${met ? "text-gray-900" : "text-gray-600"}`}>
         {text}
       </span>
     </div>
@@ -114,10 +114,10 @@ export default function PasswordPage({
         {/* Form */}
         <div className="flex flex-col ">
           <div className="mb-8 space-y-2">
-            <h2 className="text-[#17171C] text-3xl md:text-[2.5rem] font-bold mb-2 tracking-[-2%]">
+            <h2 className="text-gray-900 text-3xl md:text-[2.5rem] font-bold mb-2 tracking-[-2%]">
               Add a password
             </h2>
-            <p className="text-[#414F62] text-[16px] w-[440px]">
+            <p className="text-gray-600 text-[16px] w-[440px]">
               Create a secure password to access your VestRoll account for
               subsequent login
             </p>
@@ -128,7 +128,7 @@ export default function PasswordPage({
             <div>
               <label
                 htmlFor="new-password"
-                className="block text-[12px] font-medium text-[#17171C] mb-2"
+                className="block text-[12px] font-medium text-gray-900 mb-2"
               >
                 New password
               </label>
@@ -139,7 +139,7 @@ export default function PasswordPage({
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter password"
-                  className="w-full px-4 py-4 text-gray-900 bg-gray-100 rounded-lg focus:outline-none"
+                  className="w-full px-4 py-4 text-gray-900 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5E2A8C] focus:border-[#5E2A8C]"
                   aria-describedby="password-requirements"
                 />
                 <button
@@ -157,7 +157,7 @@ export default function PasswordPage({
             <div>
               <label
                 htmlFor="confirm-password"
-                className="block text-[12px] font-medium text-[#17171C] mb-2"
+                className="block text-[12px] font-medium text-gray-900 mb-2"
               >
                 Confirm password
               </label>
@@ -168,7 +168,7 @@ export default function PasswordPage({
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="Confirm password"
-                  className="w-full px-4 py-4 text-gray-900 bg-gray-100 rounded-lg focus:outline-none"
+                  className="w-full px-4 py-4 text-gray-900 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5E2A8C] focus:border-[#5E2A8C]"
                 />
                 <button
                   type="button"
@@ -226,7 +226,7 @@ export default function PasswordPage({
                 disabled={!canSubmit}
                 className={`${onBack && currentStep > 0 ? "w-2/3" : "w-full"} py-4 rounded-xl font-semibold text-white transition-all ${
                   canSubmit
-                    ? "bg-[#5E2A8C] shadow-lg hover:shadow-xl hover:bg-[#4d2270] cursor-pointer"
+                    ? "bg-[#5E2A8C] shadow-lg hover:shadow-xl hover:bg-[#4E2275] cursor-pointer"
                     : "bg-gray-300 cursor-not-allowed"
                 }`}
                 aria-label="Create password"

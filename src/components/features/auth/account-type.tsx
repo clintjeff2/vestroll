@@ -69,7 +69,7 @@ export default function VestRollAccountSelection() {
               <div
                 className={`w-24 h-24 lg:w-32 lg:h-32 p-4 cursor-pointer transition-all border-2 flex items-center justify-center ${
                   selectedType === type.id
-                    ? " border-purple-600"
+                    ? " border-primary-500"
                     : "hover:bg-gray-50 border-gray-200"
                 } rounded-full`}
                 onClick={() => {
@@ -90,7 +90,7 @@ export default function VestRollAccountSelection() {
 
         {/* Continue Button */}
         <Button
-          className="w-full h-[56px] bg-purple-600 hover:bg-purple-700 text-white py-3 lg:py-4 text-base lg:text-lg font-medium rounded-lg disabled:bg-primary-500/70 cursor-not-allowed"
+          className="w-full h-[56px] bg-[#5E2A8C] hover:bg-[#4E2275] text-white py-3 lg:py-4 text-base lg:text-lg font-medium rounded-lg disabled:bg-[#5E2A8C]/70 cursor-not-allowed"
           disabled={!selectedType}
           onClick={() => {
             const existingData = JSON.parse(

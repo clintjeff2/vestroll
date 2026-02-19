@@ -65,7 +65,7 @@ export class OAuthUserProvisioningService {
 
   static async updateOAuthInfo(
     userId: string,
-    oauthInfo: { oauthProvider: string; oauthId: string },
+    oauthInfo: { oauthProvider: "google" | "apple"; oauthId: string },
   ) {
     const [updatedUser] = await db
       .update(users)
@@ -95,7 +95,7 @@ export class OAuthUserProvisioningService {
     email: string;
     firstName: string;
     lastName: string;
-    oauthProvider: string;
+    oauthProvider: "google" | "apple";
     oauthId: string;
   }) {
     const [user] = await db

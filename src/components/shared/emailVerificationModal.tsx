@@ -139,10 +139,10 @@ const EmailVerification: React.FC<EmailVerificationProps> = ({
     <>
       <div className={``}>
         <div className="mb-12">
-          <h2 className="text-[#17171C] text-3xl md:text-[2.5rem] font-bold mb-2 tracking-[-2%]">
+          <h2 className="text-gray-900 text-3xl md:text-[2.5rem] font-bold mb-2 tracking-[-2%]">
             Verify your email address
           </h2>
-          <p className="text-[#414F62] text-[16px] w-[440px]">
+          <p className="text-gray-600 text-[16px] w-[440px]">
             Please enter the verification code sent to <br /> your email address{" "}
             <span className="font-medium">{maskEmail(email)}</span>
           </p>
@@ -165,7 +165,7 @@ const EmailVerification: React.FC<EmailVerificationProps> = ({
                   onChange={(e) => handleInput(i, e.target.value)}
                   onKeyDown={(e) => handleKey(i, e)}
                   onPaste={handlePaste}
-                  className={`w-13 md:w-16 outline-0 bg-[#F5F6F7] border border-gray-200 h-14 md:h-[72px] text-center text-[#17171C] ${digit ? "text-[1px]" : "text-2xl"} font-medium  rounded-lg  transition-colors flex items-center ${
+                  className={`w-13 md:w-16 outline-0 bg-gray-50 border border-gray-200 h-14 md:h-[72px] text-center text-gray-900 ${digit ? "text-[1px]" : "text-2xl"} font-medium  rounded-lg  transition-colors flex items-center ${
                     error ? " border-red-500" : ""
                   }`}
                   maxLength={1}
@@ -193,7 +193,7 @@ const EmailVerification: React.FC<EmailVerificationProps> = ({
 
         <div className="mb-6 text-center">
           {countdown > 0 ? (
-            <span className="text-[#BDC5D1]">
+            <span className="text-gray-600">
               Resend code{" "}
               <span className="text-[#5E2A8C]">{formatTime(countdown)}</span>
             </span>
@@ -201,7 +201,7 @@ const EmailVerification: React.FC<EmailVerificationProps> = ({
             <button
               onClick={resend}
               disabled={!canResend}
-              className="text-sm text-[#5E2A8C] hover:text-[#5E2A8C]/70 font-medium disabled:opacity-50"
+              className="text-sm text-[#5E2A8C] hover:text-[#4E2275] font-medium disabled:opacity-50"
             >
               {resending ? "Sending..." : "Resend code"}
             </button>
@@ -213,8 +213,8 @@ const EmailVerification: React.FC<EmailVerificationProps> = ({
           disabled={!canVerify}
           className={`w-full py-3 px-4 rounded-lg font-medium text-white transition-all ${
             canVerify
-              ? "bg-[#5E2A8C] hover:bg-[#5E2A8C] shadow-sm hover:shadow-md"
-              : "bg-[#5E2A8C] cursor-not-allowed"
+              ? "bg-[#5E2A8C] hover:bg-[#4E2275] shadow-sm hover:shadow-md"
+              : "bg-[#5E2A8C] cursor-not-allowed opacity-50"
           }`}
         >
           {verifying ? "Verifying..." : "Verify"}
@@ -224,7 +224,7 @@ const EmailVerification: React.FC<EmailVerificationProps> = ({
           <button
             onClick={resend}
             disabled={!canResend}
-            className="text-sm text-[#5E2A8C] hover:text-[#5E2A8C]/70 font-medium disabled:text-gray-400 disabled:cursor-not-allowed"
+            className="text-sm text-[#5E2A8C] hover:text-[#4E2275] font-medium disabled:text-gray-400 disabled:cursor-not-allowed"
           >
             Didn&apos;t get the code?
           </button>

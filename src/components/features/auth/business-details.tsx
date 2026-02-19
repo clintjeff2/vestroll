@@ -53,7 +53,7 @@ const Dropdown: React.FC<DropdownProps> = ({
         <button
           type="button"
           onClick={onToggle}
-          className={`w-full px-4 py-3 text-left bg-[#F5F6F7] rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200 ${value ? "text-gray-900" : "text-gray-400"}`}
+          className={`w-full px-4 py-3 text-left bg-gray-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5E2A8C] focus:border-[#5E2A8C] transition-all duration-200 ${value ? "text-gray-900" : "text-gray-500"}`}
         >
           {value || placeholder}
           <ChevronDown
@@ -62,7 +62,7 @@ const Dropdown: React.FC<DropdownProps> = ({
         </button>
 
         {isOpen && (
-          <div className="absolute z-10 w-full mt-1 overflow-y-auto bg-white border border-gray-300 rounded-lg shadow-lg max-h-60">
+          <div className="absolute z-10 w-full mt-1 overflow-y-auto bg-white border border-gray-200 rounded-lg shadow-lg max-h-60">
             {options.map((option, index) => (
               <button
                 key={index}
@@ -71,7 +71,7 @@ const Dropdown: React.FC<DropdownProps> = ({
                   onChange(option);
                   onToggle();
                 }}
-                className="w-full px-4 py-3 text-left transition-colors duration-150 hover:bg-purple-50 focus:bg-purple-50 focus:outline-none"
+                className="w-full px-4 py-3 text-left transition-colors duration-150 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none text-gray-900"
               >
                 {option}
               </button>
@@ -214,7 +214,7 @@ const BusinessRegistrationForm: React.FC = () => {
 
       // Submit complete registration data using AuthService
       await AuthService.completeRegistration(completeData);
-      
+
       console.log("Registration completed successfully:", completeData);
       localStorage.removeItem("registrationData");
       setShowWelcomeModal(true);
@@ -249,10 +249,10 @@ const BusinessRegistrationForm: React.FC = () => {
 
         {/* Heading */}
         <div className="mb-8">
-          <h2 className="text-[#17171C] text-3xl md:text-[2.5rem] font-bold mb-2 tracking-[-2%]">
+          <h2 className="text-gray-900 text-3xl md:text-[2.5rem] font-bold mb-2 tracking-[-2%]">
             Add business details
           </h2>
-          <p className="text-[#414F62] text-[16px] w-[440px]">
+          <p className="text-gray-600 text-[16px] w-[440px]">
             Tell us about your business
           </p>
         </div>
@@ -269,8 +269,8 @@ const BusinessRegistrationForm: React.FC = () => {
               value={formData.companyName}
               onChange={(e) => handleInputChange("companyName", e.target.value)}
               placeholder="What's the name of your company"
-              className={`w-full px-4 py-3 bg-[#F5F6F7] text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200 ${
-                errors.companyName ? "border-red-300" : "border-gray-300"
+              className={`w-full px-4 py-3 bg-gray-50 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5E2A8C] focus:border-[#5E2A8C] transition-all duration-200 ${
+                errors.companyName ? "border-red-300" : "border-gray-200"
               }`}
             />
             {errors.companyName && (
@@ -344,10 +344,10 @@ const BusinessRegistrationForm: React.FC = () => {
               }
               placeholder="Describe what your company does"
               rows={4}
-              className={`w-full px-4 py-3 bg-[#F5F6F7] rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200 resize-none ${
+              className={`w-full px-4 py-3 bg-gray-50 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5E2A8C] focus:border-[#5E2A8C] transition-all duration-200 resize-none ${
                 errors.businessDescription
                   ? "border-red-300"
-                  : "border-gray-300"
+                  : "border-gray-200"
               }`}
             />
             {errors.businessDescription && (
@@ -364,7 +364,7 @@ const BusinessRegistrationForm: React.FC = () => {
             disabled={!isFormValid || isSubmitting}
             className={`w-full py-4 px-6 rounded-lg font-semibold text-white transition-all duration-200 ${
               isFormValid && !isSubmitting
-                ? "bg-[#5E2A8C] hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transform hover:scale-[1.02]"
+                ? "bg-[#5E2A8C] hover:bg-[#4E2275] focus:outline-none focus:ring-2 focus:ring-[#5E2A8C] focus:ring-offset-2 transform hover:scale-[1.02]"
                 : "bg-gray-300 cursor-not-allowed"
             }`}
           >

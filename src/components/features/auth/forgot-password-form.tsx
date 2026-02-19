@@ -44,10 +44,10 @@ const ForgotPasswordForm: React.FC = () => {
         {/* Form Content */}
         <div className="max-w-md">
           <div className="space-y-2">
-            <h2 className="text-[#17171C] text-[1.75rem] md:text-[2rem] tracking-[-2%] lg:text-[2.5rem] font-bold  leading-[100%] ">
+            <h2 className="text-gray-900 text-[1.75rem] md:text-[2rem] tracking-[-2%] lg:text-[2.5rem] font-bold  leading-[100%] ">
               Forgot your password?
             </h2>
-            <p className="text-[#414F62] text-xs md:text-base font-medium leading-[100%]">
+            <p className="text-gray-600 text-xs md:text-base font-medium leading-[100%]">
               Provide the email address linked to your VestRoll account to reset
               your password and login{" "}
             </p>
@@ -60,7 +60,7 @@ const ForgotPasswordForm: React.FC = () => {
           <div>
             <label
               htmlFor="email"
-              className="block mb-2 text-xs font-medium text-black"
+              className="block mb-2 text-xs font-medium text-gray-900"
             >
               Email address
             </label>
@@ -69,7 +69,7 @@ const ForgotPasswordForm: React.FC = () => {
               type="email"
               {...register("email")}
               placeholder="Provide email address"
-              className={`w-full h-[53px] px-3.5 py-4.5 mb-12 bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200 text-sm text-gray-900 placeholder-gray-400 ${
+              className={`w-full h-[53px] px-3.5 py-4.5 mb-12 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5E2A8C] focus:border-[#5E2A8C] transition-all duration-200 text-sm text-gray-900 placeholder-gray-400 ${
                 errors.email ? "border-red-300 ring-red-200" : ""
               }`}
               aria-describedby={errors.email ? "email-error" : undefined}
@@ -92,8 +92,8 @@ const ForgotPasswordForm: React.FC = () => {
             disabled={isLoading}
             className={`w-full h-[56px] py-2 px-4 rounded-lg font-medium text-sm transition-all duration-200 ${
               !isLoading
-                ? "bg-[#5E2A8C] text-white hover:bg-[#4A1F73] focus:outline-none focus:ring-2 focus:ring-[#5E2A8C] focus:ring-offset-2 focus:ring-offset-white transform hover:scale-[1.02]"
-                : "bg-[#5E2A8C] text-white opacity-50 cursor-not-allowed"
+                ? "bg-[#5E2A8C] text-white hover:bg-[#4E2275] focus:outline-none focus:ring-2 focus:ring-[#5E2A8C] focus:ring-offset-2 transform hover:scale-[1.02]"
+                : "bg-gray-300 text-white cursor-not-allowed"
             }`}
             aria-describedby="button-description"
           >
@@ -116,7 +116,7 @@ const ForgotPasswordForm: React.FC = () => {
           <div className="mt-8 text-center">
             <Link
               href="/"
-              className="text-[#5E2A8C] hover:text-[#4A1F73] font-medium text-base transition-colors duration-200 focus:outline-none "
+              className="text-[#5E2A8C] hover:text-[#4E2275] font-medium text-base transition-colors duration-200 focus:outline-none "
             >
               Back to login
             </Link>

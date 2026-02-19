@@ -23,15 +23,15 @@ export default function ModalWelcomeOnboard({
 
   return (
     <AlertDialog open={isOpen} onOpenChange={setOpen}>
-      <AlertDialogContent className="bg-white rounded-2xl p-8">
+      <AlertDialogContent className="bg-white border border-gray-200 rounded-2xl p-8">
         <button
           onClick={() => setOpen(false)}
           className="bg-transparent border-0 cursor-pointer"
         >
-          <X className="size-8 text-text-header" />
+          <X className="size-8 text-gray-900" />
         </button>
 
-        <AlertDialogHeader className="max-w-2xs !text-center m-auto">
+        <AlertDialogHeader className="max-w-2xs text-center! m-auto">
           <Image
             src="/done.svg"
             alt="success"
@@ -39,18 +39,18 @@ export default function ModalWelcomeOnboard({
             height={120}
             className="mx-auto mb-5 mt-12"
           />
-          <AlertDialogTitle className="font-bold text-[28px] text-text-header">
+          <AlertDialogTitle className="font-bold text-[28px] text-gray-900">
             Welcome Onboard!
           </AlertDialogTitle>
-          <AlertDialogDescription className="font-medium text-xs mx-10 text-text-subtext">
+          <AlertDialogDescription className="font-medium text-xs mx-10 text-gray-600">
             Experience Fast, Secure Crypto & Fiat Payroll & Invoicing with
             VestRoll
           </AlertDialogDescription>
         </AlertDialogHeader>
 
-        <AlertDialogFooter className="mt-8 !justify-center">
+        <AlertDialogFooter className="mt-8 justify-center!">
           <AlertDialogAction
-            className="bg-primary-500 hover:bg-primary-500/80 w-full text-base  text-gray-50 rounded-[12px] h-14 font-medium 
+            className="bg-[#5E2A8C] hover:bg-[#4E2275] w-full text-base  text-white rounded-[12px] h-14 font-medium 
         
           "
             onClick={() => {

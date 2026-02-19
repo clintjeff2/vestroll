@@ -4,7 +4,6 @@ import avatar from "@/../public/avatar/avatar.png";
 import OnboardingCheckList from "@/components/features/dashboard/home/OnboardingCheckList";
 import RequiringAttention from "@/components/features/dashboard/home/RequiringAttention";
 import QuickAction from "@/components/features/dashboard/home/QuickAction";
-import TransactionsList from "@/components/features/dashboard/home/TransactionsList";
 import { HeadPhoneIcon } from "@/../public/svg";
 export default function DashboardPage() {
   const user = {
@@ -30,7 +29,6 @@ export default function DashboardPage() {
         <RequiringAttention />
         <QuickAction />
       </div>
-      <TransactionsList />
 
       <div
         role="button"

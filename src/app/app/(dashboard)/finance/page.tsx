@@ -1,7 +1,6 @@
-import { MOCK_ASSETS, generateMockTransactions } from "@/lib/mock-data";
+import { MOCK_ASSETS } from "@/lib/mock-data";
 import { BalanceSection } from "@/components/features/finance/balance-section";
 import { AssetsGrid } from "@/components/features/finance/assets-grid";
-import { FinanceClient } from "@/components/features/finance/finance-client";
 
 import type {
   SupportedAssetSymbol,
@@ -25,8 +24,6 @@ const networkOptions: Option<SupportedNetwork>[] = [
   { label: "Stellar", value: "Stellar" },
 ];
 
-const allTransactions = generateMockTransactions(80);
-
 export default function FinancePage() {
   return (
     <div className="min-h-screen bg-[#F8FAFC] p-4 md:p-6 lg:p-8 dark:bg-gray-950">
@@ -46,12 +43,6 @@ export default function FinancePage() {
 
         {/* Assets Grid */}
         <AssetsGrid assets={MOCK_ASSETS} />
-
-        {/* Transactions Section with Client Component */}
-        <FinanceClient
-          allTransactions={allTransactions}
-          initialResultsPerPage={10}
-        />
       </div>
     </div>
   );

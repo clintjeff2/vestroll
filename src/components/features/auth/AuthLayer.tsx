@@ -24,7 +24,7 @@ function AuthLayer({ children }: AuthLayoutProps) {
           opacity: 1,
         }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="absolute z-50 hidden gap-2 px-5 py-3 bg-white md:flex top-2 lg:top-12 lg:left-12 rounded-xl h-fit"
+        className="absolute z-50 hidden gap-2 px-5 py-3 bg-white md:flex top-2 lg:top-12 lg:left-12 rounded-xl h-fit border border-gray-200"
       >
         <Image
           src={logo.src}
@@ -178,7 +178,7 @@ function AuthLayer({ children }: AuthLayoutProps) {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-4 font-bold leading-[100%] tracking-[0%]  text-4xl xl:text-[3.5rem]"
+            className="mb-4 font-bold leading-[100%] tracking-[0%] text-4xl xl:text-[3.5rem] text-white"
           >
             Seamless payments, anywhere.
           </motion.h1>
@@ -186,7 +186,7 @@ function AuthLayer({ children }: AuthLayoutProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-base font-medium leading-[120%]"
+            className="text-base font-medium leading-[120%] text-white/90"
           >
             VestRoll lets you manage payroll and invoicing in crypto and
             fiat—quickly and securely.
@@ -196,7 +196,7 @@ function AuthLayer({ children }: AuthLayoutProps) {
 
       {/* Right Side */}
       <div className="relative flex flex-col flex-1">
-        <div className="absolute z-50 bg-white md:hidden top rounded-xl h-fit">
+        <div className="absolute z-50 bg-white md:hidden top rounded-xl h-fit border border-gray-200">
           <Image
             src={mobilelogo}
             height={mobilelogo.height}
@@ -234,7 +234,7 @@ function AuthLayer({ children }: AuthLayoutProps) {
               opacity: 1,
             }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="text-[#7F8C9F] font-medium tracking-[0%] leading-[120%]"
+            className="text-gray-600 font-medium tracking-[0%] leading-[120%]"
           >
             &copy; 2025, all rights reserved
           </motion.p>
@@ -248,7 +248,7 @@ function AuthLayer({ children }: AuthLayoutProps) {
               opacity: 1,
             }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex items-center gap-2 text-text-header"
+            className="flex items-center gap-2 text-gray-900"
           >
             <div>
               <Link
@@ -258,7 +258,7 @@ function AuthLayer({ children }: AuthLayoutProps) {
                 Privacy Policy
               </Link>
             </div>
-            <span className="size-0.5 rounded-full bg-text-header inline-block" />
+            <span className="size-0.5 rounded-full bg-gray-900 inline-block" />
             <Link
               href=""
               className="font-medium leading-[120%] tracking-[0%] hover:text-primary-500/90 transition ease-in-out duration-300"

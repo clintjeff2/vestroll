@@ -31,7 +31,7 @@ const DidntGetEmailModal: React.FC<DidntGetEmailModalProps> = ({
       aria-modal="true"
     >
       <div
-        className="relative w-full max-w-md bg-white rounded-2xl p-6 md:p-8 shadow-xl"
+        className="relative w-full max-w-md bg-white border border-gray-100 rounded-2xl p-6 md:p-8 shadow-xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
@@ -98,7 +98,7 @@ const DidntGetEmailModal: React.FC<DidntGetEmailModalProps> = ({
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="w-full bg-[#5E2A8C] hover:bg-[#4E1F6C] text-white font-semibold py-3 px-6 rounded-lg transition-colors"
+          className="w-full bg-[#5E2A8C] hover:bg-[#4E2275] text-white font-semibold py-3 px-6 rounded-lg transition-colors"
         >
           Close
         </button>

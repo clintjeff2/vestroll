@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/providers/theme-provider";
 import { ReduxProvider } from "@/components/providers/provider";
 import Modal from "@/components/shared/modal/Modal";
 
@@ -32,10 +31,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} bg-background text-text-primary antialiased`}
       >
         <ReduxProvider>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <Modal />
-            {children}
-          </ThemeProvider>
+          <Modal />
+          {children}
         </ReduxProvider>
       </body>
     </html>

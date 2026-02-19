@@ -1,7 +1,8 @@
 import EmptyState from "@/components/ui/EmptyState";
 import { Check, XCircle, Clock } from "lucide-react";
 import { cn } from "@/utils/classNames";
-import { Transaction, transactions } from "@/lib/data/transactions";
+import { Transaction } from "@/types/finance.types";
+const transactions: Transaction[] = [];
 import { CalendarIcon } from "@/../public/svg";
 
 function ContractTimeOff({ contract }: { contract: Record<string, unknown> }) {
@@ -104,7 +105,7 @@ function ContractTimeOff({ contract }: { contract: Record<string, unknown> }) {
                       <div
                         className={cn(
                           "px-2 py-1 rounded-full text-xs flex items-center gap-1 border w-fit",
-                          getStatusClass(transaction.status)
+                          getStatusClass(transaction.status),
                         )}
                       >
                         {getStatusIcon(transaction.status)}

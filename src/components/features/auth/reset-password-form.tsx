@@ -44,10 +44,10 @@ const ResetPassword: React.FC = () => {
         >
           {/* Heading */}
           <div className="">
-            <h2 className="text-[28px] lg:text-[40px] font-bold leading-[100%] text-[#17171C] mb-2">
+            <h2 className="text-[28px] lg:text-[40px] font-bold leading-[100%] text-gray-900 mb-2">
               Reset password
             </h2>
-            <p className="text-[#414F62] text-xs m-0 max-w-full sm:w-full sm:text-[16px]">
+            <p className="text-gray-600 text-xs m-0 max-w-full sm:w-full sm:text-[16px]">
               Create a new secure password to access your
               <br className="sm:hidden" /> VestRoll account for subsequent login
             </p>
@@ -58,7 +58,7 @@ const ResetPassword: React.FC = () => {
             <div>
               <label
                 htmlFor="password"
-                className="block text-xs sm:text-sm font-medium text-[#17171C] mb-2"
+                className="block text-xs sm:text-sm font-medium text-gray-900 mb-2"
               >
                 New password
               </label>
@@ -68,8 +68,8 @@ const ResetPassword: React.FC = () => {
                   id="password"
                   {...register("password")}
                   placeholder="Enter password"
-                  className={`w-full py-4 px-4 pr-12 bg-[#F5F6F7] text-gray-900 text-sm sm:text-base rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200 ${
-                    errors.password ? "border-red-300" : "border-gray-300"
+                  className={`w-full py-4 px-4 pr-12 bg-gray-50 text-gray-900 text-sm sm:text-base rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5E2A8C] focus:border-[#5E2A8C] transition-all duration-200 ${
+                    errors.password ? "border-red-300" : "border-gray-200"
                   }`}
                   aria-describedby={
                     errors.password ? "password-error" : undefined
@@ -156,7 +156,7 @@ const ResetPassword: React.FC = () => {
             <div>
               <label
                 htmlFor="confirmPassword"
-                className="block text-xs sm:text-sm font-medium text-[#17171C] mb-2"
+                className="block text-xs sm:text-sm font-medium text-gray-900 mb-2"
               >
                 Confirm password
               </label>
@@ -166,10 +166,10 @@ const ResetPassword: React.FC = () => {
                   type={showConfirmPassword ? "text" : "password"}
                   {...register("confirmPassword")}
                   placeholder="Confirm password"
-                  className={`w-full py-4 px-4 pr-12 bg-[#F5F6F7] text-sm text-gray-900 sm:text-base rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200 ${
+                  className={`w-full py-4 px-4 pr-12 bg-gray-50 text-sm text-gray-900 sm:text-base rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5E2A8C] focus:border-[#5E2A8C] transition-all duration-200 ${
                     errors.confirmPassword
                       ? "border-red-300"
-                      : "border-gray-300"
+                      : "border-gray-200"
                   }`}
                   aria-describedby={
                     errors.confirmPassword
@@ -265,7 +265,7 @@ const ResetPassword: React.FC = () => {
             disabled={isLoading}
             className={`w-full py-4 px-6 rounded-lg font-medium sm:font-semibold text-white transition-all duration-200 ${
               !isLoading
-                ? "bg-[#5E2A8C] hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transform hover:scale-[1.02]"
+                ? "bg-[#5E2A8C] hover:bg-[#4E2275] focus:outline-none focus:ring-2 focus:ring-[#5E2A8C] focus:ring-offset-2 transform hover:scale-[1.02]"
                 : "bg-gray-300 cursor-not-allowed"
             }`}
           >

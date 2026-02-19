@@ -12,11 +12,9 @@ export default function Login() {
   };
 
   return (
-    <div data-theme="light">
-      <LoginPage
-        onGoogleLogin={handleGoogleLogin}
-        onAppleLogin={handleAppleLogin}
-      />
-    </div>
+    <LoginPage
+      onGoogleLogin={handleGoogleLogin}
+      onAppleLogin={handleAppleLogin}
+    />
   );
 }

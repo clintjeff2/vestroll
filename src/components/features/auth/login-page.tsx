@@ -52,10 +52,10 @@ export default function LoginPage({
             className="space-y-8 lg:space-y-12 "
           >
             <div className="space-y-2">
-              <h2 className="text-[#17171C] text-[1.75rem] md:text-[2rem] tracking-[-2%] lg:text-[2.5rem] font-bold  leading-[100%] ">
+              <h2 className="text-gray-900 text-[1.75rem] md:text-[2rem] tracking-[-2%] lg:text-[2.5rem] font-bold  leading-[100%] ">
                 Welcome back!
               </h2>
-              <p className="text-[#414F62] text-xs md:text-base font-medium leading-[100%]">
+              <p className="text-gray-600 text-xs md:text-base font-medium leading-[100%]">
                 Securely access your account and manage payroll with ease
               </p>
             </div>
@@ -64,7 +64,7 @@ export default function LoginPage({
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-[#17171C] text-xs font-medium mb-2"
+                  className="block text-gray-900 text-xs font-medium mb-2"
                 >
                   Email address <span className="text-red-500">*</span>
                 </label>
@@ -74,7 +74,7 @@ export default function LoginPage({
                     type="email"
                     {...register("email")}
                     placeholder="Provide email address "
-                    className={`w-full pl-3 pr-3 py-3 sm:py-3.5 bg-[#F5F6F7] rounded-[8px] border ${
+                    className={`w-full pl-3 pr-3 py-3 sm:py-3.5 bg-gray-50 text-gray-900 rounded-[8px] border ${
                       errors.email ? "border-red-300" : "border-gray-200"
                     } rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200 text-sm sm:text-base`}
                     aria-describedby={errors.email ? "email-error" : undefined}
@@ -94,7 +94,7 @@ export default function LoginPage({
               <div className="text-gray-900">
                 <label
                   htmlFor="password"
-                  className="block text-[#17171C] text-xs font-medium mb-2"
+                  className="block text-gray-900 text-xs font-medium mb-2"
                 >
                   Password
                 </label>
@@ -103,9 +103,9 @@ export default function LoginPage({
                     id="password"
                     type={showPassword ? "text" : "password"}
                     {...register("password")}
-                    className={`w-full pr-12 pl-3 py-3 sm:py-3.5 bg-[#F5F6F7] rounded-[8px] border ${
+                    className={`w-full pr-12 pl-3 py-3 sm:py-3.5 bg-gray-50 text-gray-900 rounded-[8px] border ${
                       errors.password ? "border-red-300" : "border-gray-200"
-                    } rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200 text-sm sm:text-base`}
+                    } rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5E2A8C] focus:border-[#5E2A8C] transition-all duration-200 text-sm sm:text-base`}
                     placeholder="Enter password"
                     aria-describedby={
                       errors.password ? "password-error" : undefined
@@ -140,7 +140,7 @@ export default function LoginPage({
               <div className="flex flex-wrap items-center justify-end gap-2">
                 <Link
                   href="/forgot-password"
-                  className="text-[16px] text-[#5E2A8C] font-semibold hover:text-purple-800 focus:outline-none "
+                  className="text-[16px] text-[#5E2A8C] font-semibold hover:text-[#4E2275] focus:outline-none "
                 >
                   Forgot password?
                 </Link>
@@ -154,7 +154,7 @@ export default function LoginPage({
                   disabled={isLoading}
                   className={`w-full py-3.5 sm:py-4 text-[16px] px-4 rounded-xl font-semibold text-white text-sm sm:text-base transition-all duration-200 cursor-pointer ${
                     !isLoading
-                      ? "bg-[#5E2A8C] hover:bg-purple-800 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transform  active:scale-[0.98]"
+                      ? "bg-[#5E2A8C] hover:bg-[#4E2275] focus:outline-none focus:ring-2 focus:ring-[#5E2A8C] focus:ring-offset-2 transform  active:scale-[0.98]"
                       : "bg-gray-300 cursor-not-allowed"
                   }`}
                 >
@@ -169,10 +169,10 @@ export default function LoginPage({
                 </button>
                 <div className="relative">
                   <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-gray-300" />
+                    <div className="w-full border-t border-gray-200" />
                   </div>
                   <div className="relative flex justify-center text-sm">
-                    <span className="px-2 bg-white text-[#414F62] text-[16px] font-medium">
+                    <span className="px-2 bg-white text-gray-600 text-[16px] font-medium">
                       OR
                     </span>
                   </div>
@@ -180,9 +180,9 @@ export default function LoginPage({
                 <div className="grid grid-cols-2 gap-3 ">
                   <button
                     type="button"
-                    className="w-full flex flex-row gap-2 justify-center  items-center py-2.5 sm:py-3 px-2 sm:px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-xs sm:text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors"
+                    className="w-full flex flex-row gap-2 justify-center  items-center py-2.5 sm:py-3 px-2 sm:px-4 border border-gray-200 rounded-lg shadow-sm bg-white text-xs sm:text-sm font-medium text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5E2A8C] transition-colors"
                   >
-                    <span className="text-[#17171C] text-[16px] font-medium">
+                    <span className="text-gray-900 text-[16px] font-medium">
                       Login with
                     </span>
                     <svg
@@ -210,9 +210,9 @@ export default function LoginPage({
 
                   <button
                     type="button"
-                    className="w-full flex flex-row gap-2 justify-center items-center py-2.5 sm:py-3 px-2 sm:px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-xs sm:text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors"
+                    className="w-full flex flex-row gap-2 justify-center items-center py-2.5 sm:py-3 px-2 sm:px-4 border border-gray-200 rounded-lg shadow-sm bg-white text-xs sm:text-sm font-medium text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5E2A8C] transition-colors"
                   >
-                    <span className="text-[#17171C] text-[16px] font-medium">
+                    <span className="text-gray-900 text-[16px] font-medium">
                       Login with
                     </span>
                     <svg
@@ -230,7 +230,7 @@ export default function LoginPage({
                   New to VestRoll?
                   <Link
                     href="/register"
-                    className="font-semibold text-[16px] text-purple-700 hover:text-purple-800 focus:outline-none "
+                    className="font-semibold text-[16px] text-[#5E2A8C] hover:text-[#4E2275] focus:outline-none "
                   >
                     Create Account
                   </Link>

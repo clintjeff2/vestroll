@@ -90,13 +90,13 @@ const ProvideOTPModal: React.FC<ProvideOTPModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-gray-900/30 backdrop-blur-[2px]"
+      className="fixed inset-0 z-100 flex items-center justify-center p-4 bg-gray-900/30 backdrop-blur-[2px]"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
     >
       <div
-        className="relative w-full max-w-sm bg-white rounded-2xl p-6 md:p-8 shadow-2xl"
+        className="relative w-full max-w-sm bg-white border border-gray-200 rounded-2xl p-6 md:p-8 shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -140,7 +140,7 @@ const ProvideOTPModal: React.FC<ProvideOTPModalProps> = ({
               onChange={(e) => handleChange(e.target.value, index)}
               onKeyDown={(e) => handleKeyDown(e, index)}
               onPaste={handlePaste}
-              className="w-12 h-14 text-center text-xl font-semibold text-gray-900 bg-white border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#5E2A8C] focus:ring-2 focus:ring-[#5E2A8C]/20 transition-all"
+              className="w-12 h-14 text-center text-xl font-semibold text-gray-900 bg-gray-50 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-[#5E2A8C] focus:ring-2 focus:ring-[#5E2A8C]/20 transition-all"
               aria-label={`Digit ${index + 1}`}
             />
           ))}
@@ -149,7 +149,7 @@ const ProvideOTPModal: React.FC<ProvideOTPModalProps> = ({
         <button
           onClick={handleSubmit}
           disabled={!isComplete || isSubmitting}
-          className="w-full bg-[#5E2A8C] hover:bg-[#4E1F6C] disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition-colors"
+          className="w-full bg-[#5E2A8C] hover:bg-[#4E2275] disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition-colors"
         >
           {isSubmitting ? "Verifying..." : "Submit"}
         </button>

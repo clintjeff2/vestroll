@@ -18,17 +18,17 @@ function Stepper({ totalSteps = 1, currentStep = 1, className }: StepperProps) {
         return (
           <div
             key={step}
-            className={`relative w-full h-1 overflow-hidden rounded-lg bg-border-primary ${className}`}
+            className={`relative w-full h-1 overflow-hidden rounded-lg bg-gray-100 ${className}`}
           >
             {/* Completed steps (no animation) */}
             {isCompleted && (
-              <div className="absolute inset-0 rounded-lg bg-primary-500" />
+              <div className="absolute inset-0 rounded-lg bg-[#5E2A8C]" />
             )}
 
             {/* Current step (animated loading) */}
             {isCurrent && (
               <motion.div
-                className="absolute top-0 left-0 h-full rounded-lg bg-primary-500"
+                className="absolute top-0 left-0 h-full rounded-lg bg-[#5E2A8C]"
                 initial={{ width: 0 }}
                 animate={{ width: "100%" }}
                 transition={{

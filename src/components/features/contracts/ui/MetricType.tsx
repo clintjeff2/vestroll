@@ -1,7 +1,8 @@
 import EmptyState from "@/components/ui/EmptyState";
 import { Check, XCircle, Clock, Clock4Icon, Zap } from "lucide-react";
 import { cn } from "@/utils/classNames";
-import { Transaction, transactions } from "@/lib/data/transactions";
+import { Transaction } from "@/types/finance.types";
+const transactions: Transaction[] = [];
 import { currencies } from "@/constants";
 
 function ContractTypeMetric({
@@ -123,7 +124,7 @@ function ContractTypeMetric({
                       <small className="text-xs md:hidden">
                         <div className="flex items-center gap-2">
                           <span className="text-[#7F8C9F]">
-                            ${transaction.amount.toFixed(2)}
+                            ${Number(transaction.amount).toFixed(2)}
                           </span>
                           <span className="text-[#DCE0E5]">|</span>
                           <p className="flex items-center gap-1">
@@ -141,7 +142,7 @@ function ContractTypeMetric({
                     </td>
                     <td className="hidden md:table-cell px-3 py-4 whitespace-nowrap">
                       <div className="flex items-center gap-2">
-                        <span>${transaction.amount.toFixed(2)}</span>
+                        <span>${Number(transaction.amount).toFixed(2)}</span>
                         <p className="flex items-center gap-1 px-2 border bg-[#F5F6F7] rounded-xl">
                           <img
                             src={currencies[0].icon}
@@ -159,7 +160,7 @@ function ContractTypeMetric({
                       <div
                         className={cn(
                           "px-2 py-1 rounded-full text-xs flex items-center gap-1 border w-fit",
-                          getStatusClass(transaction.status)
+                          getStatusClass(transaction.status),
                         )}
                       >
                         {getStatusIcon(transaction.status)}

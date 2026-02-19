@@ -13,8 +13,8 @@ export interface Asset {
 export interface Transaction {
   id: string;
   description: string;
-  amount: string;
-  asset: string;
+  amount: number | string;
+  asset?: string;
   status: TransactionStatus;
   timestamp: string;
 }
