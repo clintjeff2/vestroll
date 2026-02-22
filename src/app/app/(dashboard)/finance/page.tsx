@@ -152,7 +152,7 @@ export default function FinancePage() {
 
         <div className="p-4">
           {/* Balance Section */}
-          <div className="flex flex-col md:flex-row w-full gap-6 mb-2">
+          <div className="flex flex-col md:flex-row w-full gap-4 md:gap-6 mb-2">
             <BalanceSection balance="$5,050.00" change="-0.0051% ($0.99)" />
             <BalanceSection balance="$5,050.00" change="-0.0051% ($0.99)" />
           </div>

@@ -19,7 +19,7 @@ export function BalanceSection({ balance, change }: BalanceSectionProps) {
   };
 
   return (
-    <div className="bg-white rounded-xl md:p-4 border-r-0 border mb-4 text-center shadow-sm dark:bg-gray-900 w-full ">
+    <div className="bg-white rounded-xl p-4 border-r-0 border mb-4 text-center shadow-sm dark:bg-gray-900 w-full ">
       <p className="text-[#64748B] text-xs md:text-sm mb-2 dark:text-gray-400">
         Total balance
       </p>
