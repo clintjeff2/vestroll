@@ -15,6 +15,13 @@
       "when": 1771769881928,
       "tag": "0001_concerned_tyger_tiger",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1771841970424,
+      "tag": "0002_powerful_red_ghost",
+      "breakpoints": true
     }
   ]
 }

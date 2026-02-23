@@ -7,6 +7,7 @@ export const oauthProviderEnum = pgEnum("oauth_provider", ["google", "apple"]);
 export const employeeStatusEnum = pgEnum("employee_status", ["Active", "Inactive"]);
 export const employeeTypeEnum = pgEnum("employee_type", ["Freelancer", "Contractor"]);
 export const kybStatusEnum = pgEnum("kyb_status", ["not_started", "pending", "verified", "rejected"]);
+export const timesheetStatusEnum = pgEnum("timesheet_status", ["Pending", "Approved", "Rejected"]);
 
 export const organizations = pgTable("organizations", {
   id: uuid("id").primaryKey().defaultRandom(),
@@ -165,3 +166,19 @@ export const kybVerifications = pgTable("kyb_verifications", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
+
+export const timesheets = pgTable("timesheets", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  employeeId: uuid("employee_id").references(() => employees.id, { onDelete: "cascade" }).notNull(),
+  organizationId: uuid("organization_id").references(() => organizations.id, { onDelete: "cascade" }).notNull(),
+  totalHours: integer("total_hours").notNull(),
+  rate: integer("rate").notNull(),
+  totalAmount: integer("total_amount").notNull(),
+  status: timesheetStatusEnum("status").default("Pending").notNull(),
+  submittedAt: timestamp("submitted_at").defaultNow().notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (table) => [
+  index("timesheets_organization_id_idx").on(table.organizationId),
+  index("timesheets_employee_id_idx").on(table.employeeId),
+]);
