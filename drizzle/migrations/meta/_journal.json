@@ -19,13 +19,6 @@
     {
       "idx": 2,
       "version": "7",
-      "when": 1771929600000,
-      "tag": "0002_add_timesheet_approval_fields",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
       "when": 1771841970424,
       "tag": "0002_powerful_red_ghost",
       "breakpoints": true
@@ -49,6 +42,13 @@
       "version": "7",
       "when": 1771848154936,
       "tag": "0004_bored_calypso",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1771929600000,
+      "tag": "0005_add_timesheet_approval_fields",
       "breakpoints": true
     }
   ]
